@@ -1,0 +1,16 @@
+# Cuentos para dormir de Caye — Dependencias Python
+
+# Generación de cuentos
+anthropic>=0.40.0
+
+# Generación de carátulas
+openai>=1.50.0
+pillow>=10.0.0
+requests>=2.31.0
+
+# Generación de audio
+google-cloud-texttospeech>=2.16.0
+pydub>=0.25.1
+
+# Metadata de audio
+mutagen>=1.47.0

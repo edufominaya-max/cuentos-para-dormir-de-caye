@@ -1,0 +1,131 @@
+name: 🌙 Generar episodio semanal — Cuentos para dormir de Caye
+
+on:
+  # Ejecutar automáticamente cada lunes a las 08:00 (hora Madrid)
+  schedule:
+    - cron: '0 7 * * 1'  # UTC 07:00 = Madrid 08:00 (invierno) / 09:00 (verano)
+  
+  # También se puede lanzar manualmente desde GitHub Actions
+  workflow_dispatch:
+    inputs:
+      lang:
+        description: 'Idioma (es/en/fr/de/zh/all)'
+        required: true
+        default: 'all'
+        type: choice
+        options: ['all', 'es', 'en', 'fr', 'de', 'zh']
+      topic:
+        description: 'Tema del cuento (solo si lang != all)'
+        required: false
+        default: ''
+      title:
+        description: 'Título del cuento (solo si lang != all)'
+        required: false
+        default: ''
+      skip_audio:
+        description: 'Omitir generación de audio'
+        required: false
+        default: 'false'
+        type: boolean
+      skip_cover:
+        description: 'Omitir generación de carátula'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  generate-episode:
+    name: Generar episodio
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repositorio
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Instalar dependencias
+        run: |
+          pip install anthropic openai requests pillow pydub mutagen
+          # Google TTS (solo si no se omite el audio)
+          if [ "${{ github.event.inputs.skip_audio }}" != "true" ]; then
+            pip install google-cloud-texttospeech
+            # ffmpeg para pydub
+            sudo apt-get install -y ffmpeg
+          fi
+      
+      - name: 🔑 Configurar credenciales Google Cloud
+        if: github.event.inputs.skip_audio != 'true'
+        run: |
+          echo '${{ secrets.GOOGLE_CREDENTIALS_JSON }}' > /tmp/google-credentials.json
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/google-credentials.json
+      
+      - name: 📝 Calcular número de episodio
+        id: episode_num
+        run: |
+          # Contar episodios existentes en logs/
+          COUNT=$(find logs/ -name "episode_*.json" 2>/dev/null | wc -l)
+          NEXT=$((COUNT + 1))
+          echo "episode_number=$NEXT" >> $GITHUB_OUTPUT
+          echo "Próximo episodio: $NEXT"
+      
+      - name: 🌙 Ejecutar pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/google-credentials.json
+        run: |
+          cd scripts
+          
+          LANG_ARG="${{ github.event.inputs.lang || 'all' }}"
+          EPISODE="${{ steps.episode_num.outputs.episode_number }}"
+          SKIP_AUDIO="${{ github.event.inputs.skip_audio == 'true' && '--skip-audio' || '' }}"
+          SKIP_COVER="${{ github.event.inputs.skip_cover == 'true' && '--skip-cover' || '' }}"
+          
+          if [ "$LANG_ARG" = "all" ]; then
+            python run_pipeline.py --all --episode $EPISODE $SKIP_AUDIO $SKIP_COVER
+          else
+            TOPIC="${{ github.event.inputs.topic }}"
+            TITLE="${{ github.event.inputs.title }}"
+            python run_pipeline.py \
+              --lang $LANG_ARG \
+              --topic "$TOPIC" \
+              --title "$TITLE" \
+              --episode $EPISODE \
+              $SKIP_AUDIO $SKIP_COVER
+          fi
+      
+      - name: 💾 Commit y push de los nuevos archivos
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "Caye Bot 🌙"
+          
+          git add stories/ audio/ covers/ logs/ feed.xml
+          
+          # Solo commitear si hay cambios
+          if git diff --staged --quiet; then
+            echo "No hay cambios nuevos para commitear"
+          else
+            EPISODE="${{ steps.episode_num.outputs.episode_number }}"
+            git commit -m "🌙 Episodio $EPISODE — $(date '+%d/%m/%Y')"
+            git push
+          fi
+      
+      - name: 📊 Resumen del episodio
+        run: |
+          echo "## 🌙 Episodio generado" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Campo | Valor |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Fecha | $(date '+%d/%m/%Y %H:%M') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Episodio | ${{ steps.episode_num.outputs.episode_number }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Idioma | ${{ github.event.inputs.lang || 'all' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Audio | ${{ github.event.inputs.skip_audio == 'true' && 'Omitido' || 'Generado' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Carátula | ${{ github.event.inputs.skip_cover == 'true' && 'Omitida' || 'Generada' }} |" >> $GITHUB_STEP_SUMMARY
