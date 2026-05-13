@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-generate_audio.py — Convierte cuentos a MP3 usando Google Cloud TTS.
-Version sin pydub — compatible con Python 3.14+
+generate_audio.py — Convierte cuentos a MP3 usando OpenAI TTS.
+Voz: nova (femenina, cálida, expresiva) — mucho mejor que Google TTS.
+
+Coste: ~$0.015 por cuento completo (~1.500 palabras)
 
 Prerequisitos:
-    pip install google-cloud-texttospeech
-    set GOOGLE_APPLICATION_CREDENTIALS=C:\cuentos\google-credentials.json
+    pip install openai
+    set OPENAI_API_KEY=sk-...
 
 Uso:
     python generate_audio.py --input stories\es\caye_y_la_linterna_magica.txt
@@ -13,24 +15,21 @@ Uso:
 """
 
 import argparse
-import io
-import json
 import os
 import re
-import struct
-import wave
-from datetime import datetime
 from pathlib import Path
 
+# Voz por idioma — todas femeninas y cálidas
 VOICE_CONFIG = {
-    "es": {"language_code": "es-ES", "voice_name": "es-ES-Neural2-C", "speaking_rate": 0.90, "pitch": -1.0},
-    "en": {"language_code": "en-GB", "voice_name": "en-GB-Neural2-C", "speaking_rate": 0.88, "pitch": -1.0},
-    "fr": {"language_code": "fr-FR", "voice_name": "fr-FR-Neural2-C", "speaking_rate": 0.88, "pitch": -1.0},
-    "de": {"language_code": "de-DE", "voice_name": "de-DE-Neural2-C", "speaking_rate": 0.87, "pitch": -1.0},
-    "zh": {"language_code": "cmn-CN", "voice_name": "cmn-CN-Neural2-D", "speaking_rate": 0.85, "pitch": -1.0},
+    "es": "nova",      # Cálida, expresiva — perfecta para español
+    "en": "nova",      # Igual de buena en inglés
+    "fr": "nova",      # Funciona bien en francés
+    "de": "nova",      # Alemán
+    "zh": "shimmer",   # Shimmer suena mejor en chino
 }
 
-MAX_CHARS = 4800
+# OpenAI TTS tiene límite de 4.096 caracteres por llamada
+MAX_CHARS = 4000
 
 
 def detect_lang(file_path: Path) -> str:
@@ -41,9 +40,14 @@ def detect_lang(file_path: Path) -> str:
 
 
 def split_text(text: str) -> list:
+    """Divide el texto en fragmentos respetando párrafos."""
+    # Limpiar markdown
     text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\*+', '', text)
+
     paragraphs = text.split('\n\n')
     chunks, current = [], ""
+
     for para in paragraphs:
         para = para.strip()
         if not para:
@@ -54,26 +58,23 @@ def split_text(text: str) -> list:
             if current:
                 chunks.append(current)
             current = para
+
     if current:
         chunks.append(current)
+
     return chunks
 
 
-def combine_mp3_chunks(chunks_data: list) -> bytes:
-    """Combina múltiples chunks de MP3 concatenándolos directamente."""
-    return b"".join(chunks_data)
-
-
 def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) -> Path:
-    from google.cloud import texttospeech
+    from openai import OpenAI
 
     if not lang:
         lang = detect_lang(txt_path)
 
-    voice_cfg = VOICE_CONFIG.get(lang, VOICE_CONFIG["es"])
+    voice = VOICE_CONFIG.get(lang, "nova")
 
     print(f"  🎙️  Sintetizando [{lang.upper()}]: {txt_path.name}")
-    print(f"      Voz: {voice_cfg['voice_name']}")
+    print(f"      Voz: OpenAI {voice}")
 
     with open(txt_path, "r", encoding="utf-8") as f:
         text = f.read()
@@ -81,40 +82,30 @@ def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) 
     chunks = split_text(text)
     print(f"      Fragmentos: {len(chunks)} | Chars totales: {len(text):,}")
 
-    client = texttospeech.TextToSpeechClient()
+    client = OpenAI()
     audio_chunks = []
 
     for i, chunk in enumerate(chunks, 1):
         print(f"      Procesando fragmento {i}/{len(chunks)}...")
 
-        synthesis_input = texttospeech.SynthesisInput(text=chunk)
-        voice = texttospeech.VoiceSelectionParams(
-            language_code=voice_cfg["language_code"],
-            name=voice_cfg["voice_name"],
-        )
-        audio_config = texttospeech.AudioConfig(
-            audio_encoding=texttospeech.AudioEncoding.MP3,
-            speaking_rate=voice_cfg["speaking_rate"],
-            pitch=voice_cfg["pitch"],
-        )
-
-        response = client.synthesize_speech(
-            input=synthesis_input,
+        response = client.audio.speech.create(
+            model="tts-1-hd",     # Alta calidad
             voice=voice,
-            audio_config=audio_config,
+            input=chunk,
+            response_format="mp3",
+            speed=0.92,           # Ligeramente más lento — ideal para dormir
         )
-        audio_chunks.append(response.audio_content)
 
-    # Combinar chunks
-    final_audio = combine_mp3_chunks(audio_chunks)
+        audio_chunks.append(response.content)
 
-    # Guardar MP3
+    # Combinar todos los chunks en un solo MP3
+    final_audio = b"".join(audio_chunks)
+
+    # Guardar
     lang_dir = Path(output_dir) / lang
     lang_dir.mkdir(parents=True, exist_ok=True)
 
-    stem = txt_path.stem
-    mp3_path = lang_dir / f"{stem}.mp3"
-
+    mp3_path = lang_dir / f"{txt_path.stem}.mp3"
     with open(mp3_path, "wb") as f:
         f.write(final_audio)
 
@@ -134,11 +125,11 @@ def generate_all_audio(stories_dir: str = "stories", output_dir: str = "audio"):
         try:
             generate_audio(txt_file, output_dir)
         except Exception as e:
-            print(f"  ❌ Error con {txt_file}: {e}")
+            print(f"  ❌ Error con {txt_file.name}: {e}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Genera audio MP3 con Google TTS")
+    parser = argparse.ArgumentParser(description="Genera audio MP3 con OpenAI TTS")
     parser.add_argument("--input", help="Archivo .txt del cuento")
     parser.add_argument("--lang", choices=list(VOICE_CONFIG.keys()))
     parser.add_argument("--all", action="store_true", help="Convierte todos los cuentos")
@@ -154,6 +145,8 @@ def main():
         generate_audio(Path(args.input), args.output_dir, args.lang)
     else:
         parser.print_help()
+        print("\n💡 Ejemplo:")
+        print('   python generate_audio.py --input stories\\es\\caye_y_la_linterna_magica.txt')
 
 
 if __name__ == "__main__":
