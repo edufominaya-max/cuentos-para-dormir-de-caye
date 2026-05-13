@@ -40,7 +40,7 @@ import time
 # ──────────────────────────────────────────────
 
 PODCAST_CONFIG = {
-    "title": "Cuentos para dormir de Caye",
+    "title": "Las aventuras de Caye y Alvarito",
     "description": (
         "🌙 Un espacio mágico donde los pequeños soñadores encuentran cuentos "
         "infantiles únicos llenos de valores, emociones y aventuras. "
@@ -49,7 +49,7 @@ PODCAST_CONFIG = {
         "¡Hasta la próxima noche, pequeños soñadores! ✨"
     ),
     "author": "Caye",
-    "email": "cuentosdecaye@gmail.com",   # ← CAMBIAR
+    "email": "aventurasdecayeyalvarito@gmail.com",   # ← CAMBIAR
     "language_map": {
         "es": "es-ES",
         "en": "en-GB",
@@ -60,11 +60,11 @@ PODCAST_CONFIG = {
     "category": "Kids & Family",
     "subcategory": "Stories for Kids",
     "explicit": "false",
-    "website": "https://cuentosdecaye.com",  # ← CAMBIAR cuando tengas web
+    "website": "https://aventurasdecayeyalvarito.com",  # ← CAMBIAR cuando tengas web
 }
 
 EPISODE_DESCRIPTIONS = {
-    "es": "🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #CuentosParaDormir #CuentosInfantiles #CuentosDeCaye",
+    "es": "🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito",
     "en": "🌙 A new story from Caye to accompany little dreamers on their journey to dreamland. ✨ #BedtimeStories #KidsStories #CayeStories",
     "fr": "🌙 Une nouvelle histoire de Caye pour accompagner les petits rêveurs dans leur voyage au pays des rêves. ✨ #ContesPourdormir #HistoiresEnfants",
     "de": "🌙 Eine neue Geschichte von Caye, die kleine Träumer auf ihrer Reise ins Traumland begleitet. ✨ #Gutenachtgeschichten #KinderGeschichten",
@@ -238,7 +238,7 @@ def generate_rss_feed(episodes_dir: str = ".", output_path: str = "feed.xml") ->
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Sube episodios de 'Cuentos para dormir de Caye' a plataformas"
+        description="Sube episodios de 'Las aventuras de Caye y Alvarito' a plataformas"
     )
     parser.add_argument("--mp3", help="Ruta al archivo MP3")
     parser.add_argument("--cover", help="Ruta a la carátula JPG")
@@ -257,7 +257,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("📡 Cuentos para dormir de Caye — Subida a plataformas")
+    print("📡 Las aventuras de Caye y Alvarito — Subida a plataformas")
     print("=" * 55)
     
     if args.platform == "rss":
