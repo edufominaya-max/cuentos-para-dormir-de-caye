@@ -206,7 +206,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🌙 Cuentos para dormir de Caye — Pipeline completo")
+    print("🌙 Las aventuras de Caye y Alvarito — Pipeline completo")
     print("=" * 55)
     print(f"   Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
     print(f"   Modo: {'TODOS LOS IDIOMAS' if args.all else args.lang.upper() if args.lang else '?'}")
@@ -234,3 +234,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
