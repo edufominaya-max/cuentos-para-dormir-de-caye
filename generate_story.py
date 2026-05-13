@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_story.py — Genera cuentos infantiles para "Cuentos para dormir de Caye"
+generate_story.py — Genera cuentos infantiles para "Las aventuras de Caye y Alvarito"
 usando la API de Claude (Anthropic). Protagonistas: Caye (7 años) y Álvaro (3 años).
 """
 
@@ -183,7 +183,7 @@ def generate_story(lang: str, topic: str, title: str, api_key: str = None) -> di
         "voice_code": lang_config["voice_code"],
         "generated_at": datetime.now().isoformat(),
         "model": "claude-opus-4-5",
-        "podcast_name": "Cuentos para dormir de Caye",
+        "podcast_name": "Las aventuras de Caye y Alvarito",
     }
 
     print(f"  ✅ Cuento generado: {result['word_count']} palabras")
@@ -228,7 +228,7 @@ def generate_all_languages(api_key: str = None) -> list:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Genera cuentos infantiles para 'Cuentos para dormir de Caye'"
+        description="Genera cuentos infantiles para 'Las aventuras de Caye y Alvarito'"
     )
     parser.add_argument("--lang", choices=list(LANGUAGES.keys()))
     parser.add_argument("--topic")
@@ -239,7 +239,7 @@ def main():
 
     args = parser.parse_args()
 
-    print("🌙 Cuentos para dormir de Caye — Generador de historias")
+    print("🌙 Las aventuras de Caye y Alvarito — Generador de historias")
     print("=" * 55)
 
     if args.all:
