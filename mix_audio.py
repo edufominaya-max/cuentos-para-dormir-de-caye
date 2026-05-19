@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
+   #!/usr/bin/env python3
 """
 mix_audio.py — Mezcla el audio final del cuento:
   INTRO (sintonía) + NARRACIÓN/DIÁLOGOS + CANCIONES + OUTRO (sintonía)
 
 Prerequisitos:
     ffmpeg instalado en el sistema (https://ffmpeg.org)
-    pip install pydub
 
 Uso:
     python mix_audio.py --story stories/es/caye_y_la_linterna_magica.json
@@ -29,11 +28,11 @@ JINGLE_DIR   = Path("music/jingle")
 INTRO_PATH   = JINGLE_DIR / "intro.mp3"
 OUTRO_PATH   = JINGLE_DIR / "outro.mp3"
 
-# Silencio entre segmentos (milisegundos)
-SILENCE_BETWEEN_SEGMENTS = 500   # 0.5s entre párrafos
-SILENCE_BEFORE_SONG      = 1500  # 1.5s antes de una canción
-SILENCE_AFTER_SONG       = 1500  # 1.5s después de una canción
-SILENCE_AFTER_INTRO      = 1000  # 1s después de la sintonía
+SILENCE_AFTER_INTRO  = 1000
+SILENCE_BEFORE_SONG  = 1500
+SILENCE_AFTER_SONG   = 1500
+
+_SLUG_RE = re.compile(r'[^\w]')
 
 
 # ---------------------------------------------------------------------------
@@ -43,7 +42,11 @@ SILENCE_AFTER_INTRO      = 1000  # 1s después de la sintonía
 def check_ffmpeg():
     result = subprocess.run(["ffmpeg", "-version"], capture_output=True)
     if result.returncode != 0:
-        raise EnvironmentError("❌ FFmpeg no está instalado. Descárgalo en https://ffmpeg.org")
+        raise EnvironmentError("❌ FFmpeg no está instalado.")
+
+
+def slugify(text: str, max_len: int = 50) -> str:
+    return _SLUG_RE.sub('_', text.lower())[:max_len]
 
 
 def get_duration(path: Path) -> float:
@@ -55,7 +58,7 @@ def get_duration(path: Path) -> float:
     )
     try:
         return float(result.stdout.strip())
-    except:
+    except Exception:
         return 0.0
 
 
@@ -63,7 +66,7 @@ def generate_silence(duration_ms: int, output_path: Path):
     """Genera un archivo MP3 de silencio."""
     duration_s = duration_ms / 1000
     subprocess.run([
-        "ffmpeg", "-y", "-f", "lavfi", "-i", f"anullsrc=r=44100:cl=stereo",
+        "ffmpeg", "-y", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
         "-t", str(duration_s), "-c:a", "libmp3lame", "-q:a", "2",
         str(output_path)
     ], capture_output=True)
@@ -71,82 +74,24 @@ def generate_silence(duration_ms: int, output_path: Path):
 
 def concatenate_mp3s(file_list: list, output_path: Path):
     """Concatena una lista de MP3s en un solo archivo."""
-    # Crear archivo de lista para FFmpeg
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False, encoding='utf-8') as f:
         for mp3 in file_list:
-            f.write(f"file '{mp3}'\n")
+            # Escapar comillas simples en rutas para el formato concat de FFmpeg
+            safe_path = str(mp3).replace("'", "'\\''")
+            f.write(f"file '{safe_path}'\n")
         list_file = f.name
 
-    subprocess.run([
+    result = subprocess.run([
         "ffmpeg", "-y", "-f", "concat", "-safe", "0",
         "-i", list_file, "-c", "copy", str(output_path)
-    ], capture_output=True)
+    ], capture_output=True, text=True)
 
     os.unlink(list_file)
 
-
-def add_background_music(narration_path: Path, music_path: Path,
-                          output_path: Path, music_volume: float = 0.08):
-    """Añade música de fondo suave bajo la narración."""
-    subprocess.run([
-        "ffmpeg", "-y",
-        "-i", str(narration_path),
-        "-i", str(music_path),
-        "-filter_complex",
-        f"[1:a]volume={music_volume},aloop=loop=-1:size=44100*300[bg];"
-        f"[0:a][bg]amix=inputs=2:duration=first:weights=1 {music_volume}[out]",
-        "-map", "[out]",
-        "-c:a", "libmp3lame", "-q:a", "2",
-        str(output_path)
-    ], capture_output=True)
-
-
-# ---------------------------------------------------------------------------
-# PARSEO DEL GUIÓN PARA MEZCLA
-# ---------------------------------------------------------------------------
-
-def parse_mix_script(txt_path: Path, audio_dir: Path, music_dir: Path) -> list:
-    """
-    Lee el guión y devuelve lista ordenada de segmentos de audio:
-    [{"type": "narration"|"song"|"silence", "path": Path, "duration_ms": int}]
-    """
-    with open(txt_path, "r", encoding="utf-8") as f:
-        text = f.read()
-
-    segments = []
-    lang = None
-    for part in txt_path.parts:
-        if part in ["es", "en", "fr", "de", "zh"]:
-            lang = part
-            break
-    lang = lang or "es"
-
-    # Audio de narración generado por ElevenLabs
-    narration_path = audio_dir / lang / f"{txt_path.stem}.mp3"
-    if narration_path.exists():
-        segments.append({"type": "narration", "path": narration_path})
-    else:
-        print(f"   ⚠️  No encontrado audio de narración: {narration_path}")
-
-    # Canciones — buscar archivos generados por generate_music.py
-    story_slug = re.sub(r'[^\w]', '_', txt_path.stem.lower())[:30]
-    song_pattern = music_dir / lang / story_slug
-
-    song_blocks = re.findall(
-        r'\[CANCION:([^\]]+)\]',
-        text, re.IGNORECASE
-    )
-
-    for i, song_title in enumerate(song_blocks, 1):
-        song_slug = re.sub(r'[^\w]', '_', song_title.strip().lower())[:30]
-        song_path = song_pattern / f"song_{i:02d}_{song_slug}.mp3"
-
-        if song_path.exists():
-            segments.append({"type": "song", "path": song_path, "title": song_title.strip()})
-        else:
-            print(f"   ⚠️  No encontrada canción: {song_path}")
-
-    return segments
+    if result.returncode != 0:
+        raise Exception(f"FFmpeg concat error: {result.stderr}")
 
 
 # ---------------------------------------------------------------------------
@@ -156,11 +101,10 @@ def parse_mix_script(txt_path: Path, audio_dir: Path, music_dir: Path) -> list:
 def mix_episode(story_json_path: Path,
                 audio_dir: str = "audio",
                 music_dir: str = "music",
-                output_dir: str = "final",
-                add_bg_music: bool = False) -> Path:
+                output_dir: str = "final") -> Path:
     """
     Mezcla el episodio completo:
-    INTRO → SILENCIO → NARRACIÓN → CANCIONES (intercaladas) → SILENCIO → OUTRO
+    INTRO → SILENCIO → NARRACIÓN → CANCIONES → SILENCIO → OUTRO
     """
     check_ffmpeg()
 
@@ -175,13 +119,16 @@ def mix_episode(story_json_path: Path,
     print("=" * 55)
 
     # Verificar sintonía
-    if not INTRO_PATH.exists():
-        print(f"   ⚠️  No existe sintonía. Ejecuta: python generate_music.py --jingle")
-        has_jingle = False
-    else:
-        has_jingle = True
+    has_jingle = INTRO_PATH.exists() and OUTRO_PATH.exists()
+    if not has_jingle:
+        print(f"   ⚠️  No existe sintonía — se generará sin intro/outro")
 
-    # Directorio temporal para fragmentos
+    # Verificar narración
+    narration_path = Path(audio_dir) / lang / f"{txt_file.stem}.mp3"
+    if not narration_path.exists():
+        print(f"   ❌ No encontrada narración: {narration_path}")
+        return None
+
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp = Path(tmp_dir)
         parts = []
@@ -194,17 +141,13 @@ def mix_episode(story_json_path: Path,
             parts.append(str(sil))
             print(f"   ✅ Intro añadida")
 
-        # 2. NARRACIÓN PRINCIPAL
-        narration_path = Path(audio_dir) / lang / f"{txt_file.stem}.mp3"
-        if narration_path.exists():
-            parts.append(str(narration_path))
-            print(f"   ✅ Narración añadida ({get_duration(narration_path):.0f}s)")
-        else:
-            print(f"   ❌ No encontrada narración: {narration_path}")
-            return None
+        # 2. NARRACIÓN
+        parts.append(str(narration_path))
+        dur = get_duration(narration_path)
+        print(f"   ✅ Narración añadida ({dur:.0f}s)")
 
-        # 3. CANCIONES (al final de la narración, antes del outro)
-        story_slug = re.sub(r'[^\w]', '_', title.lower())[:30]
+        # 3. CANCIONES
+        story_slug = slugify(title, 30)
         song_dir = Path(music_dir) / lang / story_slug
 
         if song_dir.exists():
@@ -227,19 +170,20 @@ def mix_episode(story_json_path: Path,
             parts.append(str(OUTRO_PATH))
             print(f"   ✅ Outro añadida")
 
-        # 5. CONCATENAR TODO
-        slug = re.sub(r'[^\w]', '_', title.lower())[:50]
-        lang_out_dir = Path(output_dir) / lang
-        lang_out_dir.mkdir(parents=True, exist_ok=True)
-        output_path = lang_out_dir / f"{slug}_final.mp3"
+        # 5. CONCATENAR
+        slug = slugify(title)
+        output_path = Path(output_dir) / lang / f"{slug}_final.mp3"
 
         print(f"\n   🎚️  Concatenando {len(parts)} segmentos...")
         concatenate_mp3s(parts, output_path)
 
-    duration = get_duration(output_path)
-    size_mb  = output_path.stat().st_size / 1024 / 1024
+    if not output_path.exists():
+        raise FileNotFoundError(f"FFmpeg no generó el archivo: {output_path}")
+
+    dur_final = get_duration(output_path)
+    size_mb   = output_path.stat().st_size / 1024 / 1024
     print(f"\n✅ Episodio final: {output_path}")
-    print(f"   Duración: {duration/60:.1f} min | Tamaño: {size_mb:.1f} MB")
+    print(f"   Duración: {dur_final/60:.1f} min | Tamaño: {size_mb:.1f} MB")
 
     return output_path
 
@@ -284,7 +228,6 @@ def main():
         print("\n💡 Ejemplos:")
         print("   python mix_audio.py --story stories/es/caye_y_la_linterna_magica.json")
         print("   python mix_audio.py --all")
-        print("\n⚠️  Requiere FFmpeg instalado: https://ffmpeg.org")
 
 
 if __name__ == "__main__":
