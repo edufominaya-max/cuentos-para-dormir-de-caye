@@ -1,63 +1,125 @@
 #!/usr/bin/env python3
 """
-generate_audio.py — Convierte cuentos a MP3 usando OpenAI TTS.
-Voz: nova (femenina, cálida, expresiva) — mucho mejor que Google TTS.
+generate_audio.py — Convierte cuentos a MP3 usando ElevenLabs TTS.
+Soporta múltiples voces: narradora + personajes distintos.
 
-Coste: ~$0.015 por cuento completo (~1.500 palabras)
+Coste: ~10.000 créditos gratis/mes (plan Free) = ~2-3 cuentos completos
 
 Prerequisitos:
-    pip install openai
-    set OPENAI_API_KEY=sk-...
+    pip install elevenlabs pydub
+    set ELEVENLABS_API_KEY=sk_5eca3de8e61652c4f897d5d0ee5cce6f4c6b2ab457c1367a
+
+Formato del guión (.txt):
+    El texto normal lo narra la narradora.
+    Para asignar voz a un personaje, usa etiquetas:
+        [PERSONAJE:nombre] Texto que dice el personaje.
+    Ejemplo:
+        La luna brillaba sobre el bosque.
+        [PERSONAJE:caye] ¡Mira, Alvarito! ¡Una estrella fugaz!
+        [PERSONAJE:alvarito] ¿Pedimos un deseo?
 
 Uso:
-    python generate_audio.py --input stories\es\caye_y_la_linterna_magica.txt
+    python generate_audio.py --input stories/es/caye_y_la_linterna_magica.txt
     python generate_audio.py --all
+    python generate_audio.py --list-voices   # Ver voces disponibles
 """
 
 import argparse
 import os
 import re
+import time
 from pathlib import Path
 
-# Voz por idioma — todas femeninas y cálidas
-VOICE_CONFIG = {
-    "es": "nova",      # Cálida, expresiva — perfecta para español
-    "en": "nova",      # Igual de buena en inglés
-    "fr": "nova",      # Funciona bien en francés
-    "de": "nova",      # Alemán
-    "zh": "shimmer",   # Shimmer suena mejor en chino
+# ---------------------------------------------------------------------------
+# CONFIGURACIÓN DE VOCES
+# Narradora por idioma — busca en ElevenLabs voces españolas femeninas
+# Ve a elevenlabs.io/app/voice-library y busca "Spanish" para encontrar IDs
+# ---------------------------------------------------------------------------
+NARRATOR_VOICE = {
+    "es": "cgSgspJ2msm6clMCkdW9",  # Jessica (español neutro, cálida)
+    "en": "EXAVITQu4vr4xnSDxMaL",  # Bella (inglés, femenina)
+    "fr": "cgSgspJ2msm6clMCkdW9",  # Usar misma hasta tener voz francesa
+    "de": "cgSgspJ2msm6clMCkdW9",
+    "zh": "cgSgspJ2msm6clMCkdW9",
 }
 
-# OpenAI TTS tiene límite de 4.096 caracteres por llamada
-MAX_CHARS = 4000
+# Voces por personaje — añade aquí los personajes de tus cuentos
+# ID de voces: encuéntralas en elevenlabs.io/app/voice-library
+CHARACTER_VOICES = {
+    "caye":      "EXAVITQu4vr4xnSDxMaL",  # Niña — voz aguda y alegre
+    "alvarito":  "pNInz6obpgDQGcFmaJgB",  # Niño pequeño — voz suave
+    "bruja":     "onwK4e9ZLuTAKqWW03F9",  # Villana — voz grave dramática
+    "hada":      "XB0fDUnXU5powFXDhCwa",  # Hada — voz etérea y suave
+    "dragon":    "IKne3meq5aSn9XLyUdCD",  # Dragón — voz grave potente
+    # Añade más personajes aquí
+}
+
+# Modelo ElevenLabs — eleven_multilingual_v2 soporta español nativo
+MODEL = "eleven_multilingual_v2"
+
+# Configuración de voz (ajusta a tu gusto)
+VOICE_SETTINGS = {
+    "narrator": {"stability": 0.75, "similarity_boost": 0.75, "style": 0.3, "speed": 0.92},
+    "character": {"stability": 0.60, "similarity_boost": 0.80, "style": 0.5, "speed": 1.0},
+}
+
+# ElevenLabs permite hasta ~5.000 chars por llamada
+MAX_CHARS = 4500
 
 
-def detect_lang(file_path: Path) -> str:
-    for part in file_path.parts:
-        if part in VOICE_CONFIG:
-            return part
-    return "es"
+# ---------------------------------------------------------------------------
+# PARSEO DEL GUIÓN
+# ---------------------------------------------------------------------------
 
-
-def split_text(text: str) -> list:
-    """Divide el texto en fragmentos respetando párrafos."""
+def parse_script(text: str) -> list:
+    """
+    Parsea el guión y devuelve lista de segmentos:
+    [{"speaker": "narrator"|"personaje", "text": "..."}]
+    """
     # Limpiar markdown
     text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)
     text = re.sub(r'\*+', '', text)
 
-    paragraphs = text.split('\n\n')
+    segments = []
+    lines = text.strip().split('\n')
+
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+
+        # Detectar etiqueta de personaje: [PERSONAJE:nombre]
+        match = re.match(r'\[PERSONAJE:(\w+)\]\s*(.*)', line, re.IGNORECASE)
+        if match:
+            character = match.group(1).lower()
+            dialogue = match.group(2).strip()
+            if dialogue:
+                segments.append({"speaker": character, "text": dialogue})
+        else:
+            # Texto de narración — agrupar párrafos consecutivos
+            if segments and segments[-1]["speaker"] == "narrator":
+                segments[-1]["text"] += " " + line
+            else:
+                segments.append({"speaker": "narrator", "text": line})
+
+    return segments
+
+
+def split_long_segment(text: str) -> list:
+    """Divide texto largo en fragmentos respetando frases."""
+    if len(text) <= MAX_CHARS:
+        return [text]
+
+    sentences = re.split(r'(?<=[.!?])\s+', text)
     chunks, current = [], ""
 
-    for para in paragraphs:
-        para = para.strip()
-        if not para:
-            continue
-        if len(current) + len(para) + 2 <= MAX_CHARS:
-            current += ("\n\n" if current else "") + para
+    for sentence in sentences:
+        if len(current) + len(sentence) + 1 <= MAX_CHARS:
+            current += (" " if current else "") + sentence
         else:
             if current:
                 chunks.append(current)
-            current = para
+            current = sentence
 
     if current:
         chunks.append(current)
@@ -65,88 +127,178 @@ def split_text(text: str) -> list:
     return chunks
 
 
+# ---------------------------------------------------------------------------
+# GENERACIÓN DE AUDIO
+# ---------------------------------------------------------------------------
+
+def get_voice_id(speaker: str, lang: str = "es") -> str:
+    """Devuelve el voice_id según el speaker."""
+    if speaker == "narrator":
+        return NARRATOR_VOICE.get(lang, NARRATOR_VOICE["es"])
+    return CHARACTER_VOICES.get(speaker, NARRATOR_VOICE.get(lang, NARRATOR_VOICE["es"]))
+
+
+def synthesize_segment(client, text: str, voice_id: str, is_character: bool = False) -> bytes:
+    """Sintetiza un segmento de texto y devuelve bytes MP3."""
+    settings_key = "character" if is_character else "narrator"
+    s = VOICE_SETTINGS[settings_key]
+
+    from elevenlabs import VoiceSettings
+
+    audio = client.text_to_speech.convert(
+        voice_id=voice_id,
+        text=text,
+        model_id=MODEL,
+        voice_settings=VoiceSettings(
+            stability=s["stability"],
+            similarity_boost=s["similarity_boost"],
+            style=s["style"],
+            use_speaker_boost=True,
+        ),
+        output_format="mp3_44100_128",
+    )
+
+    # El cliente devuelve un generador — concatenar bytes
+    return b"".join(audio)
+
+
 def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) -> Path:
-    from openai import OpenAI
+    from elevenlabs import ElevenLabs
+
+    api_key = os.environ.get("ELEVENLABS_API_KEY")
+    if not api_key:
+        raise ValueError("❌ Falta ELEVENLABS_API_KEY en variables de entorno")
+
+    client = ElevenLabs(api_key=api_key)
 
     if not lang:
-        lang = detect_lang(txt_path)
+        # Detectar idioma por carpeta (stories/es/, stories/en/, etc.)
+        for part in txt_path.parts:
+            if part in NARRATOR_VOICE:
+                lang = part
+                break
+        lang = lang or "es"
 
-    voice = VOICE_CONFIG.get(lang, "nova")
-
-    print(f"  🎙️  Sintetizando [{lang.upper()}]: {txt_path.name}")
-    print(f"      Voz: OpenAI {voice}")
+    print(f"\n🎙️  Procesando: {txt_path.name} [{lang.upper()}]")
+    print("=" * 55)
 
     with open(txt_path, "r", encoding="utf-8") as f:
         text = f.read()
 
-    chunks = split_text(text)
-    print(f"      Fragmentos: {len(chunks)} | Chars totales: {len(text):,}")
+    segments = parse_script(text)
+    print(f"   Segmentos detectados: {len(segments)}")
 
-    client = OpenAI()
-    audio_chunks = []
+    speakers = set(s["speaker"] for s in segments)
+    print(f"   Personajes: {', '.join(speakers)}")
 
-    for i, chunk in enumerate(chunks, 1):
-        print(f"      Procesando fragmento {i}/{len(chunks)}...")
+    audio_parts = []
+    total_chars = 0
 
-        response = client.audio.speech.create(
-            model="tts-1-hd",     # Alta calidad
-            voice=voice,
-            input=chunk,
-            response_format="mp3",
-            speed=0.92,           # Ligeramente más lento — ideal para dormir
-        )
+    for i, segment in enumerate(segments, 1):
+        speaker = segment["speaker"]
+        text_chunk = segment["text"]
+        is_character = speaker != "narrator"
 
-        audio_chunks.append(response.content)
+        voice_id = get_voice_id(speaker, lang)
+        icon = "🗣️" if is_character else "📖"
+        print(f"   {icon} [{i}/{len(segments)}] {speaker}: {text_chunk[:60]}...")
 
-    # Combinar todos los chunks en un solo MP3
-    final_audio = b"".join(audio_chunks)
+        # Dividir si es muy largo
+        sub_chunks = split_long_segment(text_chunk)
+
+        for sub in sub_chunks:
+            total_chars += len(sub)
+            try:
+                audio_bytes = synthesize_segment(client, sub, voice_id, is_character)
+                audio_parts.append(audio_bytes)
+                # Pausa entre llamadas para no saturar la API
+                time.sleep(0.3)
+            except Exception as e:
+                print(f"   ⚠️  Error en segmento {i}: {e}")
+                time.sleep(2)  # Esperar más si hay error
+
+    print(f"\n   Total caracteres procesados: {total_chars:,}")
+    print(f"   Créditos ElevenLabs usados: ~{total_chars:,}")
+
+    # Combinar todo el audio
+    final_audio = b"".join(audio_parts)
 
     # Guardar
     lang_dir = Path(output_dir) / lang
     lang_dir.mkdir(parents=True, exist_ok=True)
-
     mp3_path = lang_dir / f"{txt_path.stem}.mp3"
+
     with open(mp3_path, "wb") as f:
         f.write(final_audio)
 
     size_mb = len(final_audio) / 1024 / 1024
-    print(f"  ✅ Audio guardado: {mp3_path} ({size_mb:.1f} MB)")
+    print(f"\n✅ Audio guardado: {mp3_path} ({size_mb:.1f} MB)")
     return mp3_path
 
 
 def generate_all_audio(stories_dir: str = "stories", output_dir: str = "audio"):
     txt_files = list(Path(stories_dir).rglob("*.txt"))
     if not txt_files:
-        print(f"  ⚠️  No hay archivos .txt en {stories_dir}/")
+        print(f"⚠️  No hay archivos .txt en {stories_dir}/")
         return
 
-    print(f"  📚 {len(txt_files)} cuentos encontrados")
+    print(f"📚 {len(txt_files)} cuentos encontrados")
     for txt_file in txt_files:
         try:
             generate_audio(txt_file, output_dir)
         except Exception as e:
-            print(f"  ❌ Error con {txt_file.name}: {e}")
+            print(f"❌ Error con {txt_file.name}: {e}")
 
+
+def list_voices():
+    """Lista las voces disponibles en tu cuenta ElevenLabs."""
+    from elevenlabs import ElevenLabs
+
+    api_key = os.environ.get("ELEVENLABS_API_KEY")
+    client = ElevenLabs(api_key=api_key)
+
+    voices = client.voices.get_all()
+    print("\n🎤 Voces disponibles en tu cuenta ElevenLabs:")
+    print("=" * 55)
+    for v in voices.voices:
+        labels = v.labels or {}
+        lang = labels.get("language", "?")
+        gender = labels.get("gender", "?")
+        print(f"  {v.name:<25} ID: {v.voice_id}  [{lang} / {gender}]")
+
+
+# ---------------------------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Genera audio MP3 con OpenAI TTS")
+    parser = argparse.ArgumentParser(description="Genera audio MP3 con ElevenLabs TTS")
     parser.add_argument("--input", help="Archivo .txt del cuento")
-    parser.add_argument("--lang", choices=list(VOICE_CONFIG.keys()))
+    parser.add_argument("--lang", choices=list(NARRATOR_VOICE.keys()), help="Idioma")
     parser.add_argument("--all", action="store_true", help="Convierte todos los cuentos")
     parser.add_argument("--output-dir", default="audio")
+    parser.add_argument("--list-voices", action="store_true", help="Lista voces disponibles")
     args = parser.parse_args()
 
-    print("🎙️  Las aventuras de Caye y Alvarito — Generador de audio")
+    print("🎙️  Cuentos Infantiles — Generador de audio ElevenLabs")
     print("=" * 55)
 
-    if args.all:
+    if args.list_voices:
+        list_voices()
+    elif args.all:
         generate_all_audio(output_dir=args.output_dir)
     elif args.input:
         generate_audio(Path(args.input), args.output_dir, args.lang)
     else:
         parser.print_help()
-        print("\n💡 Ejemplo:")
-        print('   python generate_audio.py --input stories\\es\\caye_y_la_linterna_magica.txt')
+        print("\n💡 Ejemplos:")
+        print("   python generate_audio.py --input stories/es/caye_y_la_linterna_magica.txt")
+        print("   python generate_audio.py --list-voices")
+        print("   python generate_audio.py --all")
+        print("\n📝 Formato del guión:")
+        print("   Texto normal → narradora")
+        print("   [PERSONAJE:caye] Diálogo → voz de Caye")
+        print("   [PERSONAJE:alvarito] Diálogo → voz de Alvarito")
 
 
 if __name__ == "__main__":
