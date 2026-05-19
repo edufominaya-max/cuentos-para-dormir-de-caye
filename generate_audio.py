@@ -1,4 +1,4 @@
-!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 generate_audio.py — Convierte cuentos a MP3 usando ElevenLabs TTS.
 Soporta múltiples voces: narradora + personajes distintos.
