@@ -40,8 +40,8 @@ JINGLE_PROMPT = (
 
 JINGLE_STYLE = "magical orchestral Disney children's bedtime"
 
-# Voz ElevenLabs para la sintonía (Jessica — misma que narradora)
-JINGLE_VOICE_ID = "cgSgspJ2msm6clMCkdW9"
+# Voz ElevenLabs para la sintonía (Papi — narrador principal)
+JINGLE_VOICE_ID = "vq02QcE85JB44tzQhGG5"
 JINGLE_TEXT = "Cuentos infantiles: Las aventuras de Caye y Alvarito"
 
 # Estilo base para canciones del cuento
@@ -50,15 +50,24 @@ SONG_BASE_STYLE = (
     "simple melody easy to sing, bedtime story style, soft and magical"
 )
 
+# Regex para slugificar nombres de archivo — definido fuera de f-strings
+_SLUG_RE = re.compile(r'[^\w]')
+
 
 # ---------------------------------------------------------------------------
 # SUNO — generación de audio
 # ---------------------------------------------------------------------------
 
+def slugify(text: str, max_len: int = 30) -> str:
+    """Convierte texto en slug seguro para nombres de archivo."""
+    return _SLUG_RE.sub('_', text.lower())[:max_len]
+
+
 def generate_suno_track(prompt: str, title: str, style: str,
                         instrumental: bool = True, lyrics: str = "",
                         output_path: Path = None) -> Path:
     """Genera un track con Suno via apipass.dev"""
+    import requests
 
     api_key = os.environ.get("APIPASS_KEY")
     if not api_key:
@@ -78,7 +87,7 @@ def generate_suno_track(prompt: str, title: str, style: str,
             "style": style,
             "title": title,
             "instrumental": instrumental,
-            "prompt": prompt if instrumental else lyrics + f"\n\n[VOICE STYLE: warm children's singer, soft and playful]",
+            "prompt": prompt if instrumental else lyrics + "\n\n[VOICE STYLE: warm children's singer, soft and playful]",
             "weirdnessConstraint": 0.2,
             "styleWeight": 0.8,
         }
@@ -117,11 +126,10 @@ def generate_suno_track(prompt: str, title: str, style: str,
             if not audio_url:
                 raise Exception("No audio URL en respuesta Suno")
 
-            import requests as req
-            audio_data = req.get(audio_url, timeout=60).content
+            audio_data = requests.get(audio_url, timeout=60).content
 
             if not output_path:
-                output_path = Path("music") / f"{re.sub(r'[^\\w]', '_', title.lower())}.mp3"
+                output_path = Path("music") / f"{slugify(title)}.mp3"
 
             output_path.parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, "wb") as f:
@@ -216,8 +224,6 @@ def generate_jingle(output_dir: str = "music/jingle", force: bool = False) -> di
     - voz ElevenLabs encima
     - mezcla final con FFmpeg
     """
-    import requests
-
     jingle_dir = Path(output_dir)
     jingle_dir.mkdir(parents=True, exist_ok=True)
 
@@ -271,8 +277,6 @@ def generate_story_songs(story_json_path: Path, output_dir: str = "music") -> li
     Lee el JSON del cuento, extrae las canciones marcadas con [CANCION:titulo]
     en el .txt correspondiente y las genera con Suno.
     """
-    import requests
-
     with open(story_json_path, "r", encoding="utf-8") as f:
         meta = json.load(f)
 
@@ -299,7 +303,7 @@ def generate_story_songs(story_json_path: Path, output_dir: str = "music") -> li
     print(f"\n🎵 Generando {len(song_blocks)} canciones para '{title}'...")
     results = []
 
-    slug = re.sub(r'[^\w]', '_', title.lower())[:30]
+    slug = slugify(title)
     song_dir = Path(output_dir) / lang / slug
     song_dir.mkdir(parents=True, exist_ok=True)
 
@@ -309,7 +313,7 @@ def generate_story_songs(story_json_path: Path, output_dir: str = "music") -> li
 
         print(f"\n   🎶 [{i}/{len(song_blocks)}] '{song_title}'")
 
-        song_slug = re.sub(r'[^\w]', '_', song_title.lower())[:30]
+        song_slug = slugify(song_title)
         output_path = song_dir / f"song_{i:02d}_{song_slug}.mp3"
 
         if output_path.exists():
@@ -318,7 +322,6 @@ def generate_story_songs(story_json_path: Path, output_dir: str = "music") -> li
             continue
 
         try:
-            # Decidir si instrumental o con letra según si hay letra
             has_lyrics = len(lyrics) > 20 and lyrics != "[INSTRUMENTAL]"
 
             generate_suno_track(
@@ -344,8 +347,6 @@ def generate_story_songs(story_json_path: Path, output_dir: str = "music") -> li
 # ---------------------------------------------------------------------------
 
 def main():
-    import requests  # noqa — importado aquí para el check de dependencias
-
     parser = argparse.ArgumentParser(description="Genera música para cuentos infantiles")
     parser.add_argument("--jingle",  action="store_true", help="Genera/regenera la sintonía")
     parser.add_argument("--force",   action="store_true", help="Fuerza regeneración aunque exista")
@@ -388,5 +389,4 @@ def main():
 
 
 if __name__ == "__main__":
-    import requests
     main()
