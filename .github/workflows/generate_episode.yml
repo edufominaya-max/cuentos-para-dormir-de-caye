@@ -1,27 +1,11 @@
 name: 🌙 Generar episodio semanal — Cuentos para dormir de Caye
 
 on:
-  # Ejecutar automáticamente cada lunes a las 08:00 (hora Madrid)
   schedule:
-    - cron: '0 7 * * 1'  # UTC 07:00 = Madrid 08:00 (invierno) / 09:00 (verano)
+    - cron: '0 7 * * 1'
 
-  # También se puede lanzar manualmente desde GitHub Actions
   workflow_dispatch:
     inputs:
-      lang:
-        description: 'Idioma (es/en/fr/de/zh/all)'
-        required: true
-        default: 'all'
-        type: choice
-        options: ['all', 'es', 'en', 'fr', 'de', 'zh']
-      topic:
-        description: 'Tema del cuento (solo si lang != all)'
-        required: false
-        default: ''
-      title:
-        description: 'Título del cuento (solo si lang != all)'
-        required: false
-        default: ''
       skip_audio:
         description: 'Omitir generación de voces (ElevenLabs)'
         required: false
@@ -61,8 +45,7 @@ jobs:
           cache: 'pip'
 
       - name: 📦 Instalar dependencias Python
-        run: |
-          pip install anthropic openai requests pillow pydub mutagen elevenlabs
+        run: pip install anthropic openai requests pillow pydub mutagen elevenlabs
 
       - name: 🔧 Instalar FFmpeg
         run: |
@@ -81,40 +64,13 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          SKIP_COVER="${{ github.event.inputs.skip_cover == 'true' && '--skip-cover' || '' }}"
-
-          # Usar episodes_config.py para obtener el próximo episodio pendiente
-          python - <<'EOF'
-import subprocess
-import sys
-sys.path.insert(0, '.')
-from episodes_config import get_next_episode
-
-ep = get_next_episode()
-if ep is None:
-    print("✅ Todos los episodios ya generados")
-    sys.exit(0)
-
-print(f"Generando episodio #{ep['episode']}: {ep['title']}")
-cmd = [
-    "python", "run_pipeline.py",
-    "--lang", ep["lang"],
-    "--topic", ep["topic"],
-    "--title", ep["title"],
-    "--episode", str(ep["episode"]),
-    "--skip-audio", "--skip-upload"
-]
-result = subprocess.run(cmd)
-sys.exit(result.returncode)
-EOF
+        run: python run_episode.py --episode ${{ steps.episode_num.outputs.episode_number }}
 
       - name: 🎙️ Paso 2 — Generar voces con ElevenLabs
         if: ${{ github.event.inputs.skip_audio != 'true' }}
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-        run: |
-          python generate_audio.py --all
+        run: python generate_audio.py --all
 
       - name: 🎵 Paso 3 — Generar sintonía y canciones con Suno
         if: ${{ github.event.inputs.skip_music != 'true' }}
@@ -122,52 +78,37 @@ EOF
           APIPASS_KEY: ${{ secrets.APIPASS_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
         run: |
-          # Generar sintonía solo si no existe ya
           if [ ! -f "music/jingle/intro.mp3" ]; then
-            echo "Generando sintonía por primera vez..."
             python generate_music.py --jingle
-          else
-            echo "Sintonía ya existe, omitiendo..."
           fi
-          # Generar canciones de los cuentos nuevos
           python generate_music.py --all
 
       - name: 🎚️ Paso 4 — Mezcla final con FFmpeg
         if: ${{ github.event.inputs.skip_mix != 'true' }}
-        run: |
-          python mix_audio.py --all
+        run: python mix_audio.py --all
 
       - name: 📡 Paso 5 — Actualizar RSS feed
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python upload_podcast.py
+        run: python upload_podcast.py
 
-      - name: 💾 Commit y push de los nuevos archivos
+      - name: 💾 Commit y push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "Caye Bot 🌙"
-
           git add stories/ audio/ music/ final/ covers/ logs/ feed.xml
-
           if git diff --staged --quiet; then
-            echo "No hay cambios nuevos para commitear"
+            echo "No hay cambios nuevos"
           else
-            EPISODE="${{ steps.episode_num.outputs.episode_number }}"
-            git commit -m "🌙 Episodio $EPISODE — $(date '+%d/%m/%Y')"
+            git commit -m "🌙 Episodio ${{ steps.episode_num.outputs.episode_number }} — $(date '+%d/%m/%Y')"
             git push
           fi
 
-      - name: 📊 Resumen del episodio
+      - name: 📊 Resumen
         run: |
-          echo "## 🌙 Episodio generado" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🌙 Episodio ${{ steps.episode_num.outputs.episode_number }} generado" >> $GITHUB_STEP_SUMMARY
           echo "| Campo | Valor |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| Fecha | $(date '+%d/%m/%Y %H:%M') |" >> $GITHUB_STEP_SUMMARY
-          echo "| Episodio | ${{ steps.episode_num.outputs.episode_number }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Idioma | ${{ github.event.inputs.lang || 'all' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Voces | ${{ github.event.inputs.skip_audio == 'true' && 'Omitidas' || 'ElevenLabs ✅' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Música | ${{ github.event.inputs.skip_music == 'true' && 'Omitida' || 'Suno ✅' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Mezcla | ${{ github.event.inputs.skip_mix == 'true' && 'Omitida' || 'FFmpeg ✅' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Carátula | ${{ github.event.inputs.skip_cover == 'true' && 'Omitida' || 'DALL-E ✅' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Voces | ElevenLabs ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Música | Suno ✅ |" >> $GITHUB_STEP_SUMMARY
