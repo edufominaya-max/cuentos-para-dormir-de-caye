@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
 """
 generate_audio.py — Convierte cuentos a MP3 usando ElevenLabs TTS.
 Soporta múltiples voces: narradora + personajes distintos.
@@ -32,15 +32,13 @@ from pathlib import Path
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE VOCES
-# Narradora por idioma — busca en ElevenLabs voces españolas femeninas
-# Ve a elevenlabs.io/app/voice-library y busca "Spanish" para encontrar IDs
 # ---------------------------------------------------------------------------
 NARRATOR_VOICE = {
-    "es": "cgSgspJ2msm6clMCkdW9",  # Jessica — Playful, Warm (narradora principal)
-    "en": "cgSgspJ2msm6clMCkdW9",  # Jessica — misma voz en inglés
-    "fr": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta francés
-    "de": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta alemán
-    "zh": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta chino
+    "es": "vq02QcE85JB44tzQhGG5",  # Papi — voz clonada (narrador principal)
+    "en": "cgSgspJ2msm6clMCkdW9",  # Jessica — inglés
+    "fr": "cgSgspJ2msm6clMCkdW9",  # Jessica — francés
+    "de": "cgSgspJ2msm6clMCkdW9",  # Jessica — alemán
+    "zh": "cgSgspJ2msm6clMCkdW9",  # Jessica — chino
 }
 
 # Voces por personaje
