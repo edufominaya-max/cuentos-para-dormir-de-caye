@@ -82,22 +82,32 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          LANG_ARG="${{ github.event.inputs.lang || 'all' }}"
-          EPISODE="${{ steps.episode_num.outputs.episode_number }}"
           SKIP_COVER="${{ github.event.inputs.skip_cover == 'true' && '--skip-cover' || '' }}"
 
-          if [ "$LANG_ARG" = "all" ]; then
-            python run_pipeline.py --all --episode $EPISODE --skip-audio --skip-upload $SKIP_COVER
-          else
-            TOPIC="${{ github.event.inputs.topic }}"
-            TITLE="${{ github.event.inputs.title }}"
-            python run_pipeline.py \
-              --lang $LANG_ARG \
-              --topic "$TOPIC" \
-              --title "$TITLE" \
-              --episode $EPISODE \
-              --skip-audio --skip-upload $SKIP_COVER
-          fi
+          # Usar episodes_config.py para obtener el próximo episodio pendiente
+          python - <<'EOF'
+import subprocess
+import sys
+sys.path.insert(0, '.')
+from episodes_config import get_next_episode
+
+ep = get_next_episode()
+if ep is None:
+    print("✅ Todos los episodios ya generados")
+    sys.exit(0)
+
+print(f"Generando episodio #{ep['episode']}: {ep['title']}")
+cmd = [
+    "python", "run_pipeline.py",
+    "--lang", ep["lang"],
+    "--topic", ep["topic"],
+    "--title", ep["title"],
+    "--episode", str(ep["episode"]),
+    "--skip-audio", "--skip-upload"
+]
+result = subprocess.run(cmd)
+sys.exit(result.returncode)
+EOF
 
       - name: 🎙️ Paso 2 — Generar voces con ElevenLabs
         if: ${{ github.event.inputs.skip_audio != 'true' }}
