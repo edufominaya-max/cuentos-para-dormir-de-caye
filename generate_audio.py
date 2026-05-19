@@ -43,12 +43,16 @@ NARRATOR_VOICE = {
 
 # Voces por personaje
 CHARACTER_VOICES = {
-    "caye":      "XrExE9yKIg1WjnnlVkGX",  # Matilda — niña 7 años
-    "alvarito":  "TX3LPaxmHKxFdv7VOQHJ",  # Liam — Energetic, niño 3 años
-    "hada":      "pFZP5JQG7iQjIQuC4Bku",  # Lily — Velvety, personaje mágico
-    "dragon":    "IKne3meq5aSn9XLyUdCD",  # Charlie — Deep, dragón/villano
-    "bruja":     "IKne3meq5aSn9XLyUdCD",  # Charlie — mismo para bruja
-    "sabio":     "JBFqnCBsd6RMkjVDRZzb",  # George — Warm Storyteller, sabio/abuelo
+    "caye":      "M6VSsB443dZGsCW4RLDr",  # Caye — voz clonada real
+    "alvarito":  "V7JiGnncIvaytoLoomdl",  # Alvarito — voz clonada real
+    "hada":      "YDDaC9XKjODs7hY78qEW",  # Hada — español
+    "dragon":    "z3kTTwYbQrmL7ckdGcJi",  # Dragón/Animales — español
+    "bruja":     "M9RTtrzRACmbUzsEMq8p",  # Bruja — español
+    "sabio":     "YKrm0N1EAM9Bw27j8kuD",  # Sabio — español
+    "animal":    "z3kTTwYbQrmL7ckdGcJi",  # Animales — misma que dragón
+    "personaje": "HMCmDsbKeaSZp5LMOYKR",  # Otros animales/personajes
+    "nino":      "1tDEBGOo8EqEPApM49eJ",  # Otros niños — español
+    "frances":   "Az8xj7Z0gQ5npNFesTsW",  # Personaje con acento francés
     # Añade más personajes aquí con su voice ID
 }
 
