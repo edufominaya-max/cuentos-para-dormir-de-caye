@@ -36,22 +36,22 @@ from pathlib import Path
 # Ve a elevenlabs.io/app/voice-library y busca "Spanish" para encontrar IDs
 # ---------------------------------------------------------------------------
 NARRATOR_VOICE = {
-    "es": "cgSgspJ2msm6clMCkdW9",  # Jessica (español neutro, cálida)
-    "en": "EXAVITQu4vr4xnSDxMaL",  # Bella (inglés, femenina)
-    "fr": "cgSgspJ2msm6clMCkdW9",  # Usar misma hasta tener voz francesa
-    "de": "cgSgspJ2msm6clMCkdW9",
-    "zh": "cgSgspJ2msm6clMCkdW9",
+    "es": "cgSgspJ2msm6clMCkdW9",  # Jessica — Playful, Warm (narradora principal)
+    "en": "cgSgspJ2msm6clMCkdW9",  # Jessica — misma voz en inglés
+    "fr": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta francés
+    "de": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta alemán
+    "zh": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta chino
 }
 
-# Voces por personaje — añade aquí los personajes de tus cuentos
-# ID de voces: encuéntralas en elevenlabs.io/app/voice-library
+# Voces por personaje
 CHARACTER_VOICES = {
-    "caye":      "EXAVITQu4vr4xnSDxMaL",  # Niña — voz aguda y alegre
-    "alvarito":  "pNInz6obpgDQGcFmaJgB",  # Niño pequeño — voz suave
-    "bruja":     "onwK4e9ZLuTAKqWW03F9",  # Villana — voz grave dramática
-    "hada":      "XB0fDUnXU5powFXDhCwa",  # Hada — voz etérea y suave
-    "dragon":    "IKne3meq5aSn9XLyUdCD",  # Dragón — voz grave potente
-    # Añade más personajes aquí
+    "caye":      "XrExE9yKIg1WjnnlVkGX",  # Matilda — niña 7 años
+    "alvarito":  "TX3LPaxmHKxFdv7VOQHJ",  # Liam — Energetic, niño 3 años
+    "hada":      "pFZP5JQG7iQjIQuC4Bku",  # Lily — Velvety, personaje mágico
+    "dragon":    "IKne3meq5aSn9XLyUdCD",  # Charlie — Deep, dragón/villano
+    "bruja":     "IKne3meq5aSn9XLyUdCD",  # Charlie — mismo para bruja
+    "sabio":     "JBFqnCBsd6RMkjVDRZzb",  # George — Warm Storyteller, sabio/abuelo
+    # Añade más personajes aquí con su voice ID
 }
 
 # Modelo ElevenLabs — eleven_multilingual_v2 soporta español nativo
