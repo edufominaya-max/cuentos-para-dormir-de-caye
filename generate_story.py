@@ -14,54 +14,54 @@ from datetime import datetime
 from pathlib import Path
 
 # ──────────────────────────────────────────────
-# INTROS ALEATORIAS
+# INTROS ALEATORIAS — solo ambientación, sin "soy Caye"
 # ──────────────────────────────────────────────
 
 NARRATOR_INTROS = {
     "es": [
-        "Psssst... ¿sigues despierto? Qué suerte, porque esta noche tengo algo especial para ti. Soy Caye, y juntos vamos a descubrir una historia increíble...",
-        "Hola, soy Caye. La luna ya está en el cielo y las estrellas te están esperando. Cierra los ojitos, que te llevo de viaje...",
-        "Esta noche, antes de que cierres los ojos, yo, Caye, quiero contarte algo que solo tú vas a escuchar. Una historia que nació justo para este momento...",
-        "Hola, soy Caye. Ya es hora de dormir... pero antes, ven, que tenemos una aventura pendiente tú y yo.",
-        "Sssshhh... la noche ha llegado y con ella, una historia que te estaba esperando. Soy Caye, y esta noche viajamos juntos...",
-        "¿Ya estás en la cama? Perfecto. Soy Caye, y esta noche tengo guardada una historia solo para ti. Una historia que empieza ahora mismo...",
-        "Cierra los ojos un momento... ¿los tienes cerrados? Bien. Soy Caye, y esta noche vamos a un lugar muy especial. ¿Me acompañas?",
+        "Psssst... ¿sigues despierto? Qué suerte, porque esta noche tengo algo especial para ti. Cierra los ojitos, que te llevo de viaje...",
+        "La luna ya está en el cielo y las estrellas te están esperando. Cierra los ojitos, que hoy tenemos una aventura...",
+        "Esta noche, antes de que cierres los ojos, quiero contarte algo que solo tú vas a escuchar. Una historia que nació justo para este momento...",
+        "Ya es hora de dormir... pero antes, ven, que tenemos una aventura pendiente tú y yo.",
+        "Sssshhh... la noche ha llegado y con ella, una historia que te estaba esperando. Esta noche viajamos juntos...",
+        "¿Ya estás en la cama? Perfecto. Esta noche tengo guardada una historia solo para ti. Una historia que empieza ahora mismo...",
+        "Cierra los ojos un momento... ¿los tienes cerrados? Bien. Esta noche vamos a un lugar muy especial. ¿Me acompañas?",
     ],
     "en": [
-        "Psssst... still awake? How lucky, because tonight I have something very special for you. I'm Caye, and together we're going on an incredible adventure...",
-        "Hello, I'm Caye. The moon is already up in the sky and the stars are waiting for you. Close your little eyes and let me take you on a journey...",
-        "Tonight, before you close your eyes, I, Caye, want to tell you something only you will hear. A story that was born just for this moment...",
-        "Hi, I'm Caye. It's time to sleep... but first, come here, because you and I have an adventure waiting for us.",
-        "Shhhhh... night has arrived, and with it, a story that was waiting just for you. I'm Caye, and tonight we travel together...",
-        "Are you already in bed? Perfect. I'm Caye, and tonight I have a story saved just for you. A story that begins right now...",
-        "Close your eyes for a moment... got them closed? Good. I'm Caye, and tonight we're going somewhere very special. Will you come with me?",
+        "Psssst... still awake? How lucky, because tonight I have something very special for you. Close your little eyes and let me take you on a journey...",
+        "The moon is already up in the sky and the stars are waiting for you. Tonight we have an adventure...",
+        "Tonight, before you close your eyes, I want to tell you something only you will hear. A story that was born just for this moment...",
+        "It's time to sleep... but first, come here, because we have an adventure waiting for us.",
+        "Shhhhh... night has arrived, and with it, a story that was waiting just for you. Tonight we travel together...",
+        "Are you already in bed? Perfect. Tonight I have a story saved just for you. A story that begins right now...",
+        "Close your eyes for a moment... got them closed? Good. Tonight we're going somewhere very special. Will you come with me?",
     ],
     "fr": [
-        "Psssst... tu es encore réveillé ? Quelle chance, parce que ce soir j'ai quelque chose de très spécial pour toi. Je suis Caye, et ensemble nous allons découvrir une histoire incroyable...",
-        "Bonsoir, je suis Caye. La lune est déjà dans le ciel et les étoiles t'attendent. Ferme les yeux, je t'emmène en voyage...",
-        "Ce soir, avant que tu fermes les yeux, moi, Caye, je veux te raconter quelque chose que toi seul vas entendre. Une histoire née juste pour ce moment...",
-        "Chhhut... la nuit est arrivée, et avec elle, une histoire qui t'attendait. Je suis Caye, et cette nuit nous voyageons ensemble...",
-        "Tu es déjà dans ton lit ? Parfait. Je suis Caye, et ce soir j'ai une histoire gardée rien que pour toi. Une histoire qui commence maintenant...",
-        "Ferme les yeux un instant... tu les as fermés ? Bien. Je suis Caye, et ce soir nous allons dans un endroit très spécial. Tu m'accompagnes ?",
-        "Psssst... tu veux entendre un secret ? Ce soir, j'ai une histoire magique qui n'attend que toi. Je suis Caye, et nous partons à l'aventure...",
+        "Psssst... tu es encore réveillé ? Quelle chance, parce que ce soir j'ai quelque chose de très spécial pour toi. Ferme les yeux, je t'emmène en voyage...",
+        "La lune est déjà dans le ciel et les étoiles t'attendent. Ce soir, nous avons une aventure...",
+        "Ce soir, avant que tu fermes les yeux, je veux te raconter quelque chose que toi seul vas entendre. Une histoire née juste pour ce moment...",
+        "Chhhut... la nuit est arrivée, et avec elle, une histoire qui t'attendait. Cette nuit nous voyageons ensemble...",
+        "Tu es déjà dans ton lit ? Parfait. Ce soir j'ai une histoire gardée rien que pour toi. Une histoire qui commence maintenant...",
+        "Ferme les yeux un instant... tu les as fermés ? Bien. Ce soir nous allons dans un endroit très spécial. Tu m'accompagnes ?",
+        "Psssst... tu veux entendre un secret ? Ce soir, j'ai une histoire magique qui n'attend que toi.",
     ],
     "de": [
-        "Psssst... bist du noch wach? Welch ein Glück, denn heute Nacht habe ich etwas ganz Besonderes für dich. Ich bin Caye, und zusammen erleben wir eine unglaubliche Geschichte...",
-        "Hallo, ich bin Caye. Der Mond steht schon am Himmel und die Sterne warten auf dich. Schließ deine Augen, ich nehme dich mit auf eine Reise...",
-        "Heute Nacht, bevor du die Augen schließt, möchte ich, Caye, dir etwas erzählen, das nur du hören wirst. Eine Geschichte, die genau für diesen Moment entstanden ist...",
-        "Schhhh... die Nacht ist da, und mit ihr eine Geschichte, die auf dich gewartet hat. Ich bin Caye, und heute Nacht reisen wir gemeinsam...",
-        "Liegst du schon im Bett? Perfekt. Ich bin Caye, und heute Nacht habe ich eine Geschichte nur für dich. Eine Geschichte, die jetzt beginnt...",
-        "Schließ kurz die Augen... hast du sie geschlossen? Gut. Ich bin Caye, und heute Nacht gehen wir an einen ganz besonderen Ort. Kommst du mit?",
-        "Hey, kleiner Träumer... ich bin Caye. Heute Nacht wartet ein Abenteuer auf uns. Bist du bereit?",
+        "Psssst... bist du noch wach? Welch ein Glück, denn heute Nacht habe ich etwas ganz Besonderes für dich. Schließ deine Augen, ich nehme dich mit auf eine Reise...",
+        "Der Mond steht schon am Himmel und die Sterne warten auf dich. Heute Nacht haben wir ein Abenteuer...",
+        "Heute Nacht, bevor du die Augen schließt, möchte ich dir etwas erzählen, das nur du hören wirst. Eine Geschichte, die genau für diesen Moment entstanden ist...",
+        "Schhhh... die Nacht ist da, und mit ihr eine Geschichte, die auf dich gewartet hat. Heute Nacht reisen wir gemeinsam...",
+        "Liegst du schon im Bett? Perfekt. Heute Nacht habe ich eine Geschichte nur für dich. Eine Geschichte, die jetzt beginnt...",
+        "Schließ kurz die Augen... hast du sie geschlossen? Gut. Heute Nacht gehen wir an einen ganz besonderen Ort. Kommst du mit?",
+        "Hey, kleiner Träumer... heute Nacht wartet ein Abenteuer auf uns. Bist du bereit?",
     ],
     "zh": [
-        "嘘……你还醒着吗？真幸运，因为今晚我为你准备了一些特别的东西。我是Caye，我们一起去发现一个精彩的故事吧……",
-        "你好，我是Caye。月亮已经挂在天空中，星星们都在等着你。闭上小眼睛，让我带你去旅行……",
-        "今晚，在你闭上眼睛之前，我，Caye，想告诉你一个只有你才能听到的故事。一个就为这一刻诞生的故事……",
-        "嘘……夜晚来临了，带来了一个一直在等你的故事。我是Caye，今晚我们一起旅行……",
-        "你已经躺在床上了吗？太好了。我是Caye，今晚我为你保存了一个专属故事。一个现在就要开始的故事……",
-        "闭上眼睛一下……闭上了吗？很好。我是Caye，今晚我们要去一个非常特别的地方。你愿意和我一起去吗？",
-        "小梦想家，你好……我是Caye。今晚有一段冒险在等着我们。准备好了吗？",
+        "嘘……你还醒着吗？真幸运，因为今晚我为你准备了一些特别的东西。闭上小眼睛，让我带你去旅行……",
+        "月亮已经挂在天空中，星星们都在等着你。今晚，我们有一段冒险……",
+        "今晚，在你闭上眼睛之前，想告诉你一个只有你才能听到的故事。一个就为这一刻诞生的故事……",
+        "嘘……夜晚来临了，带来了一个一直在等你的故事。今晚我们一起旅行……",
+        "你已经躺在床上了吗？太好了。今晚我为你保存了一个专属故事。一个现在就要开始的故事……",
+        "闭上眼睛一下……闭上了吗？很好。今晚我们要去一个非常特别的地方。你愿意和我一起去吗？",
+        "小梦想家，你好……今晚有一段冒险在等着我们。准备好了吗？",
     ],
 }
 
@@ -121,27 +121,40 @@ Los personajes principales son CAYE y ÁLVARO, dos hermanos:
 - Los demás personajes pueden ser animales fantásticos, hadas, dragones amigos,
   duendes, estrellas parlantes, etc.
 
+FORMATO DE DIÁLOGOS — MUY IMPORTANTE:
+El cuento se convertirá en audio con múltiples voces. Usa estas etiquetas para los diálogos:
+- Narración normal: sin etiqueta (la narra el narrador principal)
+- Diálogo de Caye: [PERSONAJE:caye] "texto que dice Caye"
+- Diálogo de Álvaro: [PERSONAJE:alvarito] "texto que dice Álvaro"
+- Hada/ser mágico: [PERSONAJE:hada] "texto"
+- Dragón/animal grande: [PERSONAJE:dragon] "texto"
+- Bruja/villano: [PERSONAJE:bruja] "texto"
+- Personaje sabio/abuelo: [PERSONAJE:sabio] "texto"
+- Otro niño: [PERSONAJE:nino] "texto"
+- Personaje con acento francés: [PERSONAJE:frances] "texto"
+- Animal pequeño u otro personaje: [PERSONAJE:personaje] "texto"
+
+Ejemplo de formato correcto:
+Caye miró el bosque con los ojos muy abiertos.
+[PERSONAJE:caye] "¿Ves eso, Álvaro? ¡Hay una luz entre los árboles!"
+[PERSONAJE:alvarito] "¡Quiero ir, quiero ir!"
+[PERSONAJE:hada] "No temáis, pequeños. Soy la guardiana del bosque."
+
 ESTRUCTURA OBLIGATORIA:
 1. INTRODUCCIÓN CÁLIDA (2-3 párrafos): Presenta al protagonista/s y su mundo.
-   Crea inmediatamente conexión emocional.
-2. PROBLEMA O AVENTURA (4-5 párrafos): El personaje se enfrenta a un reto, miedo,
-   o situación que le hace crecer. Incluye un elemento de fantasía o magia.
-3. DESARROLLO (3-4 párrafos): El personaje intenta resolver el problema, con ayuda
-   de amigos o de su hermano/a. Momentos de emoción genuina.
-4. RESOLUCIÓN Y MENSAJE (2-3 párrafos): El problema se resuelve de forma satisfactoria.
-   El personaje aprende algo importante sobre sí mismo o sobre la vida.
-5. CIERRE PARA DORMIR (1 párrafo): Termina con una frase suave y relajante que invite
-   a los niños a cerrar los ojos y soñar. Despedida hasta la próxima noche.
+2. PROBLEMA O AVENTURA (4-5 párrafos): El personaje se enfrenta a un reto con elemento mágico.
+3. DESARROLLO (3-4 párrafos): Intenta resolver el problema con ayuda. Momentos de emoción.
+4. RESOLUCIÓN Y MENSAJE (2-3 párrafos): Se resuelve. El personaje aprende algo importante.
+5. CIERRE PARA DORMIR (1 párrafo): Frase suave que invite a cerrar los ojos y soñar.
+   Termina SIEMPRE con: "Hasta la próxima noche, pequeños soñadores. Dulces sueños. 🌙"
 
 REGLAS DE ESCRITURA:
-- Narración en tercera persona, con voz cálida de narradora externa
+- Narración en tercera persona fuera de los diálogos
 - Frases cortas y musicales, fáciles de escuchar
 - Descripciones sensoriales suaves (colores, olores, texturas)
-- Diálogos naturales y emotivos entre personajes
-- Repeticiones rítmicas cuando sea apropiado (estilo oral)
+- Diálogos naturales usando las etiquetas [PERSONAJE:xxx]
 - NUNCA violencia, sustos fuertes ni contenido inapropiado
 - El mensaje final debe ser claro pero nunca sermoneador
-- Termina SIEMPRE con "Hasta la próxima noche, pequeños soñadores. Dulces sueños. 🌙"
 
 Escribe SOLO el cuento, sin comentarios ni metadatos. Empieza directamente con el título
 en formato: # TÍTULO DEL CUENTO
@@ -171,6 +184,7 @@ def generate_story(lang: str, topic: str, title: str, api_key: str = None) -> di
 
     story_text = message.content[0].text
 
+    # Intro ambientación (sin "soy Caye") justo después del título
     narrator_intro = f"\n\n{get_random_intro(lang)}\n\n"
     story_with_intro = re.sub(r'^(# .+\n)', r'\1' + narrator_intro, story_text, count=1)
 

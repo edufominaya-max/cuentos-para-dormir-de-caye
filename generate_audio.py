@@ -34,7 +34,7 @@ from pathlib import Path
 # CONFIGURACIÓN DE VOCES
 # ---------------------------------------------------------------------------
 NARRATOR_VOICE = {
-    "es": "vq02QcE85JB44tzQhGG5",  # Papi — voz clonada (narrador principal)
+    "es": "tXgbXPnsMpKXkuTgvE3h",  # Narrador ES — voz actualizada
     "en": "cgSgspJ2msm6clMCkdW9",  # Jessica — inglés
     "fr": "cgSgspJ2msm6clMCkdW9",  # Jessica — francés
     "de": "cgSgspJ2msm6clMCkdW9",  # Jessica — alemán
