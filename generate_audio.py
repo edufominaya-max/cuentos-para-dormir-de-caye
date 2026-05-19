@@ -7,7 +7,7 @@ Coste: ~10.000 créditos gratis/mes (plan Free) = ~2-3 cuentos completos
 
 Prerequisitos:
     pip install elevenlabs pydub
-    set ELEVENLABS_API_KEY=sk_5eca3de8e61652c4f897d5d0ee5cce6f4c6b2ab457c1367a
+    set ELEVENLABS_API_KEY=sk_...
 
 Formato del guión (.txt):
     El texto normal lo narra la narradora.
@@ -167,7 +167,12 @@ def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) 
 
     api_key = os.environ.get("ELEVENLABS_API_KEY")
     if not api_key:
-        raise ValueError("❌ Falta ELEVENLABS_API_KEY en variables de entorno")
+        # Intentar leer desde archivo (igual que el resto del proyecto)
+        key_file = Path(__file__).parent / "ElevenLabs Key"
+        if key_file.exists():
+            api_key = key_file.read_text(encoding="utf-8").strip()
+        else:
+            raise ValueError("❌ Falta ELEVENLABS_API_KEY — ejecuta set_keys.bat primero")
 
     client = ElevenLabs(api_key=api_key)
 
