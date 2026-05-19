@@ -15,6 +15,21 @@
       <itunes:email>aventurasdecayeyalvarito@gmail.com</itunes:email>
     </itunes:owner>
     <item>
+      <title>El bosque que se durmió</title>
+      <description>Tema: la paciencia y esperar tu momento
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</description>
+      <itunes:summary>Tema: la paciencia y esperar tu momento
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
+      <itunes:author>Caye</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:episode>1</itunes:episode>
+      <pubDate>Tue, 19 May 2026 22:22:47 -0000</pubDate>
+      <guid isPermaLink="false">caye-es-el-bosque-que-se-durmió</guid>
+      <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/el_bosque_que_se_durmió.mp3" type="audio/mpeg" length="0" />
+    </item>
+    <item>
       <title>La estrella que cayó al jardín</title>
       <description>Tema: ayudar a los demás sin esperar nada a cambio
 
@@ -24,7 +39,7 @@
 🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
       <itunes:author>Caye</itunes:author>
       <itunes:explicit>false</itunes:explicit>
-      <itunes:episode>1</itunes:episode>
+      <itunes:episode>2</itunes:episode>
       <pubDate>Tue, 19 May 2026 22:16:58 -0000</pubDate>
       <guid isPermaLink="false">caye-es-la-estrella-que-cayó-al-jardín</guid>
       <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/la_estrella_que_cayó_al_jardín.mp3" type="audio/mpeg" length="0" />
@@ -39,10 +54,25 @@
 🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
       <itunes:author>Caye</itunes:author>
       <itunes:explicit>false</itunes:explicit>
-      <itunes:episode>2</itunes:episode>
+      <itunes:episode>3</itunes:episode>
       <pubDate>Tue, 19 May 2026 17:54:04 -0000</pubDate>
       <guid isPermaLink="false">caye-es-el-dragón-verde-del-volcán</guid>
       <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/el_dragón_verde_del_volcán.mp3" type="audio/mpeg" length="0" />
+    </item>
+    <item>
+      <title>El bosque que se durmió</title>
+      <description>Tema: la paciencia y esperar tu momento
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</description>
+      <itunes:summary>Tema: la paciencia y esperar tu momento
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
+      <itunes:author>Caye</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:episode>4</itunes:episode>
+      <pubDate>Tue, 19 May 2026 22:26:03 -0000</pubDate>
+      <guid isPermaLink="false">caye-es-el-bosque-que-se-durmió</guid>
+      <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/el_bosque_que_se_durmió.mp3" type="audio/mpeg" length="0" />
     </item>
     <item>
       <title>El dragón verde del volcán</title>
@@ -54,8 +84,8 @@
 🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
       <itunes:author>Caye</itunes:author>
       <itunes:explicit>false</itunes:explicit>
-      <itunes:episode>3</itunes:episode>
-      <pubDate>Tue, 19 May 2026 22:19:13 -0000</pubDate>
+      <itunes:episode>5</itunes:episode>
+      <pubDate>Tue, 19 May 2026 22:26:03 -0000</pubDate>
       <guid isPermaLink="false">caye-es-el-dragón-verde-del-volcán</guid>
       <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/el_dragón_verde_del_volcán.mp3" type="audio/mpeg" length="0" />
     </item>
@@ -69,8 +99,8 @@
 🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
       <itunes:author>Caye</itunes:author>
       <itunes:explicit>false</itunes:explicit>
-      <itunes:episode>4</itunes:episode>
-      <pubDate>Tue, 19 May 2026 22:19:13 -0000</pubDate>
+      <itunes:episode>6</itunes:episode>
+      <pubDate>Tue, 19 May 2026 22:26:03 -0000</pubDate>
       <guid isPermaLink="false">caye-es-la-estrella-que-cayó-al-jardín</guid>
       <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/la_estrella_que_cayó_al_jardín.mp3" type="audio/mpeg" length="0" />
     </item>
