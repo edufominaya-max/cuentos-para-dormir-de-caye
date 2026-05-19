@@ -1,238 +1,310 @@
 #!/usr/bin/env python3
 """
-run_pipeline.py — Pipeline completo: genera cuento → audio → carátula → RSS
+generate_audio.py — Convierte cuentos a MP3 usando ElevenLabs TTS.
+Soporta múltiples voces: narradora + personajes distintos.
 
-Este es el script maestro. Ejecuta todo el flujo de un tirón.
+Coste: ~10.000 créditos gratis/mes (plan Free) = ~2-3 cuentos completos
 
-Uso básico:
-    python run_pipeline.py --lang es --topic "el miedo a la oscuridad" --title "Luca y la linterna mágica" --episode 1
+Prerequisitos:
+    pip install elevenlabs pydub
+    set ELEVENLABS_API_KEY=sk_...
 
-Generar los 5 idiomas de una vez:
-    python run_pipeline.py --all --episode 1
+Formato del guión (.txt):
+    El texto normal lo narra la narradora.
+    Para asignar voz a un personaje, usa etiquetas:
+        [PERSONAJE:nombre] Texto que dice el personaje.
+    Ejemplo:
+        La luna brillaba sobre el bosque.
+        [PERSONAJE:caye] ¡Mira, Alvarito! ¡Una estrella fugaz!
+        [PERSONAJE:alvarito] ¿Pedimos un deseo?
 
-Solo texto (sin audio ni carátula):
-    python run_pipeline.py --lang es --topic "la amistad" --title "Mi cuento" --skip-audio --skip-cover
-
-Variables de entorno necesarias:
-    ANTHROPIC_API_KEY    → Para generar los cuentos
-    OPENAI_API_KEY       → Para las carátulas (DALL-E 3)
-    GOOGLE_APPLICATION_CREDENTIALS → Para el audio (Google TTS)
+Uso:
+    python generate_audio.py --input stories/es/caye_y_la_linterna_magica.txt
+    python generate_audio.py --all
+    python generate_audio.py --list-voices   # Ver voces disponibles
 """
 
 import argparse
-import json
 import os
-import sys
-import subprocess
+import re
+import time
 from pathlib import Path
-from datetime import datetime
 
-# Añadir scripts/ al path
-sys.path.insert(0, str(Path(__file__).parent))
+# ---------------------------------------------------------------------------
+# CONFIGURACIÓN DE VOCES
+# Narradora por idioma — busca en ElevenLabs voces españolas femeninas
+# Ve a elevenlabs.io/app/voice-library y busca "Spanish" para encontrar IDs
+# ---------------------------------------------------------------------------
+NARRATOR_VOICE = {
+    "es": "cgSgspJ2msm6clMCkdW9",  # Jessica — Playful, Warm (narradora principal)
+    "en": "cgSgspJ2msm6clMCkdW9",  # Jessica — misma voz en inglés
+    "fr": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta francés
+    "de": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta alemán
+    "zh": "cgSgspJ2msm6clMCkdW9",  # Jessica — multilingual v2 soporta chino
+}
 
-def run_step(step_name: str, func, *args, **kwargs):
-    """Ejecuta un paso del pipeline con manejo de errores."""
-    print(f"\n{'='*55}")
-    print(f"  PASO: {step_name}")
-    print(f"{'='*55}")
-    try:
-        result = func(*args, **kwargs)
-        print(f"  ✅ {step_name} completado")
-        return result
-    except Exception as e:
-        print(f"  ❌ Error en {step_name}: {e}")
-        raise
+# Voces por personaje
+CHARACTER_VOICES = {
+    "caye":      "XrExE9yKIg1WjnnlVkGX",  # Matilda — niña 7 años
+    "alvarito":  "TX3LPaxmHKxFdv7VOQHJ",  # Liam — Energetic, niño 3 años
+    "hada":      "pFZP5JQG7iQjIQuC4Bku",  # Lily — Velvety, personaje mágico
+    "dragon":    "IKne3meq5aSn9XLyUdCD",  # Charlie — Deep, dragón/villano
+    "bruja":     "IKne3meq5aSn9XLyUdCD",  # Charlie — mismo para bruja
+    "sabio":     "JBFqnCBsd6RMkjVDRZzb",  # George — Warm Storyteller, sabio/abuelo
+    # Añade más personajes aquí con su voice ID
+}
+
+# Modelo ElevenLabs — eleven_multilingual_v2 soporta español nativo
+MODEL = "eleven_multilingual_v2"
+
+# Configuración de voz (ajusta a tu gusto)
+VOICE_SETTINGS = {
+    "narrator": {"stability": 0.75, "similarity_boost": 0.75, "style": 0.3, "speed": 0.92},
+    "character": {"stability": 0.60, "similarity_boost": 0.80, "style": 0.5, "speed": 1.0},
+}
+
+# ElevenLabs permite hasta ~5.000 chars por llamada
+MAX_CHARS = 4500
 
 
-def run_full_pipeline(lang: str, topic: str, title: str, episode_num: int,
-                       skip_audio: bool = False, skip_cover: bool = False,
-                       skip_upload: bool = False):
+# ---------------------------------------------------------------------------
+# PARSEO DEL GUIÓN
+# ---------------------------------------------------------------------------
+
+def parse_script(text: str) -> list:
     """
-    Pipeline completo para un episodio.
+    Parsea el guión y devuelve lista de segmentos:
+    [{"speaker": "narrator"|"personaje", "text": "..."}]
     """
-    from generate_story import generate_story, save_story
-    
-    results = {
-        "lang": lang,
-        "title": title,
-        "topic": topic,
-        "episode": episode_num,
-        "started_at": datetime.now().isoformat(),
-    }
-    
-    # ── PASO 1: Generar cuento ──────────────────────
-    story_data = run_step(
-        f"1/4 Generar cuento [{lang.upper()}]",
-        generate_story, lang, topic, title
-    )
-    txt_path = run_step(
-        "    Guardar texto",
-        save_story, story_data
-    )
-    results["txt_path"] = str(txt_path)
-    results["word_count"] = story_data["word_count"]
-    
-    # ── PASO 2: Generar audio ───────────────────────
-    if not skip_audio:
-        try:
-            from generate_audio import generate_audio
-            mp3_path = run_step(
-                f"2/4 Generar audio [{lang.upper()}]",
-                generate_audio, txt_path, "audio", lang
-            )
-            results["mp3_path"] = str(mp3_path)
-        except ImportError:
-            print("  ⚠️  Saltando audio (google-cloud-texttospeech no instalado)")
-            results["mp3_path"] = None
-    else:
-        print("\n  ⏭️  PASO 2/4: Audio omitido (--skip-audio)")
-        results["mp3_path"] = None
-    
-    # ── PASO 3: Generar carátula ────────────────────
-    if not skip_cover:
-        if not os.getenv("OPENAI_API_KEY"):
-            print("\n  ⚠️  PASO 3/4: OPENAI_API_KEY no configurada — saltando carátula")
-            results["cover_path"] = None
+    # Limpiar markdown
+    text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\*+', '', text)
+
+    segments = []
+    lines = text.strip().split('\n')
+
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+
+        # Detectar etiqueta de personaje: [PERSONAJE:nombre]
+        match = re.match(r'\[PERSONAJE:(\w+)\]\s*(.*)', line, re.IGNORECASE)
+        if match:
+            character = match.group(1).lower()
+            dialogue = match.group(2).strip()
+            if dialogue:
+                segments.append({"speaker": character, "text": dialogue})
         else:
-            try:
-                from generate_cover import generate_cover
-                jpg_path = run_step(
-                    f"3/4 Generar carátula [{lang.upper()}]",
-                    generate_cover, title, topic, lang
-                )
-                results["cover_path"] = str(jpg_path)
-            except Exception as e:
-                print(f"  ⚠️  Error generando carátula: {e}")
-                results["cover_path"] = None
-    else:
-        print("\n  ⏭️  PASO 3/4: Carátula omitida (--skip-cover)")
-        results["cover_path"] = None
-    
-    # ── PASO 4: Actualizar RSS ──────────────────────
-    if not skip_upload:
-        try:
-            from upload_podcast import generate_rss_feed
-            rss_path = run_step(
-                "4/4 Actualizar RSS feed",
-                generate_rss_feed, "stories", "feed.xml"
-            )
-            results["rss_path"] = str(rss_path)
-        except Exception as e:
-            print(f"  ⚠️  Error actualizando RSS: {e}")
-    else:
-        print("\n  ⏭️  PASO 4/4: Upload omitido (--skip-upload)")
-    
-    results["completed_at"] = datetime.now().isoformat()
-    
-    # Guardar log del episodio
-    log_dir = Path("logs")
-    log_dir.mkdir(exist_ok=True)
-    log_file = log_dir / f"episode_{episode_num:03d}_{lang}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    with open(log_file, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-    
-    return results
-
-
-def run_all_languages(episode_start: int = 1, **kwargs):
-    """Genera episodios en los 5 idiomas."""
-    from generate_story import DEFAULT_TOPICS
-    
-    all_results = []
-    for i, (lang, config) in enumerate(DEFAULT_TOPICS.items()):
-        print(f"\n\n{'🌙'*20}")
-        print(f"  IDIOMA {i+1}/5: {lang.upper()} — {config['title']}")
-        print(f"{'🌙'*20}")
-        
-        try:
-            result = run_full_pipeline(
-                lang=lang,
-                topic=config["topic"],
-                title=config["title"],
-                episode_num=episode_start + i,
-                **kwargs,
-            )
-            all_results.append(result)
-        except Exception as e:
-            print(f"  ❌ Error en idioma {lang}: {e}")
-            all_results.append({"lang": lang, "error": str(e)})
-    
-    return all_results
-
-
-def print_summary(results):
-    """Imprime resumen final del pipeline."""
-    print(f"\n\n{'='*55}")
-    print("  📊 RESUMEN FINAL")
-    print(f"{'='*55}")
-    
-    if isinstance(results, list):
-        for r in results:
-            lang = r.get("lang", "?").upper()
-            if "error" in r:
-                print(f"  ❌ [{lang}] Error: {r['error']}")
+            # Texto de narración — agrupar párrafos consecutivos
+            if segments and segments[-1]["speaker"] == "narrator":
+                segments[-1]["text"] += " " + line
             else:
-                txt = "✅" if r.get("txt_path") else "❌"
-                mp3 = "✅" if r.get("mp3_path") else "⏭️ "
-                cover = "✅" if r.get("cover_path") else "⏭️ "
-                print(f"  [{lang}] Texto {txt}  Audio {mp3}  Carátula {cover}  — {r.get('title', '?')}")
-    else:
-        r = results
-        print(f"  [{r.get('lang','?').upper()}] {r.get('title','?')}")
-        print(f"  Palabras: {r.get('word_count', '?')}")
-        print(f"  Audio: {r.get('mp3_path', 'No generado')}")
-        print(f"  Carátula: {r.get('cover_path', 'No generada')}")
-    
-    print(f"\n  🌙 ¡Hasta la próxima noche, pequeños soñadores!")
+                segments.append({"speaker": "narrator", "text": line})
 
+    return segments
+
+
+def split_long_segment(text: str) -> list:
+    """Divide texto largo en fragmentos respetando frases."""
+    if len(text) <= MAX_CHARS:
+        return [text]
+
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+    chunks, current = [], ""
+
+    for sentence in sentences:
+        if len(current) + len(sentence) + 1 <= MAX_CHARS:
+            current += (" " if current else "") + sentence
+        else:
+            if current:
+                chunks.append(current)
+            current = sentence
+
+    if current:
+        chunks.append(current)
+
+    return chunks
+
+
+# ---------------------------------------------------------------------------
+# GENERACIÓN DE AUDIO
+# ---------------------------------------------------------------------------
+
+def get_voice_id(speaker: str, lang: str = "es") -> str:
+    """Devuelve el voice_id según el speaker."""
+    if speaker == "narrator":
+        return NARRATOR_VOICE.get(lang, NARRATOR_VOICE["es"])
+    return CHARACTER_VOICES.get(speaker, NARRATOR_VOICE.get(lang, NARRATOR_VOICE["es"]))
+
+
+def synthesize_segment(client, text: str, voice_id: str, is_character: bool = False) -> bytes:
+    """Sintetiza un segmento de texto y devuelve bytes MP3."""
+    settings_key = "character" if is_character else "narrator"
+    s = VOICE_SETTINGS[settings_key]
+
+    from elevenlabs import VoiceSettings
+
+    audio = client.text_to_speech.convert(
+        voice_id=voice_id,
+        text=text,
+        model_id=MODEL,
+        voice_settings=VoiceSettings(
+            stability=s["stability"],
+            similarity_boost=s["similarity_boost"],
+            style=s["style"],
+            use_speaker_boost=True,
+        ),
+        output_format="mp3_44100_128",
+    )
+
+    # El cliente devuelve un generador — concatenar bytes
+    return b"".join(audio)
+
+
+def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) -> Path:
+    from elevenlabs import ElevenLabs
+
+    api_key = os.environ.get("ELEVENLABS_API_KEY")
+    if not api_key:
+        # Intentar leer desde archivo (igual que el resto del proyecto)
+        key_file = Path(__file__).parent / "ElevenLabs Key"
+        if key_file.exists():
+            api_key = key_file.read_text(encoding="utf-8").strip()
+        else:
+            raise ValueError("❌ Falta ELEVENLABS_API_KEY — ejecuta set_keys.bat primero")
+
+    client = ElevenLabs(api_key=api_key)
+
+    if not lang:
+        # Detectar idioma por carpeta (stories/es/, stories/en/, etc.)
+        for part in txt_path.parts:
+            if part in NARRATOR_VOICE:
+                lang = part
+                break
+        lang = lang or "es"
+
+    print(f"\n🎙️  Procesando: {txt_path.name} [{lang.upper()}]")
+    print("=" * 55)
+
+    with open(txt_path, "r", encoding="utf-8") as f:
+        text = f.read()
+
+    segments = parse_script(text)
+    print(f"   Segmentos detectados: {len(segments)}")
+
+    speakers = set(s["speaker"] for s in segments)
+    print(f"   Personajes: {', '.join(speakers)}")
+
+    audio_parts = []
+    total_chars = 0
+
+    for i, segment in enumerate(segments, 1):
+        speaker = segment["speaker"]
+        text_chunk = segment["text"]
+        is_character = speaker != "narrator"
+
+        voice_id = get_voice_id(speaker, lang)
+        icon = "🗣️" if is_character else "📖"
+        print(f"   {icon} [{i}/{len(segments)}] {speaker}: {text_chunk[:60]}...")
+
+        # Dividir si es muy largo
+        sub_chunks = split_long_segment(text_chunk)
+
+        for sub in sub_chunks:
+            total_chars += len(sub)
+            try:
+                audio_bytes = synthesize_segment(client, sub, voice_id, is_character)
+                audio_parts.append(audio_bytes)
+                # Pausa entre llamadas para no saturar la API
+                time.sleep(0.3)
+            except Exception as e:
+                print(f"   ⚠️  Error en segmento {i}: {e}")
+                time.sleep(2)  # Esperar más si hay error
+
+    print(f"\n   Total caracteres procesados: {total_chars:,}")
+    print(f"   Créditos ElevenLabs usados: ~{total_chars:,}")
+
+    # Combinar todo el audio
+    final_audio = b"".join(audio_parts)
+
+    # Guardar
+    lang_dir = Path(output_dir) / lang
+    lang_dir.mkdir(parents=True, exist_ok=True)
+    mp3_path = lang_dir / f"{txt_path.stem}.mp3"
+
+    with open(mp3_path, "wb") as f:
+        f.write(final_audio)
+
+    size_mb = len(final_audio) / 1024 / 1024
+    print(f"\n✅ Audio guardado: {mp3_path} ({size_mb:.1f} MB)")
+    return mp3_path
+
+
+def generate_all_audio(stories_dir: str = "stories", output_dir: str = "audio"):
+    txt_files = list(Path(stories_dir).rglob("*.txt"))
+    if not txt_files:
+        print(f"⚠️  No hay archivos .txt en {stories_dir}/")
+        return
+
+    print(f"📚 {len(txt_files)} cuentos encontrados")
+    for txt_file in txt_files:
+        try:
+            generate_audio(txt_file, output_dir)
+        except Exception as e:
+            print(f"❌ Error con {txt_file.name}: {e}")
+
+
+def list_voices():
+    """Lista las voces disponibles en tu cuenta ElevenLabs."""
+    from elevenlabs import ElevenLabs
+
+    api_key = os.environ.get("ELEVENLABS_API_KEY")
+    client = ElevenLabs(api_key=api_key)
+
+    voices = client.voices.get_all()
+    print("\n🎤 Voces disponibles en tu cuenta ElevenLabs:")
+    print("=" * 55)
+    for v in voices.voices:
+        labels = v.labels or {}
+        lang = labels.get("language", "?")
+        gender = labels.get("gender", "?")
+        print(f"  {v.name:<25} ID: {v.voice_id}  [{lang} / {gender}]")
+
+
+# ---------------------------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Pipeline completo: cuento → audio → carátula → RSS"
-    )
-    parser.add_argument("--lang", choices=["es", "en", "fr", "de", "zh"],
-                        help="Idioma del episodio")
-    parser.add_argument("--topic", help="Tema o valor del cuento")
-    parser.add_argument("--title", help="Título del episodio")
-    parser.add_argument("--episode", type=int, default=1, help="Número de episodio")
-    parser.add_argument("--all", action="store_true",
-                        help="Genera episodios en los 5 idiomas")
-    parser.add_argument("--skip-audio", action="store_true",
-                        help="Omite la generación de audio")
-    parser.add_argument("--skip-cover", action="store_true",
-                        help="Omite la generación de carátula")
-    parser.add_argument("--skip-upload", action="store_true",
-                        help="Omite la actualización del RSS")
-    
+    parser = argparse.ArgumentParser(description="Genera audio MP3 con ElevenLabs TTS")
+    parser.add_argument("--input", help="Archivo .txt del cuento")
+    parser.add_argument("--lang", choices=list(NARRATOR_VOICE.keys()), help="Idioma")
+    parser.add_argument("--all", action="store_true", help="Convierte todos los cuentos")
+    parser.add_argument("--output-dir", default="audio")
+    parser.add_argument("--list-voices", action="store_true", help="Lista voces disponibles")
     args = parser.parse_args()
-    
-    print("🌙 Las aventuras de Caye y Alvarito — Pipeline completo")
+
+    print("🎙️  Cuentos Infantiles — Generador de audio ElevenLabs")
     print("=" * 55)
-    print(f"   Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
-    print(f"   Modo: {'TODOS LOS IDIOMAS' if args.all else args.lang.upper() if args.lang else '?'}")
-    
-    opts = {
-        "skip_audio": args.skip_audio,
-        "skip_cover": args.skip_cover,
-        "skip_upload": args.skip_upload,
-    }
-    
-    if args.all:
-        results = run_all_languages(episode_start=args.episode, **opts)
-        print_summary(results)
-    elif args.lang and args.topic and args.title:
-        result = run_full_pipeline(args.lang, args.topic, args.title,
-                                    args.episode, **opts)
-        print_summary(result)
+
+    if args.list_voices:
+        list_voices()
+    elif args.all:
+        generate_all_audio(output_dir=args.output_dir)
+    elif args.input:
+        generate_audio(Path(args.input), args.output_dir, args.lang)
     else:
         parser.print_help()
         print("\n💡 Ejemplos:")
-        print('   python run_pipeline.py --all --episode 1')
-        print('   python run_pipeline.py --lang es --topic "la amistad" --title "Luna y Estrella" --episode 1')
-        print('   python run_pipeline.py --all --skip-audio --skip-cover  # Solo texto, rápido')
+        print("   python generate_audio.py --input stories/es/caye_y_la_linterna_magica.txt")
+        print("   python generate_audio.py --list-voices")
+        print("   python generate_audio.py --all")
+        print("\n📝 Formato del guión:")
+        print("   Texto normal → narradora")
+        print("   [PERSONAJE:caye] Diálogo → voz de Caye")
+        print("   [PERSONAJE:alvarito] Diálogo → voz de Alvarito")
 
 
 if __name__ == "__main__":
     main()
-
-
