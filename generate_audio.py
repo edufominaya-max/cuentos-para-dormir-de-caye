@@ -61,7 +61,7 @@ MODEL = "eleven_multilingual_v2"
 
 # Configuración de voz (ajusta a tu gusto)
 VOICE_SETTINGS = {
-    "narrator": {"stability": 0.75, "similarity_boost": 0.75, "style": 0.3, "speed": 0.92},
+    "narrator": {"stability": 0.85, "similarity_boost": 0.75, "style": 0.0, "speed": 0.92},
     "character": {"stability": 0.60, "similarity_boost": 0.80, "style": 0.5, "speed": 1.0},
 }
 
