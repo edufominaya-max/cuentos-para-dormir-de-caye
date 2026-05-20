@@ -1,0 +1,195 @@
+# El bosque que se durmió
+
+
+La luna ya está en el cielo y las estrellas te están esperando. Cierra los ojitos, que hoy tenemos una aventura...
+
+
+[EFECTO:bosque_noche]
+
+La luna se asomaba entre las ramas como una moneda de plata. Todo el bosque estaba en silencio. Un silencio tan profundo que parecía que alguien hubiera apagado todos los sonidos del mundo.
+
+[PERSONAJE:caye] "Álvaro... ¿notas algo raro?"
+
+[PERSONAJE:alvarito] "¿Raro? ¿Qué? ¿Qué pasa?"
+
+Caye se agachó junto a un pequeño conejo que dormía hecho una bolita entre las hojas. No se movía. Respiraba muy despacio, como si soñara el sueño más profundo del mundo.
+
+[PERSONAJE:caye] "Mira... está dormido. Pero es que todo está dormido."
+
+[EFECTO:viento]
+
+Era verdad. Los pájaros dormían en las ramas sin cantar. Las ardillas dormían abrazadas a sus bellotas. Hasta las mariposas nocturnas habían cerrado sus alas y descansaban sobre las flores. El bosque entero se había quedado dormido.
+
+[PERSONAJE:alvarito] "¡Eh! ¡Conejito! ¡Despierta, despierta!"
+
+Álvaro sacudió suavemente al conejo, pero el animalito ni siquiera movió una oreja.
+
+[PERSONAJE:caye] "No creo que puedas despertarlo así, hermanito. Esto es... diferente."
+
+[PERSONAJE:alvarito] "¿Pero por qué? ¿Por qué duermen? ¿Están malitos?"
+
+[EFECTO:magia]
+
+Antes de que Caye pudiera responder, una lucecita azul apareció entre los helechos. Era pequeña, del tamaño de una cereza, y flotaba dejando un rastro de polvo brillante.
+
+[PERSONAJE:hada] "No están malitos, pequeño... Están esperando."
+
+La luz creció un poquito y los dos hermanos pudieron ver a una diminuta criatura con alas transparentes. Era una luciérnaga mágica, de las que solo aparecen cuando el bosque necesita ayuda.
+
+[PERSONAJE:caye] "¡Ohhh! ¿Eres... eres una luciérnaga de verdad?"
+
+[PERSONAJE:hada] "Me llamo Lumina. Y sí... soy muy de verdad. Tan de verdad como la paciencia que necesitaréis esta noche."
+
+[PERSONAJE:alvarito] "¿Pa-cien-cia? ¿Qué es eso? ¿Se come?"
+
+Lumina dejó escapar una risita suave, como campanitas de cristal.
+
+[PERSONAJE:hada] "La paciencia, pequeño Álvaro, es saber esperar... esperar el momento justo, sin correr, sin empujar, sin querer que todo pase ya mismo."
+
+[EFECTO:rama_crujido]
+
+Caye miró a su alrededor. Los árboles parecían estatuas dormidas. Ni una hoja se movía.
+
+[PERSONAJE:caye] "Lumina, ¿por qué se ha dormido el bosque? ¿Qué están esperando?"
+
+La luciérnaga voló en círculos y su luz se volvió un poco más tenue.
+
+[PERSONAJE:hada] "Esperan a la flor de luna. Es una flor que solo florece una vez cada muchos años... cuando las estrellas se alinean y la luna brilla más que nunca. Esta noche... es esa noche."
+
+[PERSONAJE:alvarito] "¡Una flor de luna! ¡Quiero verla! ¿Dónde está? ¿Dónde, dónde?"
+
+Álvaro empezó a correr hacia los arbustos, pero Caye lo sujetó suavemente del brazo.
+
+[PERSONAJE:caye] "Espera, Álvaro. Escucha a Lumina primero."
+
+[PERSONAJE:hada] "Tu hermana tiene razón. La flor de luna... aún no ha nacido. Y si hacéis ruido, si os impacientáis, si corréis de un lado a otro... nunca florecerá."
+
+[PERSONAJE:alvarito] "¿Nunca? Pero... ¡pero quiero verla ya!"
+
+Álvaro hizo un puchero y se cruzó de brazos. Caye se arrodilló frente a él y le tomó las manitas.
+
+[PERSONAJE:caye] "Oye, ¿recuerdas cuando esperamos juntos a que naciera el pollito en casa de la abuela?"
+
+[PERSONAJE:alvarito] "¡Sí! El huevito... el huevito que se movía."
+
+[PERSONAJE:caye] "¿Y recuerdas lo bonito que fue cuando por fin salió? Valió la pena esperar, ¿verdad?"
+
+Álvaro asintió despacio, aunque seguía con los mofletes inflados.
+
+[EFECTO:pasos]
+
+Lumina los guio por un caminito de musgo, tan suave que parecía una alfombra verde. Llegaron a un claro del bosque, redondo como un plato, donde la luz de la luna caía directa sobre la tierra.
+
+En el centro había... nada. Solo un pequeño montoncito de tierra oscura.
+
+[PERSONAJE:alvarito] "¿Eso? ¿Eso es la flor? ¡Pero si no hay nada!"
+
+[PERSONAJE:hada] "Todavía no. Debéis sentaros... y esperar. Sin tocar nada, sin moveros demasiado. ¿Podréis hacerlo?"
+
+[PERSONAJE:caye] "Yo sí puedo."
+
+Caye se sentó con las piernas cruzadas y se quedó muy quietecita.
+
+Álvaro, en cambio, se sentó... pero enseguida empezó a balancearse. Luego a rascarse la nariz. Luego a mirar a todos lados.
+
+[PERSONAJE:alvarito] "¿Ya? ¿Ya sale? ¿Cuánto falta? ¿Por qué tarda tanto?"
+
+[PERSONAJE:caye] "Shhh... Álvaro, tienes que tener paciencia."
+
+[PERSONAJE:alvarito] "¡Es que la paciencia es muy difícil!"
+
+Lumina se posó en el hombro del niño y le habló muy bajito.
+
+[PERSONAJE:hada] "¿Sabes qué hago yo cuando tengo que esperar? Respiro muy despacio... y cuento las estrellas. Una... dos... tres..."
+
+[EFECTO:campanas]
+
+Álvaro miró hacia arriba. El cielo estaba lleno de puntitos brillantes. Empezó a contarlas moviendo el dedito.
+
+[PERSONAJE:alvarito] "Una... dos... ties... cuato... cinco..."
+
+Caye sonrió y también miró al cielo.
+
+[PERSONAJE:caye] "¿Ves aquella que brilla mucho? Parece un diamante."
+
+[PERSONAJE:alvarito] "¡Sí! ¡Yo la vi primero! ¡Es mía!"
+
+[PERSONAJE:caye] "Vale, vale... es tuya."
+
+[EFECTO:risa_nino]
+
+Los minutos pasaron. Álvaro contó estrellas, luego contó hojas, luego contó los dedos de su hermana. Poco a poco, su cuerpo dejó de moverse. Se quedó quietecito, calentito junto a Caye, con los ojos muy abiertos mirando el montoncito de tierra.
+
+Y entonces... ocurrió.
+
+[EFECTO:magia]
+
+Del centro de la tierra brotó algo. Primero un tallito verde, finito como un hilo. Luego una hoja diminuta que se estiró hacia la luna. Y finalmente... un capullo blanco que empezó a abrirse.
+
+Pétalo a pétalo. Despacio. Sin prisa.
+
+[PERSONAJE:alvarito] "¡Ohhh...!"
+
+[PERSONAJE:caye] "¡Es preciosa...!"
+
+La flor de luna era la cosa más bonita que habían visto nunca. Brillaba con luz propia, como si tuviera una estrella dentro. Sus pétalos eran blancos con bordes plateados, y en el centro tenía gotitas de rocío que parecían lágrimas de felicidad.
+
+[PERSONAJE:hada] "Lo habéis conseguido. Habéis esperado... y habéis sido recompensados."
+
+Lumina voló alrededor de la flor, dejando un rastro de polvo dorado.
+
+[PERSONAJE:alvarito] "¡Lo hicimos, Caye! ¡Esperamos! ¡Y salió la flor!"
+
+[PERSONAJE:caye] "Has sido muy valiente, Álvaro. Esperar también es ser valiente."
+
+[EFECTO:pajaros]
+
+Como si la flor hubiera dado una señal secreta, el bosque empezó a despertar. Primero un pajarito movió la cabeza. Luego una ardilla bostezó. El conejito de antes estiró las patitas y abrió los ojillos.
+
+Todo el bosque volvía a la vida, llenándose de ruiditos y susurros nocturnos.
+
+[PERSONAJE:hada] "La flor de luna solo necesitaba silencio y paciencia para nacer. Vosotros le habéis dado las dos cosas."
+
+El conejo se acercó saltando y olisqueó la mano de Álvaro.
+
+[PERSONAJE:alvarito] "¡Hola, conejito! ¡Mira la flor! ¿La ves? ¿La ves?"
+
+El animalito movió su naricita rosada, como si dijera que sí.
+
+[PERSONAJE:caye] "Lumina, ¿la flor se quedará aquí para siempre?"
+
+[PERSONAJE:hada] "Solo hasta el amanecer. Luego cerrará sus pétalos y volverá a dormir... hasta que vuelva su momento. Cada cosa tiene su momento, pequeña Caye. Y hay que saber esperarlo."
+
+Caye asintió, guardando esas palabras en su corazón como si fueran un tesoro.
+
+Álvaro bostezó muy grande, tanto que casi se le ve la campanilla.
+
+[PERSONAJE:alvarito] "Caye... yo también tengo sueño como el bosque..."
+
+[PERSONAJE:caye] "Ven aquí, bichito."
+
+Caye abrazó a su hermanito, y los dos se quedaron sentaditos junto a la flor de luna, que les daba su luz suave y cálida.
+
+Lumina voló en círculos sobre ellos, dejando caer polvito de sueños.
+
+[PERSONAJE:hada] "Dormid, pequeños... Y recordad siempre: las cosas más bonitas de la vida no se pueden apresurar. Hay que esperarlas... con el corazón tranquilo y los ojos bien abiertos."
+
+[EFECTO:campanas]
+
+Álvaro cerró los ojos primero, con una sonrisa en los labios.
+
+[PERSONAJE:alvarito] "Caye... la paciencia... no se come... pero sabe bien..."
+
+Caye sonrió y le dio un besito en la frente.
+
+[PERSONAJE:caye] "Duerme, hermanito. Has sido el niño más paciente del mundo."
+
+Y mientras la flor de luna brillaba sobre ellos, los dos hermanos se quedaron dormidos, soñando con estrellas, conejos y pétalos de plata.
+
+El bosque ya no estaba dormido. Pero ellos sí.
+
+Y era el momento perfecto para soñar.
+
+---
+
+La historia ha terminado... pero los sueños acaban de empezar. Buenas noches. 🌙
