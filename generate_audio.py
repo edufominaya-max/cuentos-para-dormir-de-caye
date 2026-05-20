@@ -44,7 +44,7 @@ NARRATOR_VOICE = {
 # Voces por personaje
 CHARACTER_VOICES = {
     "caye":      "dNjJKg63Fr5AXwIdkATa",  # Caye — voz actualizada
-    "alvarito":  "851ejYcv2BoNPjrkw93G",  # Alvarito — voz actualizada
+    "alvarito":  "uU1QvfOppdkePeLtG9pI",  # Alvarito — voz actualizada
     "hada":      "YDDaC9XKjODs7hY78qEW",  # Hada — español
     "dragon":    "z3kTTwYbQrmL7ckdGcJi",  # Dragón macho — español
     "dragona":   "1eHrpOW5l98cxiSRjbzJ",  # Dragona hembra — voz femenina
@@ -66,7 +66,7 @@ MODEL = "eleven_multilingual_v2"
 VOICE_SETTINGS = {
     "narrator":  {"stability": 0.85, "similarity_boost": 0.75, "style": 0.0,  "speed": 0.92},
     "character": {"stability": 0.45, "similarity_boost": 0.80, "style": 0.7,  "speed": 1.0},
-    "alvarito":  {"stability": 0.30, "similarity_boost": 0.85, "style": 0.9,  "speed": 1.05},
+    "alvarito":  {"stability": 0.45, "similarity_boost": 0.80, "style": 0.6,  "speed": 0.95},
     "caye":      {"stability": 0.50, "similarity_boost": 0.80, "style": 0.65, "speed": 0.98},
 }
 
