@@ -83,19 +83,20 @@ def generate_cover(title: str, topic: str, lang: str, output_dir: str = "covers"
 
     print(f"  🎨 Generando carátula: '{title}' [{lang.upper()}]...")
 
-    # Usar b64_json en lugar de url (compatible con todas las versiones de la API)
+    # Generar imagen y descargar via URL (compatible con openai>=2.0)
     response = client.images.generate(
         model="dall-e-3",
         prompt=prompt,
         size=COVER_SIZE,
         quality=COVER_QUALITY,
         n=1,
-        response_format="b64_json",
     )
 
-    image_b64    = response.data[0].b64_json
+    image_url      = response.data[0].url
     revised_prompt = response.data[0].revised_prompt
-    image_bytes  = base64.b64decode(image_b64)
+    img_response   = requests.get(image_url, timeout=60)
+    img_response.raise_for_status()
+    image_bytes    = img_response.content
 
     # Convertir a JPG 3000x3000
     img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
