@@ -55,7 +55,7 @@ SFX_MAP = {
 }
 
 SFX_CACHE_DIR = Path("sfx_cache")
-SFX_VOLUME    = 0.25  # Volumen de efectos respecto a la voz (0.0-1.0)
+SFX_VOLUME    = 0.6  # Volumen de efectos respecto a la voz (0.0-1.0)
 
 
 # ---------------------------------------------------------------------------
@@ -152,24 +152,50 @@ def get_audio_duration(path: Path) -> float:
 
 def estimate_position_seconds(txt_path: Path, target_line: int, total_audio_duration: float) -> float:
     """
-    Estima la posición en segundos del efecto basándose en la proporción
-    de líneas de texto hasta ese punto.
+    Usa el archivo de timestamps generado por generate_audio.py para obtener
+    la posición exacta en segundos. Si no existe, usa proporción de líneas.
     """
+    import json as _json
+    
+    # Buscar archivo de timestamps (mismo nombre que el MP3 pero .timestamps.json)
+    # El txt_path es stories/es/cuento.txt, el timestamps está en audio/es/cuento.timestamps.json
+    lang = None
+    for part in txt_path.parts:
+        if part in ["es", "en", "fr", "de", "zh"]:
+            lang = part
+            break
+    lang = lang or "es"
+    
+    ts_path = Path("audio") / lang / f"{txt_path.stem}.timestamps.json"
+    
+    if ts_path.exists():
+        with open(ts_path) as f:
+            timestamps = _json.load(f)
+        
+        # Encontrar el timestamp más cercano a target_line
+        best_time = 0.0
+        best_diff = float("inf")
+        for ts in timestamps:
+            diff = abs(ts["line_approx"] - target_line)
+            if diff < best_diff:
+                best_diff = diff
+                best_time = ts["time_start"]
+        
+        return min(best_time, total_audio_duration * 0.95)
+    
+    # Fallback: proporción de líneas
     with open(txt_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
-    # Contar solo líneas de contenido (sin efectos ni vacías)
     content_lines = [(i, l) for i, l in enumerate(lines)
-                     if l.strip() and not re.match(r'\[EFECTO:', l.strip(), re.IGNORECASE)]
+                     if l.strip() and not re.match(r"\[EFECTO:", l.strip(), re.IGNORECASE)]
 
     total_content = len(content_lines)
     if total_content == 0:
         return 0.0
 
-    # Cuántas líneas de contenido hay antes del efecto
     lines_before = sum(1 for i, l in content_lines if i < target_line)
     ratio = lines_before / total_content
-
     return ratio * total_audio_duration
 
 
@@ -224,8 +250,10 @@ def mix_sfx_into_audio(narration_path: Path, sfx_effects: list,
 
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
-        print(f"   ⚠️  FFmpeg SFX error: {result.stderr[-300:]}")
-        return narration_path
+        print(f"   ❌ FFmpeg SFX error completo:")
+        print(result.stderr[-1000:])
+        print(f"   ❌ Comando: {' '.join(cmd[:10])}...")
+        raise Exception(f"FFmpeg SFX falló con código {result.returncode}")
 
     print(f"   ✅ Efectos mezclados: {output_path}")
     return output_path

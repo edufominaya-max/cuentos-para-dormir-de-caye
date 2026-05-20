@@ -81,7 +81,7 @@ MAX_CHARS = 4500
 def parse_script(text: str) -> list:
     """
     Parsea el guión y devuelve lista de segmentos:
-    [{"speaker": "narrator"|"personaje", "text": "..."}]
+    [{"speaker": "narrator"|"personaje", "text": "...", "line_approx": int}]
     """
     # Limpiar markdown
     text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)
@@ -90,7 +90,7 @@ def parse_script(text: str) -> list:
     segments = []
     lines = text.strip().split('\n')
 
-    for line in lines:
+    for line_num, line in enumerate(lines):
         line = line.strip()
         if not line:
             continue
@@ -106,13 +106,13 @@ def parse_script(text: str) -> list:
             character = match.group(1).lower()
             dialogue = match.group(2).strip()
             if dialogue:
-                segments.append({"speaker": character, "text": dialogue})
+                segments.append({"speaker": character, "text": dialogue, "line_approx": line_num})
         else:
             # Texto de narración — agrupar párrafos consecutivos
             if segments and segments[-1]["speaker"] == "narrator":
                 segments[-1]["text"] += " " + line
             else:
-                segments.append({"speaker": "narrator", "text": line})
+                segments.append({"speaker": "narrator", "text": line, "line_approx": line_num})
 
     return segments
 
@@ -215,11 +215,14 @@ def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) 
 
     audio_parts = []
     total_chars = 0
+    timestamps = []   # lista de {"line_approx": int, "time_start": float}
+    current_time = 0.0
 
     for i, segment in enumerate(segments, 1):
         speaker = segment["speaker"]
         text_chunk = segment["text"]
         is_character = speaker != "narrator"
+        line_approx = segment.get("line_approx", i)
 
         voice_id = get_voice_id(speaker, lang)
         icon = "🗣️" if is_character else "📖"
@@ -228,16 +231,20 @@ def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) 
         # Dividir si es muy largo
         sub_chunks = split_long_segment(text_chunk)
 
+        timestamps.append({"line_approx": line_approx, "time_start": current_time})
+
         for sub in sub_chunks:
             total_chars += len(sub)
             try:
                 audio_bytes = synthesize_segment(client, sub, voice_id, is_character, speaker)
                 audio_parts.append(audio_bytes)
-                # Pausa entre llamadas para no saturar la API
+                # Estimar duración aproximada (150 palabras/min = 2.5 palabras/seg)
+                words = len(sub.split())
+                current_time += max(0.5, words / 2.5)
                 time.sleep(0.3)
             except Exception as e:
                 print(f"   ⚠️  Error en segmento {i}: {e}")
-                time.sleep(2)  # Esperar más si hay error
+                time.sleep(2)
 
     print(f"\n   Total caracteres procesados: {total_chars:,}")
     print(f"   Créditos ElevenLabs usados: ~{total_chars:,}")
@@ -255,6 +262,13 @@ def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) 
 
     size_mb = len(final_audio) / 1024 / 1024
     print(f"\n✅ Audio guardado: {mp3_path} ({size_mb:.1f} MB)")
+
+    # Guardar timestamps para que generate_sfx.py sepa dónde insertar efectos
+    import json as _json
+    ts_path = mp3_path.with_suffix('.timestamps.json')
+    with open(ts_path, "w", encoding="utf-8") as f:
+        _json.dump(timestamps, f)
+
     return mp3_path
 
 

@@ -21,6 +21,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import time
 from pathlib import Path
 
@@ -267,10 +268,27 @@ def generate_jingle(output_dir: str = "music/jingle", force: bool = False) -> di
         print(f"   ℹ️  Voz outro ya existe: {voice_outro_path}")
 
     # 4. Mezclar intro
-    mix_voice_over_music(music_path, voice_intro_path, intro_path)
+    # Mezclar intro con fade-in y fade-out
+    intro_tmp = jingle_dir / "intro_raw.mp3"
+    mix_voice_over_music(music_path, voice_intro_path, intro_tmp)
+    # Aplicar fade-in (1s) y fade-out (2s)
+    subprocess.run([
+        "ffmpeg", "-y", "-i", str(intro_tmp),
+        "-af", "afade=t=in:d=1,afade=t=out:st=17:d=2",
+        "-c:a", "libmp3lame", "-q:a", "2", str(intro_path)
+    ], capture_output=True)
+    intro_tmp.unlink(missing_ok=True)
 
     # 5. Mezclar outro
-    mix_voice_over_music(music_path, voice_outro_path, outro_path)
+    # Mezclar outro con fade-in y fade-out
+    outro_tmp = jingle_dir / "outro_raw.mp3"
+    mix_voice_over_music(music_path, voice_outro_path, outro_tmp)
+    subprocess.run([
+        "ffmpeg", "-y", "-i", str(outro_tmp),
+        "-af", "afade=t=in:d=1,afade=t=out:st=17:d=2",
+        "-c:a", "libmp3lame", "-q:a", "2", str(outro_path)
+    ], capture_output=True)
+    outro_tmp.unlink(missing_ok=True)
     print(f"   ✅ Outro generado: {outro_path}")
 
     return {"intro": str(intro_path), "outro": str(outro_path)}
