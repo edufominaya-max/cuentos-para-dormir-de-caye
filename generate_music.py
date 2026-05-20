@@ -35,7 +35,7 @@ SUNO_FETCH    = "https://api.apipass.dev/api/v1/jobs/recordInfo"
 JINGLE_PROMPT = (
     "magical orchestral children's theme, Disney style, whimsical and warm, "
     "strings harp glockenspiel, playful fairy tale mood, bedtime lullaby energy, "
-    "10 seconds intro jingle, fade in fade out, instrumental only, no vocals"
+    "20 seconds intro jingle, fade in fade out, instrumental only, no vocals"
 )
 
 JINGLE_STYLE = "magical orchestral Disney children's bedtime"
