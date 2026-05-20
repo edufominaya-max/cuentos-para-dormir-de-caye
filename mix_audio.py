@@ -100,13 +100,12 @@ def mix_episode(story_json_path: Path,
     if not has_jingle:
         print(f"   ⚠️  No existe sintonía — se generará sin intro/outro")
 
-    # Usar versión con efectos si existe, si no la narración normal
-    sfx_path = Path("audio_sfx") / lang / f"{txt_file.stem}.mp3"
-    narration_path = sfx_path if sfx_path.exists() else Path(audio_dir) / lang / f"{txt_file.stem}.mp3"
+    # Usar narración directa (audio_sfx desactivado hasta fix)
+    narration_path = Path(audio_dir) / lang / f"{txt_file.stem}.mp3"
     if not narration_path.exists():
         print(f"   ❌ No encontrada narración: {narration_path}")
         return None
-    print(f"   {'🔊 Con efectos' if sfx_path.exists() else '🎙️ Sin efectos'}: {narration_path.name}")
+    print(f"   🎙️ Narración: {narration_path.name}")
 
     # Directorio de salida
     output_path = Path(output_dir) / lang / f"{slugify(title)}_final.mp3"

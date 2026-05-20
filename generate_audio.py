@@ -34,7 +34,7 @@ from pathlib import Path
 # CONFIGURACIÓN DE VOCES
 # ---------------------------------------------------------------------------
 NARRATOR_VOICE = {
-    "es": "tXgbXPnsMpKXkuTgvE3h",  # Narrador ES — voz actualizada
+    "es": "Ir1QNHvhaJXbAGhT50w3",  # Narrador ES — voz actualizada
     "en": "cgSgspJ2msm6clMCkdW9",  # Jessica — inglés
     "fr": "cgSgspJ2msm6clMCkdW9",  # Jessica — francés
     "de": "cgSgspJ2msm6clMCkdW9",  # Jessica — alemán
@@ -43,8 +43,8 @@ NARRATOR_VOICE = {
 
 # Voces por personaje
 CHARACTER_VOICES = {
-    "caye":      "M6VSsB443dZGsCW4RLDr",  # Caye — voz clonada real
-    "alvarito":  "V7JiGnncIvaytoLoomdl",  # Alvarito — voz clonada real
+    "caye":      "dNjJKg63Fr5AXwIdkATa",  # Caye — voz actualizada
+    "alvarito":  "g4ucswVjPpazgbDDe327",  # Alvarito — voz actualizada
     "hada":      "YDDaC9XKjODs7hY78qEW",  # Hada — español
     "dragon":    "z3kTTwYbQrmL7ckdGcJi",  # Dragón/Animales — español
     "bruja":     "M9RTtrzRACmbUzsEMq8p",  # Bruja — español

@@ -212,8 +212,9 @@ def mix_sfx_into_audio(narration_path: Path, sfx_effects: list,
         return narration_path
 
     n_inputs = len(valid_effects) + 1
+    mix_str = ''.join(mix_inputs)
     filter_parts.append(
-        f"{''.join(mix_inputs)}amix=inputs={n_inputs}:duration=first:dropout_transition=2[out]"
+        f"{mix_str}amix=inputs={n_inputs}:duration=first:dropout_transition=2[out]"
     )
 
     cmd = ["ffmpeg", "-y"] + inputs + [

@@ -41,7 +41,7 @@ JINGLE_PROMPT = (
 JINGLE_STYLE = "magical orchestral Disney children's bedtime"
 
 # Voz ElevenLabs para la sintonía (Papi — narrador principal)
-JINGLE_VOICE_ID = "tXgbXPnsMpKXkuTgvE3h"  # Narradora — voz femenina intro/outro
+JINGLE_VOICE_ID = "Ir1QNHvhaJXbAGhT50w3"  # Narradora — voz femenina intro/outro
 JINGLE_INTRO_TEXT = "Cierra los ojos. Respira. Esta noche... te llevo de viaje."
 JINGLE_OUTRO_TEXT = "La historia ha terminado... pero los sueños acaban de empezar. Buenas noches."
 JINGLE_TEXT = JINGLE_INTRO_TEXT  # compatibilidad
