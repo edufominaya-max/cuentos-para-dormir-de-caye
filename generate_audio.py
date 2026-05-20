@@ -44,9 +44,10 @@ NARRATOR_VOICE = {
 # Voces por personaje
 CHARACTER_VOICES = {
     "caye":      "dNjJKg63Fr5AXwIdkATa",  # Caye — voz actualizada
-    "alvarito":  "g4ucswVjPpazgbDDe327",  # Alvarito — voz actualizada
+    "alvarito":  "851ejYcv2BoNPjrkw93G",  # Alvarito — voz actualizada
     "hada":      "YDDaC9XKjODs7hY78qEW",  # Hada — español
-    "dragon":    "z3kTTwYbQrmL7ckdGcJi",  # Dragón/Animales — español
+    "dragon":    "z3kTTwYbQrmL7ckdGcJi",  # Dragón macho — español
+    "dragona":   "1eHrpOW5l98cxiSRjbzJ",  # Dragona hembra — voz femenina
     "bruja":     "M9RTtrzRACmbUzsEMq8p",  # Bruja — español
     "sabio":     "YKrm0N1EAM9Bw27j8kuD",  # Sabio — español
     "abuela":    "M9RTtrzRACmbUzsEMq8p",  # Abuela — español
@@ -91,6 +92,11 @@ def parse_script(text: str) -> list:
 
     for line in lines:
         line = line.strip()
+        if not line:
+            continue
+
+        # Eliminar etiquetas de efectos de sonido [EFECTO:xxx]
+        line = re.sub(r'\[EFECTO:\w+\]', '', line).strip()
         if not line:
             continue
 
