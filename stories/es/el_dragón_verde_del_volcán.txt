@@ -1,0 +1,207 @@
+# El dragón verde del volcán
+
+
+¿Ya estás en la cama? Perfecto. Esta noche tengo guardada una historia solo para ti. Una historia que empieza ahora mismo...
+
+
+Había una vez, en un pueblecito pequeñito rodeado de montañas y prados verdes, dos hermanos que vivían en una casita con el tejado de color naranja. Se llamaban Caye y Álvaro, y eran los mejores amigos del mundo, aunque a veces se pelearan por quién se comía la última galleta.
+
+Caye tenía siete años y unos ojos grandes que brillaban como caramelos de miel. Le encantaban los animales, las flores silvestres y todo lo que tuviera un poquito de magia. Álvaro, su hermanito pequeño, tenía casi cuatro años y una energía tan grande que parecía que llevaba un cohete en los zapatos. Preguntaba el porqué de absolutamente todo, y su risa... ¡ah, su risa era tan contagiosa que hasta las piedras del camino querían reírse con él!
+
+Desde la ventana de su habitación, los dos hermanos podían ver algo muy especial: un volcán enorme que se alzaba en el horizonte. No era un volcán peligroso, no no no. Hacía muchísimos años que dormía tranquilo, cubierto de hierba y flores. Pero los mayores del pueblo contaban que, en lo más profundo del volcán, vivía un dragón verde que nadie había visto jamás.
+
+[EFECTO:viento]
+
+Una tarde de primavera, mientras el sol pintaba el cielo de naranja y rosa, Caye estaba en el jardín recogiendo margaritas cuando Álvaro llegó corriendo con sus piernecitas regordetas.
+
+[PERSONAJE:alvarito] "¡Caye! ¡Caye! ¡Mira, mira, mira!"
+
+[PERSONAJE:caye] "¿Qué pasa, bichito?"
+
+[PERSONAJE:alvarito] "¡Humo verde! ¡Del volcán! ¡Humo verde, verde, verde!"
+
+Caye levantó la mirada y se quedó con la boca abierta. Era verdad. Del volcán salía una columna de humo de color verde esmeralda que hacía espirales en el cielo como si estuviera bailando.
+
+[PERSONAJE:caye] "Ohhh... Álvaro... ¿Estás viendo lo mismo que yo?"
+
+[PERSONAJE:alvarito] "¡Sí! ¡Es el dagón! ¡El dagón verde!"
+
+[PERSONAJE:caye] "Dra-gón, Álvaro. Se dice dra-gón."
+
+[PERSONAJE:alvarito] "¡Eso! ¡Dagón! ¡Vamos a verlo! ¡Porfi porfi porfi!"
+
+Caye se mordió el labio. Tenía un poquito de miedo. Bueno, bastante miedo, si era sincera. Nadie del pueblo había subido nunca al volcán. ¿Y si el dragón era malo? ¿Y si se perdían? Pero entonces miró a su hermanito, que daba saltitos de emoción con los ojos brillantes como luceros, y pensó: "Los hermanos mayores tienen que ser valientes. Aunque les tiemblen un poquito las rodillas."
+
+[PERSONAJE:caye] "Vale... pero me tienes que dar la mano todo el rato. ¿Prometido?"
+
+[PERSONAJE:alvarito] "¡Prometido prometido! ¡A la aventura!"
+
+[EFECTO:pasos]
+
+Los dos hermanos caminaron por el sendero que subía hacia el volcán. Al principio todo era fácil: el camino estaba lleno de flores amarillas y mariposas de colores. Pero poco a poco, los árboles se fueron haciendo más altos y más juntos, y la luz del sol apenas se colaba entre las hojas.
+
+[EFECTO:bosque_noche]
+
+[PERSONAJE:alvarito] "Caye... está muy oscuro..."
+
+[PERSONAJE:caye] "Tranquilo, bichito. Estoy aquí contigo. No voy a soltarte la mano."
+
+[PERSONAJE:alvarito] "¿Y si hay monstruos?"
+
+[PERSONAJE:caye] "No hay monstruos, Álvaro. Solo... solo árboles muy altos que nos hacen sombra."
+
+Pero en ese momento, se escuchó un crujido tremendo entre los arbustos.
+
+[EFECTO:rama_crujido]
+
+[PERSONAJE:alvarito] "¡AHHHH!"
+
+Álvaro se abrazó a la pierna de su hermana con todas sus fuerzas. Caye también tenía el corazón latiendo muy muy rápido, pero respiró hondo. "Piensa, Caye, piensa", se dijo a sí misma.
+
+[PERSONAJE:caye] "¿Ho-hola? ¿Hay alguien ahí?"
+
+De entre las hojas salió... una ardillita pequeñita con el pelaje color canela y unos bigotes muy largos.
+
+[PERSONAJE:personaje] "¡Oh, perdonad, perdonad! No quería asustaros. Soy Avellana, la ardilla del volcán."
+
+[PERSONAJE:alvarito] "¡Una ardilla! ¡Una ardilla que habla! ¡Hola, ardilla!"
+
+[EFECTO:risa_nino]
+
+Caye suspiró aliviada y se agachó para estar a la altura de la ardillita.
+
+[PERSONAJE:caye] "Hola, Avellana. Somos Caye y Álvaro. Estamos buscando al dragón verde. ¿Sabes dónde vive?"
+
+La ardilla se rascó la cabeza con sus patitas diminutas y puso cara preocupada.
+
+[PERSONAJE:personaje] "¿El dragón? Oh, sí, sí, Esmeralda vive en la cueva de la cima. Pero... nadie sube a verla nunca. Todos tienen miedo."
+
+[PERSONAJE:caye] "¿Esmeralda? ¿El dragón se llama Esmeralda?"
+
+[PERSONAJE:personaje] "Sí, sí. Y no es mala, no no no. Pero está muy triste. Lleva años sola porque todos huyen de ella. El humo verde que habéis visto... son sus suspiros de pena."
+
+[PERSONAJE:alvarito] "¿El dagón está triste? ¡No quiero que esté triste! ¡Caye, tenemos que ayudarla!"
+
+Caye miró hacia arriba, hacia la cima del volcán que se perdía entre las nubes. Sintió un cosquilleo en la barriga. Miedo y emoción mezclados. Pero entonces pensó en Esmeralda, sola en su cueva, suspirando humo verde de tristeza, y supo lo que tenía que hacer.
+
+[PERSONAJE:caye] "Avellana, ¿puedes enseñarnos el camino?"
+
+[PERSONAJE:personaje] "¡Claro que sí! ¡Seguidme, valientes!"
+
+[EFECTO:pasos]
+
+La ardillita saltaba de rama en rama mientras los hermanos subían por el sendero pedregoso. Álvaro iba contando cada piedra que pisaba.
+
+[PERSONAJE:alvarito] "Una, dos, tes, cuatro... ¡ochocientas mil!"
+
+[PERSONAJE:caye] "Álvaro, eso no es así..."
+
+[PERSONAJE:alvarito] "¡Sí que es! ¡Son ochocientas mil piedras!"
+
+Caye se rio bajito. Su hermanito era un terremoto con piernas, pero le hacía olvidar el miedo.
+
+Por fin, después de mucho caminar, llegaron a una cueva enorme con la entrada en forma de corazón. Desde dentro salía un resplandor verde muy suave, como el de las luciérnagas en verano.
+
+[EFECTO:fuego]
+
+[PERSONAJE:personaje] "Aquí es. La cueva de Esmeralda. Yo... yo me quedo aquí fuera. Buena suerte, pequeños."
+
+[PERSONAJE:caye] "Gracias, Avellana."
+
+Caye apretó la mano de Álvaro. Las piernas le temblaban un poquito.
+
+[PERSONAJE:caye] "¿Estás listo, bichito?"
+
+[PERSONAJE:alvarito] "¡Sí! ¡Aunque un poco de miedito también!"
+
+[PERSONAJE:caye] "Yo también tengo un poco de miedo. Pero ¿sabes qué? Ser valiente no es no tener miedo. Es tener miedo y hacerlo igualmente, porque merece la pena."
+
+[PERSONAJE:alvarito] "Oooh... ¡pues entonces soy muy muy valiente!"
+
+[PERSONAJE:caye] "El más valiente del mundo."
+
+[EFECTO:magia]
+
+Entraron en la cueva cogidos de la mano. Dentro hacía calorcito, como estar envuelto en una manta suave. Las paredes brillaban con cristales de colores, y en el centro, acurrucada sobre un montón de hojas secas, había una dragona preciosa.
+
+Esmeralda era verde como la hierba en primavera, con escamas que brillaban como piedras preciosas. Tenía unas alas grandes y delicadas, ojos dorados como el sol, y... estaba llorando. Lágrimas gordas y brillantes que caían de sus ojos y se convertían en piedrecitas de cristal verde.
+
+[PERSONAJE:alvarito] "¡Hola, dagona! ¡No llores! ¡No llores!"
+
+Esmeralda levantó la cabeza, sorprendida. Cuando vio a los dos niños pequeñitos de pie en su cueva, sin salir corriendo, sus ojos se abrieron como platos.
+
+[PERSONAJE:dragon] "¿No... no me tenéis miedo?"
+
+[PERSONAJE:caye] "Un poquito sí. Pero Avellana nos ha contado que estás triste y sola. Y eso... eso nos ha dado más pena que miedo."
+
+[PERSONAJE:dragon] "¿Habéis subido hasta aquí... por mí?"
+
+[PERSONAJE:alvarito] "¡Sí! ¡Porque estabas solita! ¡Y eso es muy muy triste!"
+
+Esmeralda parpadeó varias veces, como si no pudiera creerse lo que estaba pasando.
+
+[PERSONAJE:dragon] "Llevo tantos años aquí arriba... Todos los habitantes del pueblo me tienen miedo. Creen que voy a quemar sus casas o a comérmelos. Pero yo... yo solo quiero tener amigos."
+
+[PERSONAJE:caye] "Ohhh, Esmeralda... Eso es horrible. Pero escucha... a veces la gente tiene miedo de lo que no conoce. Y cuando tienen miedo, inventan historias que no son verdad."
+
+[PERSONAJE:alvarito] "¡Tú no das miedo! ¡Eres muy bonita! ¡Y muy verde! ¡Mi color favorito es el verde!"
+
+[EFECTO:risa_nino]
+
+Esmeralda soltó una risita suave que sonó como campanitas de viento. Era la primera vez que se reía en muchísimo tiempo.
+
+[EFECTO:campanas]
+
+[PERSONAJE:dragon] "Sois los primeros niños que vienen a verme... los primeros que no salen corriendo."
+
+[PERSONAJE:caye] "Pues seremos tus amigos, Esmeralda. ¿Verdad, Álvaro?"
+
+[PERSONAJE:alvarito] "¡SÍ! ¡Amigos para siempre siempre siempre!"
+
+La dragona sintió que su corazón, que había estado frío tanto tiempo, empezaba a llenarse de calorcito. Una lágrima más cayó de su ojo, pero esta vez era de felicidad.
+
+[PERSONAJE:dragon] "Gracias... No sabéis lo valientes que sois. Habéis hecho algo que ningún adulto se ha atrevido a hacer: conocer a alguien diferente sin juzgarlo."
+
+[PERSONAJE:caye] "Mamá siempre dice que lo diferente no es malo. Solo es... diferente."
+
+[PERSONAJE:alvarito] "¡Sí! ¡Diferente mola!"
+
+Esmeralda extendió sus grandes alas y los envolvió a los dos en un abrazo suave y cálido. Olía a flores silvestres y a hierba recién cortada.
+
+[PERSONAJE:dragon] "¿Queréis que os lleve volando hasta el pueblo? Así todos verán que no soy peligrosa."
+
+[PERSONAJE:alvarito] "¡¿VOLAR?! ¡¿DE VERDAD DE VERDAD?! ¡CAYE! ¡VAMOS A VOLAR!"
+
+[PERSONAJE:caye] "¿Estás segura, Esmeralda?"
+
+[PERSONAJE:dragon] "Gracias a vosotros, ya no tengo miedo. Me habéis enseñado que ser valiente es dar el primer paso... aunque tiemblen las alas."
+
+[EFECTO:viento]
+
+Los hermanos se subieron al lomo de Esmeralda, que salió volando de la cueva hacia el cielo anaranjado del atardecer. ¡Era la sensación más maravillosa del mundo! El viento les despeinaba, las nubes les hacían cosquillas, y abajo, el pueblo parecía de juguete.
+
+[PERSONAJE:alvarito] "¡YUHUUU! ¡ESTAMOS VOLANDO! ¡MIRA, CAYE, MIRA!"
+
+[PERSONAJE:caye] "¡Es increíble! ¡Esmeralda, eres maravillosa!"
+
+[EFECTO:pajaros]
+
+Cuando aterrizaron en la plaza del pueblo, todos los vecinos salieron asustados de sus casas. Pero entonces vieron a Caye y Álvaro bajar del lomo de la dragona, riendo y dando saltos de alegría. Y poco a poco, el miedo fue desapareciendo de sus caras.
+
+Ese día, el pueblo entero conoció a Esmeralda. Y descubrieron que era la dragona más dulce y amable que existía. A partir de entonces, ella bajaba todos los días a jugar con los niños, a calentar el horno del panadero con su aliento tibio, y a contar historias de estrellas por las noches.
+
+[PERSONAJE:dragon] "Gracias, pequeños. Me habéis enseñado que la valentía más grande no es luchar contra monstruos... es atreverse a conocer lo desconocido con el corazón abierto."
+
+[PERSONAJE:caye] "Y tú nos has enseñado que detrás de lo que da miedo... a veces hay un amigo esperando."
+
+[PERSONAJE:alvarito] "¡Y que volar mola mucho!"
+
+Todos rieron juntos mientras las primeras estrellas empezaban a brillar en el cielo.
+
+[EFECTO:campanas]
+
+Aquella noche, ya en su camita con el tejado naranja, Caye arropó a Álvaro como hacía siempre.
+
+[PERSONAJE:alvarito] "Caye... ¿mañana vamos otra vez a ver a Esmeralda?"
+
+[PERSONAJE:caye] "Claro que sí, bichito. Ah
