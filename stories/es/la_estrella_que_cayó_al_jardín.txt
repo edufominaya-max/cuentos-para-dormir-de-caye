@@ -1,0 +1,181 @@
+# La estrella que cayó al jardín
+
+
+La luna ya está en el cielo y las estrellas te están esperando. Cierra los ojitos, que hoy tenemos una aventura...
+
+
+[EFECTO:bosque_noche]
+
+Aquella noche de verano hacía tanto calor que Caye y Álvaro habían pedido permiso para dormir con la ventana abierta. Las cortinas se movían suavemente, como si el viento las meciera para que ellas también pudieran soñar.
+
+Caye estaba a punto de cerrar los ojos cuando vio algo que la hizo incorporarse de golpe. Una luz dorada cruzó el cielo... pero en lugar de desaparecer como las demás estrellas fugaces, aquella luz bajó, bajó, bajó... y cayó justo en su jardín.
+
+[EFECTO:magia]
+
+[PERSONAJE:caye] "¡Álvaro! ¡Álvaro, despierta! ¡Ha caído algo en el jardín!"
+
+[PERSONAJE:alvarito] "¿Qué? ¿Qué? ¿Un cohete? ¿Es un cohete?"
+
+[PERSONAJE:caye] "No lo sé... pero brillaba mucho. Vamos a ver, pero despacito, ¿vale? Sin hacer ruido."
+
+Los dos hermanos bajaron las escaleras de puntillas, con el corazón latiendo muy fuerte. Álvaro iba agarrado a la mano de su hermana, apretando con todas sus fuerzas. Caye abrió la puerta del jardín muy despacio.
+
+[EFECTO:puerta]
+
+Y allí, entre los rosales de mamá, había algo extraordinario.
+
+Era una estrella. Pequeña, del tamaño de un melón, y brillaba con una luz suave y dorada. Pero no flotaba como las estrellas del cielo. Estaba posada en la tierra, y su luz parpadeaba... como si estuviera cansada.
+
+[PERSONAJE:alvarito] "¡Una estrella! ¡Una estrella de verdad! ¿Puedo tocarla? ¿Puedo? ¿Puedo?"
+
+[PERSONAJE:caye] "Espera, Álvaro... creo que está herida."
+
+Caye se acercó con cuidado y se arrodilló junto a la estrella. Entonces escuchó algo que jamás olvidaría: una vocecita suave, como el tintineo de una campanita.
+
+[EFECTO:campanas]
+
+[PERSONAJE:hada] "Ayuda... necesito ayuda... me he perdido..."
+
+[PERSONAJE:caye] "¡Puedes hablar! ¿Estás bien? ¿Te has hecho daño?"
+
+[PERSONAJE:hada] "Estoy muy lejos de casa... y mis fuerzas se acaban... Cada hora que paso en la tierra... mi luz se apaga un poquito más..."
+
+La estrella brilló más débilmente, como una vela a punto de consumirse. Caye sintió un nudo en la garganta.
+
+[PERSONAJE:alvarito] "¿Por qué está triste la estrella? ¿Tiene pupa? ¿Tiene hambre?"
+
+[PERSONAJE:caye] "Creo que echa de menos su casa, Álvaro. Está muy lejos del cielo."
+
+[PERSONAJE:hada] "Mi familia me espera allí arriba... pero ya no tengo fuerzas para volar... Solo un acto de bondad pura... solo eso puede devolverme la energía..."
+
+[PERSONAJE:alvarito] "¿Qué es un acto de bondad pupa?"
+
+[PERSONAJE:caye] "Bondad pura, Álvaro. Es... es hacer algo bueno por alguien sin querer nada a cambio. Solo porque quieres ayudar."
+
+Caye pensó un momento. ¿Qué podían hacer? Eran solo dos niños pequeños en mitad de la noche. Pero entonces miró a la estrella, tan asustada y tan sola, y supo que tenía que intentarlo.
+
+[PERSONAJE:caye] "Te vamos a ayudar. No sé cómo, pero te lo prometo."
+
+[PERSONAJE:hada] "¿De verdad...? ¿Sin pedir nada a cambio...?"
+
+[PERSONAJE:alvarito] "¡Sí! ¡Yo ayudo! ¡Yo también ayudo!"
+
+[EFECTO:viento]
+
+En ese momento, el viento sopló con más fuerza y trajo un sonido extraño. Era como un zumbido grave, mezclado con un aleteo gigantesco.
+
+Del cielo bajó una figura enorme que hizo que Álvaro se escondiera detrás de su hermana. Era una criatura con alas de plata y cuerpo brillante, como hecho de cristales de luna. Una dragona del cielo nocturno.
+
+[PERSONAJE:dragona] "He seguido la luz de mi pequeña amiga... ¿Quiénes sois vosotros?"
+
+Su voz era profunda pero amable, como el eco dentro de una caracola marina.
+
+[PERSONAJE:caye] "Soy Caye. Y este es mi hermano Álvaro. Hemos encontrado a la estrella y... queremos ayudarla a volver a casa."
+
+La dragona inclinó su cabeza y observó a los dos niños durante un largo momento. Sus ojos brillaban como dos lunas pequeñas.
+
+[PERSONAJE:dragona] "Muchos humanos habrían pedido un deseo... o habrían querido quedarse la estrella para siempre... ¿Por qué queréis ayudarla sin pedir nada?"
+
+[PERSONAJE:alvarito] "¡Porque está triste! ¡Y yo no quiero que esté triste!"
+
+[PERSONAJE:caye] "Porque... porque si yo estuviera lejos de casa, también querría que alguien me ayudara. Aunque no pudiera darle nada."
+
+[EFECTO:magia]
+
+Algo mágico ocurrió entonces. La estrella empezó a brillar un poco más fuerte. Solo un poquito... pero fue suficiente para que todos lo notaran.
+
+[PERSONAJE:hada] "¿Lo veis...? La bondad... la bondad verdadera me da fuerzas..."
+
+[PERSONAJE:dragona] "Pero necesitará más... mucho más para poder volar hasta el cielo."
+
+[PERSONAJE:caye] "¿Qué podemos hacer? ¡Dinos, por favor!"
+
+La dragona miró hacia el jardín, hacia la casa, hacia los dos hermanos que temblaban de frío pero no se movían del lado de la estrella.
+
+[PERSONAJE:dragona] "Hay una cosa... Podéis darle vuestro calor. No el calor del cuerpo... sino el del corazón. Un abrazo sincero, dado con todo el amor que tengáis."
+
+[PERSONAJE:alvarito] "¡Yo sé dar abrazos! ¡Los mejores abrazos del mundo!"
+
+Álvaro corrió hacia la estrella, pero Caye lo detuvo suavemente.
+
+[PERSONAJE:caye] "Espera, Álvaro. Tenemos que hacerlo juntos."
+
+Los dos hermanos se miraron. Caye cogió la mano de Álvaro y los dos se arrodillaron junto a la estrella. Con mucho cuidado, muy despacio, la rodearon con sus brazos.
+
+La estrella no quemaba. Era cálida y suave, como una mantita recién sacada de la secadora. Y olía a algo maravilloso... como a tarta de manzana y a lluvia de verano y a los besos de mamá antes de dormir.
+
+[PERSONAJE:alvarito] "¡Es blandita! ¡Y huele bien!"
+
+[PERSONAJE:caye] "Te queremos, estrellita. Aunque no te conozcamos. Queremos que vuelvas a casa con tu familia."
+
+[EFECTO:magia]
+
+Y entonces... la estrella empezó a brillar.
+
+Brilló más y más y más. Tanto que Caye y Álvaro tuvieron que cerrar los ojos. Sintieron un cosquilleo en todo el cuerpo, como si mil mariposas les hicieran caricias en la piel.
+
+[PERSONAJE:hada] "¡Puedo sentirlo! ¡Vuestra bondad es tan pura...! ¡Tan verdadera...!"
+
+Cuando abrieron los ojos, la estrella ya no estaba en el suelo. Flotaba en el aire, girando despacio, y su luz era tan hermosa que todo el jardín parecía hecho de oro.
+
+[EFECTO:campanas]
+
+[PERSONAJE:hada] "Gracias... gracias, pequeños amigos... Nunca os olvidaré..."
+
+[PERSONAJE:alvarito] "¿Te vas? ¿Ya te vas?"
+
+[PERSONAJE:hada] "Tengo que volver con mi familia... pero os dejo un regalo."
+
+La estrella giró sobre sí misma y soltó dos pequeños destellos que cayeron suavemente en las manos de Caye y Álvaro. Parecían piedrecitas transparentes, pero dentro brillaba una luz dorada diminuta.
+
+[PERSONAJE:hada] "Cada vez que ayudéis a alguien sin esperar nada... esta luz brillará un poquito más. Y sabréis que os estoy viendo... desde el cielo."
+
+[PERSONAJE:caye] "Gracias, estrellita. Buen viaje a casa."
+
+[PERSONAJE:alvarito] "¡Adiós, estrella! ¡Adiós! ¡Dale besos a tu mamá!"
+
+[EFECTO:risa_nino]
+
+La dragona extendió sus alas de plata y la estrella subió a su lomo. Juntas, empezaron a elevarse hacia el cielo.
+
+La estrella dejó un camino de luz dorada mientras subía, más y más alto, hasta convertirse en un puntito brillante entre las demás estrellas. Pero Caye y Álvaro supieron exactamente cuál era... porque brillaba un poco más fuerte que todas las demás.
+
+[PERSONAJE:dragona] "Habéis hecho algo muy especial esta noche, pequeños... Recordadlo siempre: la bondad verdadera no necesita recompensa. La bondad verdadera ES la recompensa."
+
+Y con un último batir de alas, la dragona desapareció en la noche.
+
+[EFECTO:viento]
+
+Caye y Álvaro se quedaron de pie en el jardín, mirando hacia arriba, con sus piedrecitas mágicas en las manos. El corazón les latía feliz.
+
+[PERSONAJE:alvarito] "Caye... ¿hemos hecho algo bueno?"
+
+[PERSONAJE:caye] "Sí, Álvaro. Hemos hecho algo muy bueno."
+
+[PERSONAJE:alvarito] "¿Y no nos dan premio?"
+
+Caye sonrió y abrazó a su hermano pequeño.
+
+[PERSONAJE:caye] "El premio es esto que sentimos aquí dentro. Esta cosa calentita en el pecho. ¿Lo notas?"
+
+Álvaro se tocó el corazón con su manita.
+
+[PERSONAJE:alvarito] "Sí... está calentito. Como cuando mamá me abraza."
+
+[PERSONAJE:caye] "Eso es la felicidad de ayudar, Álvaro. Y es el mejor regalo del mundo."
+
+Los dos hermanos volvieron a su habitación, esta vez sin hacer ruido. Se metieron en sus camitas y miraron por la ventana una última vez. Allí arriba, entre millones de estrellas, una brillaba con especial intensidad.
+
+Y justo antes de cerrar los ojos, Caye podría jurar que la vio parpadear... como si les dijera buenas noches.
+
+Álvaro ya dormía, con una sonrisa en los labios y la piedrecita mágica apretada en su puño. Caye apoyó la cabeza en la almohada y pensó en todo lo que había pasado.
+
+Aquella noche había aprendido algo muy importante: que ayudar a los demás no necesita premio, porque el simple hecho de hacer feliz a alguien... ya te hace feliz a ti.
+
+Y con ese pensamiento tan bonito, cerró los ojos y se dejó llevar por los sueños más dulces.
+
+Fuera, en el jardín, los rosales de mamá parecían brillar con un resplandor dorado muy tenue. Y si escuchabas con mucha atención, podías oír el eco de una vocecita lejana que susurraba desde las estrellas...
+
+[PERSONAJE:hada] "Gracias... gracias por siempre..."
+
+La historia ha terminado... pero los sueños acaban de empezar. Buenas noches. 🌙
