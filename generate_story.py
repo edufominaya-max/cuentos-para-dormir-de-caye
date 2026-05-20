@@ -108,6 +108,11 @@ EDAD OBJETIVO: mezcla de 3-5 y 5-8 años (accesible para pequeños, rico para ma
 DURACIÓN OBJETIVO: 10-14 minutos al escucharlo (~1.200-1.500 palabras)
 ESTILO: mezcla de aventura/fantasía con valores y emociones
 
+IMPORTANTE — LO QUE NO DEBES HACER:
+- NO presentes a los personajes describiendo su edad, carácter o aspecto al inicio del cuento
+- El oyente ya conoce a Caye y Álvaro de episodios anteriores
+- Empieza directamente la acción o la escena, sin introducir a los protagonistas
+
 PROTAGONISTAS (MUY IMPORTANTE):
 Los personajes principales son CAYE y ÁLVARO, dos hermanos:
 - CAYE: 7 años. Dulce, responsable, empática, protectora. Le encanta cuidar a su hermano,
@@ -127,7 +132,8 @@ El cuento se convertirá en audio con múltiples voces. Usa estas etiquetas para
 - Diálogo de Caye: [PERSONAJE:caye] "texto que dice Caye"
 - Diálogo de Álvaro: [PERSONAJE:alvarito] "texto que dice Álvaro"
 - Hada/ser mágico: [PERSONAJE:hada] "texto"
-- Dragón/animal grande: [PERSONAJE:dragon] "texto"
+- Dragón macho/animal grande: [PERSONAJE:dragon] "texto"
+- Dragona hembra/criatura femenina: [PERSONAJE:dragona] "texto"
 - Bruja/villano: [PERSONAJE:bruja] "texto"
 - Personaje sabio/abuelo: [PERSONAJE:sabio] "texto"
 - Otro niño: [PERSONAJE:nino] "texto"
@@ -212,7 +218,7 @@ def generate_story(lang: str, topic: str, title: str, api_key: str = None) -> di
 
     message = client.messages.create(
         model="claude-opus-4-5",
-        max_tokens=4096,
+        max_tokens=6000,
         messages=[{"role": "user", "content": prompt}]
     )
 

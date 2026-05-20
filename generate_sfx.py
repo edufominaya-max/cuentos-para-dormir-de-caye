@@ -43,7 +43,7 @@ SFX_MAP = {
     "magia":         {"query": "magic spell sparkle", "duration_max": 4},
     "viento":        {"query": "wind gentle breeze", "duration_max": 8},
     "agua_rio":      {"query": "river stream water", "duration_max": 8},
-    "pasos":         {"query": "footsteps dirt path", "duration_max": 3},
+    "pasos":         {"query": "footsteps walking gravel", "duration_max": 4},
     "puerta":        {"query": "door open creak", "duration_max": 3},
     "risa_nino":     {"query": "child laugh giggle", "duration_max": 4},
     "aplausos":      {"query": "applause clapping", "duration_max": 4},
@@ -170,9 +170,7 @@ def estimate_position_seconds(txt_path: Path, target_line: int, total_audio_dura
     lines_before = sum(1 for i, l in content_lines if i < target_line)
     ratio = lines_before / total_content
 
-    # Añadir offset por la intro (jingle ~15s)
-    intro_offset = 16.0
-    return intro_offset + (ratio * total_audio_duration)
+    return ratio * total_audio_duration
 
 
 def mix_sfx_into_audio(narration_path: Path, sfx_effects: list,
@@ -214,7 +212,7 @@ def mix_sfx_into_audio(narration_path: Path, sfx_effects: list,
     n_inputs = len(valid_effects) + 1
     mix_str = ''.join(mix_inputs)
     filter_parts.append(
-        f"{mix_str}amix=inputs={n_inputs}:duration=first:dropout_transition=2[out]"
+        f"{mix_str}amix=inputs={n_inputs}:duration=first:dropout_transition=0:normalize=0[out]"
     )
 
     cmd = ["ffmpeg", "-y"] + inputs + [
