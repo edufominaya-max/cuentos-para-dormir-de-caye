@@ -41,7 +41,7 @@ JINGLE_PROMPT = (
 JINGLE_STYLE = "magical orchestral Disney children's bedtime"
 
 # Voz ElevenLabs para la sintonía (Papi — narrador principal)
-JINGLE_VOICE_ID = "tXgbXPnsMpKXkuTgvE3h"
+JINGLE_VOICE_ID = "tXgbXPnsMpKXkuTgvE3h"  # Narradora — voz femenina intro/outro
 JINGLE_TEXT = "Cuentos para dormir: Las aventuras de Caye y Alvarito"
 
 # Estilo base para canciones del cuento
