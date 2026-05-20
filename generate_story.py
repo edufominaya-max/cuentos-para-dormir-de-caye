@@ -137,8 +137,17 @@ El cuento se convertirá en audio con múltiples voces. Usa estas etiquetas para
 Ejemplo de formato correcto:
 Caye miró el bosque con los ojos muy abiertos.
 [PERSONAJE:caye] "¿Ves eso, Álvaro? ¡Hay una luz entre los árboles!"
-[PERSONAJE:alvarito] "¡Quiero ir, quiero ir!"
+[PERSONAJE:alvarito] "¡Quiero ir, quiero ir! ¡Vamos, vamos!"
 [PERSONAJE:hada] "No temáis, pequeños. Soy la guardiana del bosque."
+
+REGLAS DE DIÁLOGO PARA AUDIO — MUY IMPORTANTE:
+- Los diálogos de ÁLVARO deben ser muy cortos, con mucha energía: "¡Sí! ¡Sí! ¡Yo también quiero!", "¿Por qué? ¿Por qué?", "¡Mira, mira!"
+- Álvaro repite palabras, hace preguntas seguidas, se emociona con TODO
+- Los diálogos de CAYE son más reflexivos pero también emotivos: "Ohhh... ¿has visto eso?", "¡No me lo puedo creer!"
+- Usa signos de exclamación y puntos suspensivos para marcar emoción y pausas
+- Los personajes mágicos hablan con misterio: frases cortas, pausadas, con "..."
+- Villanos/dragones: frases contundentes, con peso
+- Nunca escribas diálogos planos o neutros — cada personaje tiene su energía propia
 
 ESTRUCTURA OBLIGATORIA:
 1. INTRODUCCIÓN CÁLIDA (2-3 párrafos): Presenta al protagonista/s y su mundo.

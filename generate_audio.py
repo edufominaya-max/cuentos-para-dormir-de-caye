@@ -49,6 +49,8 @@ CHARACTER_VOICES = {
     "dragon":    "z3kTTwYbQrmL7ckdGcJi",  # Dragón/Animales — español
     "bruja":     "M9RTtrzRACmbUzsEMq8p",  # Bruja — español
     "sabio":     "YKrm0N1EAM9Bw27j8kuD",  # Sabio — español
+    "abuela":    "M9RTtrzRACmbUzsEMq8p",  # Abuela — español
+    "abuelo":    "YKrm0N1EAM9Bw27j8kuD",  # Abuelo — misma que sabio
     "animal":    "z3kTTwYbQrmL7ckdGcJi",  # Animales — misma que dragón
     "personaje": "HMCmDsbKeaSZp5LMOYKR",  # Otros animales/personajes
     "nino":      "1tDEBGOo8EqEPApM49eJ",  # Otros niños — español
@@ -59,10 +61,12 @@ CHARACTER_VOICES = {
 # Modelo ElevenLabs — eleven_multilingual_v2 soporta español nativo
 MODEL = "eleven_multilingual_v2"
 
-# Configuración de voz (ajusta a tu gusto)
+# Configuración de voz por tipo de personaje
 VOICE_SETTINGS = {
-    "narrator": {"stability": 0.85, "similarity_boost": 0.75, "style": 0.0, "speed": 0.92},
-    "character": {"stability": 0.60, "similarity_boost": 0.80, "style": 0.5, "speed": 1.0},
+    "narrator":  {"stability": 0.85, "similarity_boost": 0.75, "style": 0.0,  "speed": 0.92},
+    "character": {"stability": 0.45, "similarity_boost": 0.80, "style": 0.7,  "speed": 1.0},
+    "alvarito":  {"stability": 0.30, "similarity_boost": 0.85, "style": 0.9,  "speed": 1.05},
+    "caye":      {"stability": 0.50, "similarity_boost": 0.80, "style": 0.65, "speed": 0.98},
 }
 
 # ElevenLabs permite hasta ~5.000 chars por llamada
@@ -140,9 +144,14 @@ def get_voice_id(speaker: str, lang: str = "es") -> str:
     return CHARACTER_VOICES.get(speaker, NARRATOR_VOICE.get(lang, NARRATOR_VOICE["es"]))
 
 
-def synthesize_segment(client, text: str, voice_id: str, is_character: bool = False) -> bytes:
+def synthesize_segment(client, text: str, voice_id: str, is_character: bool = False, speaker: str = None) -> bytes:
     """Sintetiza un segmento de texto y devuelve bytes MP3."""
-    settings_key = "character" if is_character else "narrator"
+    if speaker and speaker in VOICE_SETTINGS:
+        settings_key = speaker
+    elif is_character:
+        settings_key = "character"
+    else:
+        settings_key = "narrator"
     s = VOICE_SETTINGS[settings_key]
 
     from elevenlabs import VoiceSettings
@@ -216,7 +225,7 @@ def generate_audio(txt_path: Path, output_dir: str = "audio", lang: str = None) 
         for sub in sub_chunks:
             total_chars += len(sub)
             try:
-                audio_bytes = synthesize_segment(client, sub, voice_id, is_character)
+                audio_bytes = synthesize_segment(client, sub, voice_id, is_character, speaker)
                 audio_parts.append(audio_bytes)
                 # Pausa entre llamadas para no saturar la API
                 time.sleep(0.3)
