@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Las aventuras de Caye y Alvarito</title>
+    <description>🌙 Un espacio mágico donde los pequeños soñadores encuentran cuentos infantiles únicos llenos de valores, emociones y aventuras. Cuentos originales narrados con voz cálida para ayudar a los niños a conciliar el sueño en español, inglés, francés, alemán y chino. ¡Hasta la próxima noche, pequeños soñadores! ✨</description>
+    <link>https://aventurasdecayeyalvarito.com</link>
+    <language>es-ES</language>
+    <itunes:author>Caye</itunes:author>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:category text="Kids &amp; Family">
+      <itunes:category text="Stories for Kids" />
+    </itunes:category>
+    <itunes:owner>
+      <itunes:name>Caye</itunes:name>
+      <itunes:email>aventurasdecayeyalvarito@gmail.com</itunes:email>
+    </itunes:owner>
+    <item>
+      <title>El dragón verde del volcán</title>
+      <description>Tema: la valentía ante lo desconocido
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</description>
+      <itunes:summary>Tema: la valentía ante lo desconocido
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
+      <itunes:author>Caye</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:episode>1</itunes:episode>
+      <pubDate>Wed, 20 May 2026 08:13:40 -0000</pubDate>
+      <guid isPermaLink="false">caye-es-el-dragón-verde-del-volcán</guid>
+      <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/el_dragón_verde_del_volcán.mp3" type="audio/mpeg" length="0" />
+    </item>
+    <item>
+      <title>El dragón verde del volcán</title>
+      <description>Tema: la valentía ante lo desconocido
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</description>
+      <itunes:summary>Tema: la valentía ante lo desconocido
+
+🌙 Un nuevo cuento de Caye para acompañar a los pequeños soñadores en su viaje al país de los sueños. ✨ #AventurasDeCaye #CuentosInfantiles #AventurasCayeAlvarito</itunes:summary>
+      <itunes:author>Caye</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:episode>2</itunes:episode>
+      <pubDate>Wed, 20 May 2026 08:18:08 -0000</pubDate>
+      <guid isPermaLink="false">caye-es-el-dragón-verde-del-volcán</guid>
+      <enclosure url="https://aventurasdecayeyalvarito.com/audio/es/el_dragón_verde_del_volcán.mp3" type="audio/mpeg" length="0" />
+    </item>
+  </channel>
+</rss>
