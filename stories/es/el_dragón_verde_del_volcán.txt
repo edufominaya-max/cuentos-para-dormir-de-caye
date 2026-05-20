@@ -1,0 +1,179 @@
+# El dragón verde del volcán
+
+
+Esta noche, antes de que cierres los ojos, quiero contarte algo que solo tú vas a escuchar. Una historia que nació justo para este momento...
+
+
+Había una vez, en un pequeño pueblo rodeado de montañas, dos hermanos que vivían en una casita con el tejado de color azul. Se llamaban Caye y Álvaro, y eran tan diferentes como el sol y la luna... pero se querían con locura.
+
+Caye tenía siete años y unos ojos que brillaban cuando descubría algo nuevo. Le encantaban los animales, las flores silvestres y todas las cosas mágicas del mundo. Álvaro, su hermanito pequeño, tenía casi cuatro añitos y una energía que no se acababa nunca. Preguntaba el porqué de todo, se metía en líos sin querer, y tenía la risa más contagiosa de todo el pueblo.
+
+Una mañana de primavera, algo extraño sucedió. El volcán que dormía al final del valle, ese que todos llamaban "el Gigante Dormido", empezó a soltar un humo de color verde esmeralda.
+
+[EFECTO:viento]
+
+[PERSONAJE:alvarito] "¡Caye, Caye! ¡Mira, mira! ¡El humo es verde! ¿Por qué es verde? ¿Por qué?"
+
+Caye se asomó a la ventana y frunció el ceño, pensativa.
+
+[PERSONAJE:caye] "Qué raro... El humo de los volcanes no es verde, Álvaro. Esto es muy, muy extraño."
+
+[PERSONAJE:alvarito] "¡Vamos a verlo! ¡Vamos, vamos, vamos!"
+
+[PERSONAJE:caye] "Espera, espera... Mamá ha ido al mercado. No podemos ir solos al volcán, es peligroso."
+
+Pero justo en ese momento, una mariposa enorme, con alas de color violeta y destellos dorados, entró volando por la ventana. Dio tres vueltas alrededor de las cabezas de los niños y habló con una voz finita y musical.
+
+[EFECTO:magia]
+
+[PERSONAJE:hada] "Pequeños valientes... Os necesitamos. El dragón del volcán está en peligro... y solo vosotros podéis ayudarle."
+
+[PERSONAJE:alvarito] "¿Un dragón? ¿Un dragón de verdad? ¡Yo quiero ver un dragón! ¡Sí, sí, sí!"
+
+[PERSONAJE:caye] "Pero... ¿un dragón? ¿No son peligrosos los dragones?"
+
+La mariposa se posó suavemente en el hombro de Caye y movió sus antenas con delicadeza.
+
+[PERSONAJE:hada] "Este dragón no, pequeña... Es el guardián del valle. Protege las flores, los ríos, los animales... Pero está muy triste. Y cuando un dragón guardián está triste... su fuego se vuelve verde y frío."
+
+Caye miró a su hermanito, que saltaba de emoción. Sintió un cosquilleo en la barriga, esa sensación que aparece cuando algo nos da un poquito de miedo pero también un poquito de ganas.
+
+[PERSONAJE:caye] "Álvaro... ¿tú no tienes miedo?"
+
+[PERSONAJE:alvarito] "¡No! Bueno... un poquito. ¡Pero tú vienes conmigo! ¡Y yo soy muy valiente!"
+
+Caye sonrió. Su hermanito pequeño, tan chiquitín y tan valiente a la vez.
+
+[PERSONAJE:caye] "Está bien. Iremos juntos. Pero me tienes que hacer caso, ¿vale? Nada de correr solo."
+
+[PERSONAJE:alvarito] "¡Vale, vale! ¡Prometido!"
+
+[EFECTO:pasos]
+
+La mariposa mágica les guió por un sendero secreto que atravesaba el bosque de los Susurros. Los árboles eran altísimos y sus hojas hacían un sonido suave, como si contaran historias antiguas. A Caye le latía el corazón muy rápido, pero sujetaba la mano de Álvaro con fuerza. Álvaro, mientras tanto, no paraba de señalar todo lo que veía.
+
+[PERSONAJE:alvarito] "¡Mira! ¡Una ardilla! ¡Y otra! ¿Por qué hay tantas ardillas? ¿Viven aquí? ¿Tienen casas?"
+
+[PERSONAJE:caye] "Shhh, Álvaro, habla bajito... Estamos llegando al volcán."
+
+[EFECTO:fuego]
+
+Y entonces lo vieron. Al final del sendero, junto a la entrada de una cueva enorme, había un dragón. Pero no era como los dragones de los cuentos que daban miedo. Este dragón era del color de las hojas en verano, con escamas que brillaban como esmeraldas mojadas. Tenía los ojos grandes y tristes, y de su boca salía un humito verde que olía a hierba fresca.
+
+[PERSONAJE:alvarito] "¡Es precioso! ¡Es precioso! ¡Hola, dragón! ¡Hola!"
+
+El dragón levantó su cabeza lentamente y miró a los niños con sorpresa.
+
+[PERSONAJE:dragon] "¿Quiénes sois vosotros...? ¿No me tenéis miedo...?"
+
+Caye tragó saliva. Sentía las piernas un poco temblorosas, pero dio un paso adelante.
+
+[PERSONAJE:caye] "Yo... yo soy Caye. Y este es mi hermano Álvaro. La mariposa nos ha dicho que estás triste... y hemos venido a ayudarte."
+
+El dragón parpadeó varias veces, como si no pudiera creer lo que oía.
+
+[PERSONAJE:dragon] "¿Ayudarme...? Pero... soy un dragón. Todos huyen de mí... Nadie quiere acercarse... Llevo cien años solo en este volcán..."
+
+[PERSONAJE:alvarito] "¿Cien años? ¡Eso es mucho! ¿Cuántos es cien? ¡Es más que mis dedos!"
+
+Una pequeña sonrisa apareció en el hocico del dragón, algo que no había pasado en muchísimo tiempo.
+
+[PERSONAJE:dragon] "Sí, pequeño... es mucho más que tus dedos."
+
+Caye se sentó en una roca, con cuidado, y miró al dragón a los ojos.
+
+[PERSONAJE:caye] "¿Por qué estás tan solo? ¿No tienes amigos?"
+
+El dragón suspiró y una nubecita verde salió de su nariz.
+
+[PERSONAJE:dragon] "Antes sí los tenía... Pero hace mucho tiempo, los humanos empezaron a tenerme miedo. Decían que era peligroso, que podía quemar el bosque... Y dejaron de venir. Dejaron de hablarme. Poco a poco... me olvidaron."
+
+[EFECTO:viento]
+
+[PERSONAJE:caye] "Ohhh... Eso es muy triste. Cuando estamos solos mucho tiempo, el corazón se pone frío, ¿verdad?"
+
+El dragón asintió despacio.
+
+[PERSONAJE:dragon] "Por eso mi fuego ya no es naranja y cálido... Ahora es verde y frío. Ya no sirve para dar calor a nadie..."
+
+Álvaro, que no entendía muy bien todo aquello pero sí entendía la tristeza, se acercó corriendo al dragón y le abrazó una de sus enormes patas.
+
+[PERSONAJE:alvarito] "¡Yo seré tu amigo! ¡Y Caye también! ¿A que sí, Caye?"
+
+[PERSONAJE:caye] "Claro que sí. Los amigos no huyen cuando alguien parece diferente o da un poquito de miedo. Los amigos se quedan."
+
+[EFECTO:campanas]
+
+Algo mágico empezó a ocurrir. De las escamas del dragón comenzaron a salir pequeñas chispitas doradas. Sus ojos, que antes estaban apagados, empezaron a brillar como dos lunas verdes. Y de su boca... salió una llamita pequeñita.
+
+Pero esta vez no era verde. Era naranja, cálida, y olía a galletas recién hechas.
+
+[PERSONAJE:dragon] "Mi... mi fuego... ¡Ha vuelto! ¡El calor ha vuelto!"
+
+[PERSONAJE:alvarito] "¡Síííí! ¡Eres naranja otra vez! ¡Naranja, naranja! ¡Caye, mira!"
+
+[EFECTO:risa_nino]
+
+Caye se rio con alegría y aplaudió.
+
+[PERSONAJE:caye] "¡Lo sabía! ¡Sabía que solo necesitabas un poco de cariño!"
+
+El dragón bajó su enorme cabeza hasta quedar a la altura de los niños y, con mucho cuidado, les acarició el pelo con su hocico tibio.
+
+[PERSONAJE:dragon] "Habéis sido muy valientes al venir hasta aquí... La mayoría de la gente huye de lo que no conoce. Pero vosotros... vosotros habéis venido a conocerme. Y eso es el mayor regalo que me han hecho en cien años."
+
+[PERSONAJE:caye] "A veces las cosas que dan miedo al principio son las más bonitas cuando las conoces de verdad."
+
+[PERSONAJE:alvarito] "¡Yo no tenía miedo! Bueno... ¡solo un poquito! ¡Pero ya no!"
+
+El dragón soltó una carcajada que hizo temblar las piedras del volcán, pero era una risa dulce, de felicidad.
+
+[PERSONAJE:dragon] "Pequeño Álvaro, tener un poquito de miedo y venir igual... eso es ser valiente de verdad."
+
+[EFECTO:magia]
+
+La mariposa de alas violetas apareció de nuevo, revoloteando entre los tres.
+
+[PERSONAJE:hada] "Lo habéis conseguido, pequeños... Habéis devuelto el calor al corazón del guardián del valle. Ahora las flores volverán a crecer, los ríos cantarán más alegres, y el volcán dormirá en paz."
+
+Caye tomó la mano de su hermanito y miró al dragón con cariño.
+
+[PERSONAJE:caye] "Volveremos a visitarte, ¿verdad, Álvaro?"
+
+[PERSONAJE:alvarito] "¡Sí! ¡Todos los días! ¡Y te traeremos galletas! ¿Te gustan las galletas?"
+
+[PERSONAJE:dragon] "Nunca he probado una galleta... pero si me la trae un amigo, seguro que me encantará."
+
+[EFECTO:pajaros]
+
+El camino de vuelta a casa fue mucho más fácil. El bosque parecía más luminoso, los pájaros cantaban melodías nuevas, y el humo del volcán ahora era de un naranja suave que pintaba el cielo de colores de atardecer.
+
+Cuando llegaron a su casita del tejado azul, mamá ya había vuelto del mercado y les esperaba con la merienda preparada.
+
+[PERSONAJE:caye] "Mamá, hemos conocido a alguien muy especial hoy..."
+
+[PERSONAJE:alvarito] "¡Un dragón! ¡Un dragón verde! ¡Que ahora es naranja! ¡Y es nuestro amigo!"
+
+Mamá sonrió, pensando que era uno de sus juegos de imaginación, y les dio un beso en la frente a cada uno.
+
+Pero Caye y Álvaro sabían que había sido real. Sabían que en lo alto del volcán, un dragón verde con el corazón otra vez calentito estaba mirando al pueblo y sonriendo.
+
+Esa noche, mientras se acurrucaban en sus camitas, Álvaro susurró:
+
+[PERSONAJE:alvarito] "Caye... ¿mañana volvemos?"
+
+[PERSONAJE:caye] "Mañana y pasado y todos los días que quieras, hermanito. Los amigos de verdad nunca se olvidan."
+
+[PERSONAJE:alvarito] "Te quiero, Caye."
+
+[PERSONAJE:caye] "Y yo a ti, peque. Ahora cierra los ojitos... y sueña con dragones de colores."
+
+Y así, con el corazón lleno de aventuras y el calor de haberse atrevido a conocer lo desconocido, los dos hermanos cerraron los ojos.
+
+Porque esa noche habían aprendido algo muy importante: que la valentía no es no tener miedo, sino dar un paso adelante aunque las piernas tiemblen un poquito. Que las cosas que parecen dar miedo a veces solo necesitan que alguien se acerque con cariño. Y que juntos, tomados de la mano, no hay volcán demasiado alto ni dragón demasiado grande.
+
+Así que tú también, pequeño soñador, si alguna vez sientes miedo de algo nuevo, recuerda al dragón verde del volcán. Recuerda que detrás de lo desconocido puede esconderse un amigo maravilloso esperando a que alguien sea lo suficientemente valiente para decir: "Hola, quiero conocerte."
+
+Y ahora, cierra los ojitos. Imagina que una mariposa de alas violetas te arropa con polvo de estrellas. Siente el calor de quienes te quieren cerca.
+
+La historia ha terminado... pero los sueños acaban de empezar. Buenas noches. 🌙
