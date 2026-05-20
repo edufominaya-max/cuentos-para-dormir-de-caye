@@ -102,18 +102,12 @@ def mix_episode(story_json_path: Path,
     if not has_jingle:
         print(f"   ⚠️  No existe sintonía — se generará sin intro/outro")
 
-    # Usar audio_sfx si existe y pesa más del 80% del audio original (válido)
+    # Usar audio_sfx si existe, si no el audio limpio
     base_path = Path(audio_dir) / lang / f"{txt_file.stem}.mp3"
     sfx_path  = Path("audio_sfx") / lang / f"{txt_file.stem}.mp3"
-    if sfx_path.exists() and base_path.exists():
-        sfx_size  = sfx_path.stat().st_size
-        base_size = base_path.stat().st_size
-        if sfx_size > base_size * 0.8:
-            narration_path = sfx_path
-            print(f"   🔊 Con efectos: {narration_path.name}")
-        else:
-            narration_path = base_path
-            print(f"   ⚠️  audio_sfx inválido ({sfx_size//1024}KB vs {base_size//1024}KB) — usando audio limpio")
+    if sfx_path.exists():
+        narration_path = sfx_path
+        print(f"   🔊 Con efectos: {narration_path.name}")
     else:
         narration_path = base_path
         print(f"   🎙️ Narración: {narration_path.name}")
