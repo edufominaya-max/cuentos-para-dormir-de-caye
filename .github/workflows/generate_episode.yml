@@ -71,6 +71,12 @@ jobs:
             python generate_music.py --jingle
           fi
           python generate_music.py --all
+      - name: 🔊 Paso 3b — Efectos de sonido (Freesound)
+        if: ${{ github.event.inputs.skip_mix != 'true' }}
+        env:
+          FREESOUND_API_KEY: ${{ secrets.FREESOUND_API_KEY }}
+        run: python generate_sfx.py --all
+
       - name: 🎚️ Paso 4 — Mezcla final con FFmpeg
         if: ${{ github.event.inputs.skip_mix != 'true' }}
         run: python mix_audio.py --all
