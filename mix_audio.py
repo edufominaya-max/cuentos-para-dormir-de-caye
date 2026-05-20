@@ -71,7 +71,9 @@ def concatenate_mp3s(file_list: list, output_path: Path):
 
     result = subprocess.run([
         "ffmpeg", "-y", "-f", "concat", "-safe", "0",
-        "-i", str(list_file), "-c", "copy", str(output_path.resolve())
+        "-i", str(list_file),
+        "-c:a", "libmp3lame", "-q:a", "2", "-ar", "44100", "-ac", "2",
+        str(output_path.resolve())
     ], capture_output=True, text=True)
 
     list_file.unlink(missing_ok=True)
