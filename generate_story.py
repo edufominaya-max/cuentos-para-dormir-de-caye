@@ -140,6 +140,31 @@ Caye miró el bosque con los ojos muy abiertos.
 [PERSONAJE:alvarito] "¡Quiero ir, quiero ir! ¡Vamos, vamos!"
 [PERSONAJE:hada] "No temáis, pequeños. Soy la guardiana del bosque."
 
+EFECTOS DE SONIDO — MUY IMPORTANTE:
+Añade etiquetas [EFECTO:nombre] en los momentos clave del cuento para ambientar la escena.
+Úsalos con moderación (máximo 6-8 por cuento) en momentos dramáticos o de transición.
+Efectos disponibles:
+- [EFECTO:bosque_noche] — cuando están en un bosque de noche
+- [EFECTO:rama_crujido] — cuando algo se mueve entre los árboles
+- [EFECTO:trueno_suave] — tormenta o momento de tensión
+- [EFECTO:magia] — cuando aparece algo mágico o se lanza un hechizo
+- [EFECTO:viento] — viento, exterior, aventura
+- [EFECTO:agua_rio] — río, lago, lluvia
+- [EFECTO:pasos] — caminando, explorando
+- [EFECTO:puerta] — entrar a algún lugar
+- [EFECTO:risa_nino] — momento de alegría de los niños
+- [EFECTO:campanas] — momento mágico especial
+- [EFECTO:fuego] — hoguera, chimenea, calor
+- [EFECTO:mar] — playa, aventura marítima
+- [EFECTO:lluvia] — lluvia, refugio, interior acogedor
+- [EFECTO:pajaros] — amanecer, naturaleza, primavera
+
+Ejemplo:
+El bosque estaba en silencio.
+[EFECTO:bosque_noche]
+[PERSONAJE:caye] "¿Oyes eso, Álvaro?"
+[EFECTO:rama_crujido]
+
 REGLAS DE DIÁLOGO PARA AUDIO — MUY IMPORTANTE:
 - Los diálogos de ÁLVARO deben ser muy cortos, con mucha energía: "¡Sí! ¡Sí! ¡Yo también quiero!", "¿Por qué? ¿Por qué?", "¡Mira, mira!"
 - Álvaro repite palabras, hace preguntas seguidas, se emociona con TODO
@@ -155,7 +180,7 @@ ESTRUCTURA OBLIGATORIA:
 3. DESARROLLO (3-4 párrafos): Intenta resolver el problema con ayuda. Momentos de emoción.
 4. RESOLUCIÓN Y MENSAJE (2-3 párrafos): Se resuelve. El personaje aprende algo importante.
 5. CIERRE PARA DORMIR (1 párrafo): Frase suave que invite a cerrar los ojos y soñar.
-   Termina SIEMPRE con: "Hasta la próxima noche, pequeños soñadores. Dulces sueños. 🌙"
+   Termina SIEMPRE con: "La historia ha terminado... pero los sueños acaban de empezar. Buenas noches. 🌙"
 
 REGLAS DE ESCRITURA:
 - Narración en tercera persona fuera de los diálogos

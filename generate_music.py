@@ -42,7 +42,9 @@ JINGLE_STYLE = "magical orchestral Disney children's bedtime"
 
 # Voz ElevenLabs para la sintonía (Papi — narrador principal)
 JINGLE_VOICE_ID = "tXgbXPnsMpKXkuTgvE3h"  # Narradora — voz femenina intro/outro
-JINGLE_TEXT = "Cuentos para dormir: Las aventuras de Caye y Alvarito"
+JINGLE_INTRO_TEXT = "Cierra los ojos. Respira. Esta noche... te llevo de viaje."
+JINGLE_OUTRO_TEXT = "La historia ha terminado... pero los sueños acaban de empezar. Buenas noches."
+JINGLE_TEXT = JINGLE_INTRO_TEXT  # compatibilidad
 
 # Estilo base para canciones del cuento
 SONG_BASE_STYLE = (
@@ -250,20 +252,26 @@ def generate_jingle(output_dir: str = "music/jingle", force: bool = False) -> di
     else:
         print(f"   ℹ️  Música ya existe: {music_path}")
 
-    # 2. Voz con ElevenLabs
-    voice_path = jingle_dir / "jingle_voice.mp3"
-    if not voice_path.exists() or force:
-        generate_jingle_voice(JINGLE_TEXT, voice_path)
+    # 2. Voz intro con ElevenLabs
+    voice_intro_path = jingle_dir / "jingle_voice_intro.mp3"
+    if not voice_intro_path.exists() or force:
+        generate_jingle_voice(JINGLE_INTRO_TEXT, voice_intro_path)
     else:
-        print(f"   ℹ️  Voz ya existe: {voice_path}")
+        print(f"   ℹ️  Voz intro ya existe: {voice_intro_path}")
 
-    # 3. Mezclar intro
-    mix_voice_over_music(music_path, voice_path, intro_path)
+    # 3. Voz outro con ElevenLabs
+    voice_outro_path = jingle_dir / "jingle_voice_outro.mp3"
+    if not voice_outro_path.exists() or force:
+        generate_jingle_voice(JINGLE_OUTRO_TEXT, voice_outro_path)
+    else:
+        print(f"   ℹ️  Voz outro ya existe: {voice_outro_path}")
 
-    # 4. Outro = misma mezcla (podría ser diferente en el futuro)
-    import shutil
-    shutil.copy2(str(intro_path), str(outro_path))
-    print(f"   ✅ Outro copiado: {outro_path}")
+    # 4. Mezclar intro
+    mix_voice_over_music(music_path, voice_intro_path, intro_path)
+
+    # 5. Mezclar outro
+    mix_voice_over_music(music_path, voice_outro_path, outro_path)
+    print(f"   ✅ Outro generado: {outro_path}")
 
     return {"intro": str(intro_path), "outro": str(outro_path)}
 
