@@ -1,0 +1,169 @@
+# El dragón verde del volcán
+
+
+Esta noche, antes de que cierres los ojos, quiero contarte algo que solo tú vas a escuchar. Una historia que nació justo para este momento...
+
+
+[EFECTO:pajaros]
+
+El sol de la mañana entraba por la ventana de la cabaña del abuelo. Era un día especial: el abuelo había prometido llevarles a ver el volcán dormido que se alzaba detrás del bosque de pinos.
+
+[PERSONAJE:alvarito] "¡Volcán! ¡Volcán! ¿Echa fuego? ¿Echa fuego?"
+
+[PERSONAJE:caye] "No, Álvaro... El abuelo dice que está dormido desde hace muchos, muchos años."
+
+[PERSONAJE:alvarito] "¿Y ronca? ¿Los volcanes roncan?"
+
+Caye se rio mientras se ponía sus botas de montaña, esas que tenían estrellitas brillantes en los cordones.
+
+[PERSONAJE:caye] "Anda, ven... Que te ayudo con la cremallera del abrigo."
+
+[EFECTO:pasos]
+
+Caminaron durante un buen rato por un sendero lleno de hojas crujientes. El abuelo iba delante, con su bastón de madera y su sombrero de explorador. Pero cuando llegaron al claro donde empezaba la subida al volcán... el abuelo se detuvo.
+
+[PERSONAJE:sabio] "Mmm... Qué extraño. Hace años que no veo esto."
+
+Una niebla verde, espesa como sopa de guisantes, cubría todo el camino hacia arriba. No era una niebla normal. Brillaba. Y olía... olía a menta y a algo dulce que ninguno de los tres supo reconocer.
+
+[PERSONAJE:alvarito] "¡Verde! ¡Es verde! ¿Por qué es verde, abuelo? ¿Por qué?"
+
+[PERSONAJE:sabio] "Hay una vieja leyenda... Se dice que en el corazón del volcán vive un dragón. Un dragón verde y solitario que duerme durante cien años... y cuando despierta, la montaña suspira niebla de color esmeralda."
+
+Caye sintió un cosquilleo en la barriga. No sabía si era miedo o emoción. Quizás las dos cosas a la vez.
+
+[PERSONAJE:caye] "¿Un dragón de verdad...?"
+
+[EFECTO:viento]
+
+De pronto, el viento sopló con fuerza y la niebla se arremolinó. El abuelo perdió el sombrero, que salió volando hacia la boca del volcán.
+
+[PERSONAJE:sabio] "¡Oh, cielos! Mi sombrero de explorador... Era de mi padre..."
+
+El abuelo miró hacia la niebla verde con los ojos tristes. Caye vio cómo su abuelo suspiraba, sabiendo que no podía subir con sus piernas cansadas.
+
+[PERSONAJE:caye] "Abuelo... Yo puedo ir a buscarlo."
+
+[PERSONAJE:sabio] "No, pequeña... No sabemos qué hay ahí arriba."
+
+Pero Caye ya había tomado una decisión. Su corazón latía muy rápido, pero recordó algo que su mamá siempre le decía: ser valiente no significa no tener miedo. Significa hacer lo correcto aunque el miedo esté ahí.
+
+[PERSONAJE:caye] "Iré con cuidado, te lo prometo."
+
+[PERSONAJE:alvarito] "¡Yo también! ¡Yo también voy!"
+
+[PERSONAJE:caye] "No, Álvaro. Tú quédate con el abuelo. Si no vuelvo en un ratito, id a buscar ayuda."
+
+[PERSONAJE:alvarito] "Pero... pero..."
+
+Los ojitos de Álvaro se llenaron de lágrimas. Caye se agachó y le dio un beso en la frente.
+
+[PERSONAJE:caye] "Eh... Eres mi hermano valiente, ¿verdad? Los valientes también saben esperar."
+
+[EFECTO:magia]
+
+Caye respiró hondo y entró en la niebla verde. Todo se volvió silencioso. Sus pasos sonaban amortiguados, como si caminara sobre algodón. El mundo de fuera desapareció, y solo quedaba ella... y el camino hacia arriba.
+
+Subió y subió, con las piernas un poco temblorosas. La niebla le hacía cosquillas en la nariz. De vez en cuando, veía formas extrañas entre la bruma: ¿eran rocas o eran... otra cosa?
+
+[PERSONAJE:caye] "No pasa nada... No pasa nada... Solo tengo que encontrar el sombrero..."
+
+Entonces lo vio.
+
+[EFECTO:fuego]
+
+En el centro del cráter del volcán, sobre una cama de piedras tibias, había un dragón enorme. Pero no era terrorífico como los de los cuentos de princesas asustadas. Era... precioso. Sus escamas brillaban como esmeraldas al sol. Tenía los ojos cerrados y de su nariz salían pequeñas volutas de humo verde que olían a menta.
+
+Y justo al lado de su pata delantera... estaba el sombrero del abuelo.
+
+Caye tragó saliva. El corazón le latía tan fuerte que pensó que el dragón podría oírlo. Dio un paso. Luego otro.
+
+Crack.
+
+Pisó una ramita.
+
+Los ojos del dragón se abrieron de golpe. Eran dorados, enormes, brillantes como dos soles pequeños.
+
+[PERSONAJE:dragon] "¿Quién... osa... despertar... a Verdún...?"
+
+La voz del dragón era profunda como un trueno lejano, pero también sonaba... ¿cansada? ¿Triste?
+
+Caye quiso salir corriendo. Cada parte de su cuerpo le decía que huyera. Pero pensó en su abuelo, en su sombrero, en la tristeza de sus ojos. Y se quedó.
+
+[PERSONAJE:caye] "Me... me llamo Caye. Y... y he venido a buscar el sombrero de mi abuelo. El viento lo trajo hasta aquí. No... no quería molestarte."
+
+El dragón parpadeó muy lentamente. Bajó su enorme cabeza hasta quedar a la altura de Caye. Su aliento era caliente pero no quemaba, olía a hierbas de montaña.
+
+[PERSONAJE:dragon] "¿No tienes miedo... pequeña humana...?"
+
+[PERSONAJE:caye] "Sí... Sí que tengo miedo. Tengo mucho miedo. Pero... mi abuelo estaba triste. Y yo quiero ayudarle."
+
+[EFECTO:campanas]
+
+Algo cambió en los ojos del dragón. Se suavizaron, como cuando el hielo se derrite al sol de primavera.
+
+[PERSONAJE:dragon] "Hace cien años que nadie sube hasta aquí... Hace cien años que nadie... me habla..."
+
+Caye sintió algo raro en el pecho. Ya no era miedo. Era... pena. Pena por aquel dragón tan grande y tan solo.
+
+[PERSONAJE:caye] "¿Estás solo todo el tiempo?"
+
+[PERSONAJE:dragon] "Los humanos huyen cuando me ven... Nadie se queda... Nadie pregunta cómo me siento..."
+
+Una lágrima enorme, del tamaño de una manzana, rodó por la mejilla del dragón y cayó al suelo, donde brotó una florecilla verde brillante.
+
+Caye hizo algo que nunca pensó que haría. Se acercó más. Y más. Hasta que pudo tocar la pata del dragón con su mano pequeñita.
+
+[PERSONAJE:caye] "Yo me quedo un ratito... si quieres. Puedo escucharte."
+
+El dragón Verdún cerró los ojos y suspiró. Un suspiro larguísimo que hizo temblar las piedras del volcán. Pero era un suspiro de alivio.
+
+[PERSONAJE:dragon] "Eres valiente, pequeña Caye... No por no tener miedo... sino por quedarte a pesar de él..."
+
+Verdún movió su pata con delicadeza y le acercó el sombrero del abuelo.
+
+[PERSONAJE:dragon] "Llévate esto... Y llévate también un regalo..."
+
+De entre sus escamas sacó una piedrecita verde, pequeña como una canica, que brillaba con luz propia.
+
+[PERSONAJE:dragon] "Cuando tengas miedo a lo desconocido... sujeta esta piedra... y recuerda: lo que no conocemos a veces solo necesita que alguien sea valiente y se acerque con el corazón abierto..."
+
+[EFECTO:magia]
+
+Caye guardó la piedrecita en el bolsillo de su abrigo, junto a su corazón.
+
+[PERSONAJE:caye] "Gracias, Verdún... ¿Puedo volver a visitarte algún día?"
+
+[PERSONAJE:dragon] "Te esperaré, pequeña valiente... Ahora ve... Tu familia te espera..."
+
+La niebla verde empezó a deshacerse mientras Caye bajaba corriendo la montaña, con el sombrero bien sujeto contra el pecho.
+
+[EFECTO:risa_nino]
+
+Cuando salió del volcán, Álvaro corrió hacia ella con los brazos abiertos.
+
+[PERSONAJE:alvarito] "¡Caye! ¡Caye! ¡Volviste! ¡Volviste! ¿Viste al dragón? ¿Viste al dragón? ¿Era grande? ¿Era grande?"
+
+[PERSONAJE:caye] "Era enorme, Álvaro... Y era... era bueno. Solo estaba muy solito."
+
+El abuelo abrazó a Caye con fuerza y se puso su sombrero con los ojos brillantes de emoción.
+
+[PERSONAJE:sabio] "Mi niña valiente... ¿Sabes qué es lo más difícil del mundo? Acercarse a lo que no conocemos en lugar de huir. Y tú lo has hecho."
+
+Esa noche, ya en la cama de la cabaña del abuelo, Caye sujetaba la piedrecita verde en su mano. Brillaba suavemente en la oscuridad, como una estrella diminuta.
+
+Álvaro se acurrucó junto a ella, ya medio dormido.
+
+[PERSONAJE:alvarito] "Caye... ¿Mañana... mañana vamos a ver a Verdún?"
+
+[PERSONAJE:caye] "Algún día, hermanito... Algún día volveremos."
+
+[EFECTO:fuego]
+
+Y mientras el fuego de la chimenea crepitaba suavemente y la luna llena iluminaba el volcán dormido a lo lejos, Caye cerró los ojos sabiendo algo muy importante: que ser valiente no es no tener miedo. Ser valiente es dar un paso hacia adelante, con el corazón abierto, aunque las rodillas tiemblen un poquito.
+
+Porque a veces, detrás de lo desconocido, no hay monstruos. Solo hay alguien que necesita un amigo.
+
+Y en lo alto del volcán, un dragón verde sonreía por primera vez en cien años, sabiendo que ya no estaba solo.
+
+La historia ha terminado... pero los sueños acaban de empezar. Buenas noches. 🌙
