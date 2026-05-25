@@ -1,0 +1,233 @@
+# El gigante de nubes
+
+
+Esta noche, antes de que cierres los ojos, quiero contarte algo que solo tú vas a escuchar. Una historia que nació justo para este momento...
+
+
+[EFECTO:viento]
+
+Aquella tarde de primavera, el cielo parecía un lienzo pintado de algodón. Nubes enormes, redondas y brillantes flotaban sobre el jardín, y el sol las hacía parecer montañas de nata.
+
+Caye estaba tumbada en la hierba, mirando hacia arriba con los ojos entrecerrados. Le encantaba buscar formas en las nubes: un conejo, un castillo, una ballena...
+
+[PERSONAJE:alvarito] "¡Caye! ¡Caye! ¿Qué haces? ¿Qué haces? ¡Yo también quiero!"
+
+Álvaro llegó corriendo, tropezó con sus propios pies y cayó rodando hasta quedar tumbado junto a su hermana. Su risa contagiosa llenó el jardín.
+
+[PERSONAJE:caye] "Mira las nubes, Álvaro. ¿Ves esa de ahí? Parece un dragón dormido."
+
+[PERSONAJE:alvarito] "¡Yo veo un perro! ¡No, no, un gato! ¡Un gato gigante!"
+
+Pero entonces, algo extraño ocurrió.
+
+[EFECTO:magia]
+
+Una de las nubes más grandes comenzó a moverse... pero no como las demás. Esta bajaba, bajaba, bajaba muy despacio, como si quisiera acercarse a ellos.
+
+[PERSONAJE:alvarito] "¡Caye! ¡La nube viene! ¡Viene aquí!"
+
+[PERSONAJE:caye] "No puede ser... Las nubes no..."
+
+La nube se posó suavemente al final del jardín, justo detrás del viejo manzano. Y entonces, de entre la niebla blanca y esponjosa, emergió una figura enorme.
+
+Era un gigante.
+
+Pero no un gigante que diera miedo. Su cuerpo parecía hecho de nubes, sus ojos brillaban como dos estrellas diminutas, y cuando sonreía, pequeños arcoíris aparecían en sus mejillas.
+
+[PERSONAJE:dragon] "Pequeños... necesito vuestra ayuda."
+
+Su voz era profunda y suave, como el retumbar lejano de una tormenta de verano.
+
+[PERSONAJE:alvarito] "¡Un gigante! ¡Un gigante de verdad! ¡Caye, mira, mira!"
+
+Álvaro se levantó de un salto y echó a correr hacia él.
+
+[PERSONAJE:caye] "¡Álvaro, espera!"
+
+Caye corrió detrás de su hermano, con el corazón latiendo muy rápido. Siempre tenía que cuidarle, siempre tenía que vigilarle, siempre...
+
+Pero Álvaro ya estaba frente al gigante, mirándole con los ojos como platos y la boca abierta de asombro.
+
+[PERSONAJE:dragon] "No temáis. Me llamo Nimbo... y estoy muy triste."
+
+[PERSONAJE:caye] "¿Triste? Pero... eres un gigante mágico. ¿Qué puede ponerte triste a ti?"
+
+Nimbo suspiró, y de su boca salieron pequeñas nubecitas grises.
+
+[PERSONAJE:dragon] "Tengo un hermano pequeño... se llama Cirro. Antes jugábamos juntos, hacíamos tormentas divertidas, pintábamos arcoíris... Pero ahora todos le miran solo a él. Dicen que sus nubes son más bonitas, más especiales..."
+
+El gigante bajó la mirada.
+
+[PERSONAJE:dragon] "Y yo... empecé a sentir algo feo aquí dentro. Algo que me hacía querer alejarme de él."
+
+[EFECTO:trueno_suave]
+
+Caye sintió algo extraño en el pecho. Algo que conocía bien.
+
+[PERSONAJE:alvarito] "¿Feo? ¿Te duele la barriga?"
+
+[PERSONAJE:dragon] "No, pequeño... me duele más arriba. Me duele aquí."
+
+Nimbo se tocó el pecho, justo donde debía estar su corazón de nubes.
+
+[PERSONAJE:caye] "Yo... yo sé lo que es eso."
+
+Álvaro miró a su hermana sorprendido.
+
+[PERSONAJE:alvarito] "¿Tú también tienes un monstruo en la barriga, Caye?"
+
+[EFECTO:viento]
+
+Caye se quedó callada un momento. Miró a Álvaro, tan pequeño, tan gracioso con su pelo revuelto y su sonrisa enorme. Y luego miró a Nimbo, tan grande, tan triste.
+
+[PERSONAJE:caye] "A veces... a veces me pasa algo parecido."
+
+[PERSONAJE:alvarito] "¿A ti? ¿Por qué? ¿Por qué?"
+
+[PERSONAJE:caye] "Porque... porque cuando mamá y papá están contigo, cuando te abrazan, cuando se ríen de tus gracias... a veces yo siento que me quieren menos."
+
+Las palabras salieron solas, como un secreto guardado demasiado tiempo.
+
+[PERSONAJE:alvarito] "¡Pero yo te quiero mucho, Caye! ¡Mucho, mucho!"
+
+Álvaro se abrazó a las piernas de su hermana con toda su fuerza.
+
+[PERSONAJE:caye] "Y yo a ti, bichito. Es que... es difícil de explicar."
+
+Nimbo asintió lentamente, y una lágrima de lluvia fina cayó de su ojo.
+
+[PERSONAJE:dragon] "Eso es... eso es exactamente lo que yo siento. Pero no quiero sentirlo. Quiero a mi hermano... y no sé cómo dejar de estar celoso."
+
+[EFECTO:pajaros]
+
+Entonces, otra nube apareció en el cielo. Era más pequeña, más blanca, más juguetona. Daba vueltas y vueltas, como un cachorro buscando a alguien.
+
+[PERSONAJE:personaje] "¡Nimbo! ¡Nimbo! ¡Te he buscado por todas partes!"
+
+Era Cirro, el hermano pequeño del gigante. Su voz era aguda y cantarina, llena de energía.
+
+[PERSONAJE:dragon] "Cirro... ¿qué haces aquí?"
+
+[PERSONAJE:personaje] "¡Quería estar contigo! ¡Siempre te vas solo y yo me aburro sin ti!"
+
+Cirro bajó hasta el jardín y se transformó en un gigante más pequeño, rechoncho, con mejillas de algodón rosado.
+
+[PERSONAJE:personaje] "¿Por qué ya no juegas conmigo? ¿Estás enfadado? ¿He hecho algo malo?"
+
+La voz de Cirro tembló un poquito.
+
+[EFECTO:magia]
+
+Caye dio un paso adelante.
+
+[PERSONAJE:caye] "Nimbo... creo que tu hermano te quiere más de lo que crees."
+
+[PERSONAJE:dragon] "Pero... todos dicen que él es más especial..."
+
+[PERSONAJE:caye] "¿Y qué dice él?"
+
+Nimbo miró a Cirro, que tenía los ojos llenos de estrellitas húmedas.
+
+[PERSONAJE:personaje] "Yo no quiero ser más especial que tú, Nimbo. Yo quiero ser especial contigo. ¡Tú eres mi hermano mayor! ¡Tú me enseñaste a hacer arcoíris!"
+
+[PERSONAJE:alvarito] "¡Como Caye! ¡Caye me enseña todo! ¡A saltar, a contar, a hacer castillos!"
+
+Álvaro tiró de la mano de su hermana.
+
+[PERSONAJE:alvarito] "¡Caye es la mejor hermana del mundo mundial!"
+
+[EFECTO:risa_nino]
+
+Caye sintió que algo cálido le llenaba el pecho. Algo mucho más bonito que los celos.
+
+[PERSONAJE:caye] "Álvaro... ¿de verdad piensas eso?"
+
+[PERSONAJE:alvarito] "¡Sí, sí, sí! ¡Te quiero hasta el infinito!"
+
+[PERSONAJE:caye] "Yo también te quiero hasta el infinito, bichito. Y más allá."
+
+Nimbo observaba a los dos hermanos, y algo empezó a cambiar en su interior. Las nubecitas grises que salían de su boca se volvieron blancas, luego rosadas, luego doradas.
+
+[PERSONAJE:dragon] "Cirro... perdóname. No sabía que tú también me necesitabas."
+
+[PERSONAJE:personaje] "¡Siempre te necesito! ¡Eres mi hermano favorito!"
+
+[PERSONAJE:dragon] "Soy tu único hermano."
+
+[PERSONAJE:personaje] "¡Por eso eres mi favorito!"
+
+[EFECTO:risa_nino]
+
+Los dos gigantes de nubes se abrazaron, y de su abrazo surgió algo mágico: un arcoíris enorme que cruzó todo el cielo, de punta a punta.
+
+[EFECTO:campanas]
+
+Caye cogió la mano de Álvaro y los dos miraron hacia arriba, maravillados.
+
+[PERSONAJE:caye] "Ohhh... ¿estás viendo eso, Álvaro?"
+
+[PERSONAJE:alvarito] "¡El arcoíris más bonito! ¡El más bonito de todos!"
+
+Nimbo se agachó hasta quedar a la altura de los niños.
+
+[PERSONAJE:dragon] "Gracias, pequeños. Me habéis enseñado algo muy importante."
+
+[PERSONAJE:caye] "¿Nosotros?"
+
+[PERSONAJE:dragon] "Sí. Me habéis enseñado que los celos son como nubes grises... Aparecen, nos tapan el sol... pero si dejamos que el amor sople, se van volando."
+
+[PERSONAJE:alvarito] "¿El amor sopla? ¿Como el viento?"
+
+[PERSONAJE:dragon] "Exactamente, pequeño. El amor es el viento más fuerte que existe."
+
+[EFECTO:viento]
+
+Cirro dio saltitos de alegría.
+
+[PERSONAJE:personaje] "¡Nimbo! ¡Vamos a jugar! ¡Hazme una tormenta pequeñita!"
+
+[PERSONAJE:dragon] "Vamos, hermano. Tenemos mucho tiempo que recuperar."
+
+Antes de irse, Nimbo sopló suavemente hacia Caye y Álvaro. Una nubecita diminuta, del tamaño de un puño, se quedó flotando entre los dos.
+
+[PERSONAJE:dragon] "Esta nube es para vosotros. Cuando sintáis celos o tristeza... soplad sobre ella y recordad: el amor siempre es más grande."
+
+Los dos gigantes empezaron a subir, subir, subir... hasta convertirse de nuevo en nubes enormes que jugaban entre ellas.
+
+[EFECTO:magia]
+
+Caye miró a Álvaro. Álvaro miró a Caye.
+
+[PERSONAJE:alvarito] "Caye... ¿tú de verdad te ponías triste?"
+
+[PERSONAJE:caye] "A veces sí, bichito. Pero ya no. Porque ahora sé que quererte a ti no significa que me quieran menos a mí."
+
+[PERSONAJE:alvarito] "¡Hay mucho amor! ¡Para todos!"
+
+[PERSONAJE:caye] "Exacto. El amor no se acaba nunca."
+
+Álvaro se subió a caballito sobre su hermana, riendo a carcajadas.
+
+[PERSONAJE:alvarito] "¡Arre, arre! ¡Al infinito!"
+
+[PERSONAJE:caye] "¡Y más allá!"
+
+[EFECTO:risa_nino]
+
+Y los dos hermanos corrieron hacia casa, con la nubecita mágica flotando sobre ellos, brillando con todos los colores del arcoíris.
+
+Aquella noche, antes de dormir, Caye fue a la habitación de Álvaro. Le arropó con cuidado, le dio un beso en la frente y le susurró al oído:
+
+[PERSONAJE:caye] "Te quiero, bichito. Aunque a veces me ponga gruñona."
+
+Álvaro, medio dormido, sonrió.
+
+[PERSONAJE:alvarito] "Yo también te quiero, Caye... hasta las nubes..."
+
+Y la pequeña nube mágica, posada en la ventana, brilló suavemente toda la noche, recordándoles que los hermanos pueden enfadarse, pueden sentir celos, pueden tener días difíciles... pero el amor siempre, siempre, siempre encuentra el camino de vuelta.
+
+Porque el amor entre hermanos es como el cielo: a veces tiene nubes grises, a veces tiene tormentas... pero detrás, siempre, siempre, brilla el sol.
+
+Y ahora, cierra tus ojitos... imagina esa nubecita suave y cálida flotando sobre tu cama... siente cómo el amor de los que te quieren te arropa como una manta de algodón...
+
+La historia ha terminado... pero los sueños acaban de empezar. Buenas noches. 🌙
